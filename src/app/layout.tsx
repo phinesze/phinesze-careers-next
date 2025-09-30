@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ChangeEvent } from "react";
+import LayoutButtons from "@/components/layoutButtons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+    <html lang="ja">
+    <body
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+    {/* <div>(layout/preview.vueに相当するファイル)</div> */}
+    <section className="w-[210mm] h-[297mm]">
+      {children}
+    </section>
+    <LayoutButtons />
+    </body>
+</html>
+)
+  ;
 }
