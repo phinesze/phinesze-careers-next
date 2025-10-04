@@ -1,4 +1,4 @@
-import { CareerEnvironmentList } from "~/types/CareerEnvironmentList.ts";
+import { CareerEnvironmentList } from "@/types/CareerEnvironmentList";
 
 export interface Project {
   id: number;

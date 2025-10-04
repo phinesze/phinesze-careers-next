@@ -1,4 +1,4 @@
-import { Section } from "~/types/Section.ts";
+import { Section } from "@/types/Section";
 
 export interface DocumentSection extends Section {
   type: "document";
