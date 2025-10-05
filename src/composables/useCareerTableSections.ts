@@ -4,24 +4,23 @@ import { DocumentSection } from "@/types/DocumentSection";
 import { ProjectGroupSection } from "@/types/ProjectGroupSection";
 import { BiographyData } from "@/types/BiographyData";
 
-const searchParams = useSearchParams();
-
-// const loadedCareerTableSections = ref<
-//   (DocumentSection | ProjectGroupSection)[]
-// >([]); // TODO: Vueでのrefの記述を下記のようにuseStateにするようにする
-const [loadedCareerTableSections, setLoadedCareerTableSections] = useState<(DocumentSection | ProjectGroupSection)[]>([]);
-const [updatedAt, setUpdatedAt] = useState<string>("");
-
-const isTableView = useMemo(() => {
-  return Boolean(searchParams.get('is_table'));
-}, []);
-
-
-const isSecrets = useMemo(() => {
-  return Boolean(searchParams.get('is_secrets'));
-}, []);
-
 export const useCareerTableSections = () => {
+  const searchParams = useSearchParams();
+
+  // const loadedCareerTableSections = ref<
+  //   (DocumentSection | ProjectGroupSection)[]
+  // >([]); // TODO: Vueでのrefの記述を下記のようにuseStateにするようにする
+  const [loadedCareerTableSections, setLoadedCareerTableSections] = useState<(DocumentSection | ProjectGroupSection)[]>([]);
+  const [updatedAt, setUpdatedAt] = useState<string>("");
+
+  const isTableView = useMemo(() => {
+    return Boolean(searchParams.get('is_table'));
+  }, []);
+
+  const isSecrets = useMemo(() => {
+    return Boolean(searchParams.get('is_secrets'));
+  }, []);
+
   const projectGroupsOfSections = loadedCareerTableSections.find(
     (s) => s.type === "project-groups",
   ) as ProjectGroupSection | undefined;
