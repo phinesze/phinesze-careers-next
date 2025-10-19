@@ -20,27 +20,29 @@ export default function CareerSection() {
         {updatedAt && <DateLabel value={updatedAt} />} 更新
       </div>
     </section>
-    <section className={`career-section border-2 ${isSecrets ? 'secret' : ''}`}>
-      { loadedCareerTableSections.length &&
-        loadedCareerTableSections.map((section, index) =>
-           <>
-             {
-               section.type === 'document' && <CareerSectionDocumentBody
-                 key={index}
-                 label={section.label}
-                 markdownText={section.detail}
-               />
-             }
-             {
-               section.type === 'project-groups' && <CareerSectionProjectsGroupsBody
-                 key={index}
-                 groups={section.groups}
-               />
-             }
-           </>
-         )
-      }
-    </section>
+    { loadedCareerTableSections.length > 0 &&
+      <section className={`career-section border-2 ${isSecrets ? 'secret' : ''}`}>
+        {
+          loadedCareerTableSections.map((section, index) =>
+            <>
+              {
+                section.type === 'document' && <CareerSectionDocumentBody
+                  key={index}
+                  label={section.label}
+                  markdownText={section.detail}
+                />
+              }
+              {
+                section.type === 'project-groups' && <CareerSectionProjectsGroupsBody
+                  key={index}
+                  groups={section.groups}
+                />
+              }
+            </>
+          )
+        }
+      </section>
+    }
     {
       !loadedCareerTableSections.length &&
       <div className="mt-8 text-3xl text-center">
