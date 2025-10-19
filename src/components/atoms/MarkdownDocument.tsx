@@ -5,16 +5,14 @@ const md = markdownit();
 
 import { useMemo } from "react";
 
-export default function MarkdownDocument({ label, markdownText } : { label?: string, markdownText?: string }) {
-
-
+export default function MarkdownDocument({ markdownText } : { markdownText?: string }) {
   const renderedHtml = useMemo(() => {
     return markdownText ? md.render(markdownText) : "";
   },[])
 
   return (
     markdownText && <section>
-      <div dangerouslySetInnerHTML={{ __html: markdownText }} />
+      <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
     </section>
 
   )
