@@ -1,5 +1,4 @@
-import { ChangeEvent, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
+import { ChangeEvent } from "react";
 import { DocumentSection } from "@/types/DocumentSection";
 import { ProjectGroupSection } from "@/types/ProjectGroupSection";
 import { BiographyData } from "@/types/BiographyData";
@@ -10,7 +9,6 @@ export const loadedCareerTableSectionsAtom = atom<(DocumentSection | ProjectGrou
 export const updatedAtAtom = atom<string>("")
 
 export const useCareerTableSections = () => {
-  const searchParams = useSearchParams();
 
   // const loadedCareerTableSections = ref<
   //   (DocumentSection | ProjectGroupSection)[]
@@ -18,16 +16,10 @@ export const useCareerTableSections = () => {
   const {
     loadedCareerTableSections,
     setLoadedCareerTableSections,
-    setUpdatedAt
+    setUpdatedAt,
+    isTableView,
+    isSecrets,
   } = useCareerTableSectionState()
-
-  const isTableView = useMemo(() => {
-    return Boolean(searchParams.get('is_table'));
-  }, []);
-
-  const isSecrets = useMemo(() => {
-    return Boolean(searchParams.get('is_secrets'));
-  }, []);
 
   const projectGroupsOfSections = loadedCareerTableSections.find(
     (s) => s.type === "project-groups",
