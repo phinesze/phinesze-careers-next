@@ -15,8 +15,7 @@ export default function CareerSectionDocumentBody({ label, markdownText } : Prop
     </div>
     {/* 本文 */}
     <div className={'p-4'}>
-      <MarkdownDocument label={label} markdownText={markdownText} />
-      CareerSectionDocumentBody__
+      <MarkdownDocument markdownText={markdownText} />
     </div>
   </section>
 }
