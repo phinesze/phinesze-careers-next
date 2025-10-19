@@ -4,10 +4,12 @@ import DateLabel from "@/components/atoms/DateLabel";
 import { useCareerTableSections } from "@/composables/useCareerTableSections";
 import CareerSectionDocumentBody from "@/components/organisms/CareerSection/DocumentBody";
 import CareerSectionProjectsGroupsBody from "@/components/organisms/CareerSection/ProjectsGroupsBody";
+import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
 
 export default function CareerSection() {
 
-  const { loadedCareerTableSections, updatedAt, isSecrets } =
+  const { loadedCareerTableSections, updatedAt } = useCareerTableSectionState();
+  const { isSecrets } =
     useCareerTableSections();
 
   return <>

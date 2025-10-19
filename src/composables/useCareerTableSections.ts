@@ -1,8 +1,13 @@
-import { useMemo, useState } from "react";
+import { ChangeEvent, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { DocumentSection } from "@/types/DocumentSection";
 import { ProjectGroupSection } from "@/types/ProjectGroupSection";
 import { BiographyData } from "@/types/BiographyData";
+import { atom } from "jotai";
+import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
+
+export const loadedCareerTableSectionsAtom = atom<(DocumentSection | ProjectGroupSection)[]>([]);
+export const updatedAtAtom = atom<string>("")
 
 export const useCareerTableSections = () => {
   const searchParams = useSearchParams();
@@ -10,8 +15,11 @@ export const useCareerTableSections = () => {
   // const loadedCareerTableSections = ref<
   //   (DocumentSection | ProjectGroupSection)[]
   // >([]); // TODO: Vueでのrefの記述を下記のようにuseStateにするようにする
-  const [loadedCareerTableSections, setLoadedCareerTableSections] = useState<(DocumentSection | ProjectGroupSection)[]>([]);
-  const [updatedAt, setUpdatedAt] = useState<string>("");
+  const {
+    loadedCareerTableSections,
+    setLoadedCareerTableSections,
+    setUpdatedAt
+  } = useCareerTableSectionState()
 
   const isTableView = useMemo(() => {
     return Boolean(searchParams.get('is_table'));
@@ -25,10 +33,9 @@ export const useCareerTableSections = () => {
     (s) => s.type === "project-groups",
   ) as ProjectGroupSection | undefined;
 
-  const handleSelectFile = (event: Event) => {
-    const file = (event.target as HTMLInputElement)?.files?.[0];
-    if (!file) {
-      return [];
+  const handleSelectFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = (event.target as HTMLInputElement)?.files?.[0];    if (!file) {
+      return;
     }
     const reader = new FileReader();
     const ext = file.name.split(".").pop()?.toLowerCase();
@@ -51,8 +58,6 @@ export const useCareerTableSections = () => {
     reader.readAsText(file);
   };
   return {
-    loadedCareerTableSections,
-    updatedAt,
     isTableView,
     isSecrets,
     projectGroupsOfSections,

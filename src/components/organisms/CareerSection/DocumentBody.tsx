@@ -6,5 +6,7 @@ type Props = {
 }
 
 export default function CareerSectionDocumentBody({ label, markdownText } : Props) {
-  return <></>
+  return <section className={'[&:not(:first-child)]:border-t [&:not(:last-child)]:border-b'}>
+    CareerSectionDocumentBody
+  </section>
 }
