@@ -2,6 +2,7 @@
 
 import { ProjectGroup } from "@/types/ProjectGroup";
 import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
+import IntervalDateLabel from "@/components/molecules/IntervalDateLabel";
 
 type Props = {
   groups: ProjectGroup[];
@@ -9,6 +10,7 @@ type Props = {
 
 export default function CareerSectionProjectsGroupsBody({ groups } : Props) {
   const { isSecrets } = useCareerTableSectionState()
+  let projectIndex = 0;
   return <>
     {
       groups.map((group) => {
@@ -17,7 +19,34 @@ export default function CareerSectionProjectsGroupsBody({ groups } : Props) {
           {/* 会社名 */}
           <div className={"bg-blue-100 border-y p-2 font-bold break-after-avoid"}>
             { isSecrets ? group.company ?? group.companyAlias : group.companyAlias }
+            ProjectsGroupsBody
           </div>
+          {/* 会社のプロジェクト */}
+          {
+             group.projects.map((project) => {
+               projectIndex++;
+                 return <section key={project.id} className={"career-row break-inside-avoid border-t-[1px] border-b-[1px]"}>
+                   {/* 文章行部分 */}
+                   <div className={"align-top flex p-0"}>
+                     {/* 番号・期間 */}
+                     <div className={"w-[20mm]"}>
+                       <div
+                         className={"flex items-center border-r-2 h-full bg-lime-300 text-center"}>
+                         <div className={"text-center"}>
+                           #{projectIndex}
+                           <IntervalDateLabel value={project.times} />
+                         </div>
+                       </div>
+                     </div>
+                     {/* 本文タイトル、本文、チーム人数・言語・フレームワーク */}
+                     <div className={"w-full"}>
+
+                     </div>
+                   </div>
+                 </section>;
+               }
+             )
+          }
         </section>
 
       })

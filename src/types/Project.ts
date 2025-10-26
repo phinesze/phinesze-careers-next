@@ -5,7 +5,10 @@ export interface Project {
   title?: string;
   detail?: string;
   secretDetail?: string;
-  times?: {};
+  times?: {
+    start: string;
+    end?: string;
+  },
   teams?: {};
   environments?: CareerEnvironmentList;
 }
