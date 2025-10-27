@@ -3,6 +3,7 @@
 import { ProjectGroup } from "@/types/ProjectGroup";
 import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
 import IntervalDateLabel from "@/components/molecules/IntervalDateLabel";
+import MarkdownDocument from "@/components/atoms/MarkdownDocument";
 
 type Props = {
   groups: ProjectGroup[];
@@ -46,7 +47,11 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                         {project.title}
                       </div>
                       <div className="flex">
-
+                        {/* 本文 */}
+                        <MarkdownDocument
+                          className={"w-0 flex-grow px-2 py-4"}
+                          markdownText={project.detail}
+                        ></MarkdownDocument>
                       </div>
                     </div>
                   </div>

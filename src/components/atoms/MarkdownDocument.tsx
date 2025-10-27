@@ -1,20 +1,25 @@
 "use client";
 
-import markdownit from 'markdown-it'
-const md = markdownit();
-
+import markdownit from "markdown-it";
 import { useMemo } from "react";
 
-export default function MarkdownDocument({ markdownText } : { markdownText?: string }) {
+const md = markdownit();
+
+type Props = {
+  className?: string,
+  markdownText?: string
+}
+
+export default function MarkdownDocument({ className, markdownText }: Props) {
   const renderedHtml = useMemo(() => {
     return markdownText ? md.render(markdownText) : "";
-  },[])
+  }, []);
 
   return (
-    markdownText && <section>
+    markdownText && <section className={className}>
       <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
     </section>
 
-  )
+  );
 
 }
