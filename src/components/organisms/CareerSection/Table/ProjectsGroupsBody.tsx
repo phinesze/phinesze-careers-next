@@ -1,4 +1,7 @@
 "use client";
 
-export default function CareerSectionTableProjectsGroupsBody({value} : { value: string }) {
-}
+export default function CareerSectionTableProjectsGroupsBody({
+  value,
+}: {
+  value: string;
+}) {}

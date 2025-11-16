@@ -1,11 +1,11 @@
 "use client";
-{/* layout/preview.vueに相当するファイル) */}
+{
+  /* layout/preview.vueに相当するファイル) */
+}
 
-import { useCareerTableSections,  } from "@/composables/useCareerTableSections";
+import { useCareerTableSections } from "@/composables/useCareerTableSections";
 
-export default function LayoutButtons({
-}: Readonly<{}>) {
-
+export default function LayoutButtons({}: Readonly<{}>) {
   const { handleSelectFile } = useCareerTableSections();
 
   const handlePrint = () => print();
@@ -17,12 +17,16 @@ export default function LayoutButtons({
         <input
           type="file"
           accept="application/json"
-          className="absolute left-0 top-0 w-full h-full bg-amber-300 opacity-0" onChange={(event)=>handleSelectFile(event)} />
+          className="absolute left-0 top-0 w-full h-full bg-amber-300 opacity-0"
+          onChange={(event) => handleSelectFile(event)}
+        />
       </button>
       <button
-        className="inline-block border border-gray-200 h-16 px-5" onClick={handlePrint}>
-      印刷
-    </button>
-    </footer>)
-  ;
+        className="inline-block border border-gray-200 h-16 px-5"
+        onClick={handlePrint}
+      >
+        印刷
+      </button>
+    </footer>
+  );
 }

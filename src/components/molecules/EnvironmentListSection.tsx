@@ -1,4 +1,7 @@
 "use client";
 
-export default function EnvironmentListSection({value} : { value: number | [number, number] }) {
-}
+export default function EnvironmentListSection({
+  value,
+}: {
+  value: number | [number, number];
+}) {}

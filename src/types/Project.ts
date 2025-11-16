@@ -8,7 +8,7 @@ export interface Project {
   times?: {
     start: string;
     end?: string;
-  },
+  };
   teams?: {};
   environments?: CareerEnvironmentList;
 }

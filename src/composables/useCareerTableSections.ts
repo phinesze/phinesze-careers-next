@@ -5,11 +5,12 @@ import { BiographyData } from "@/types/BiographyData";
 import { atom } from "jotai";
 import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
 
-export const loadedCareerTableSectionsAtom = atom<(DocumentSection | ProjectGroupSection)[]>([]);
-export const updatedAtAtom = atom<string>("")
+export const loadedCareerTableSectionsAtom = atom<
+  (DocumentSection | ProjectGroupSection)[]
+>([]);
+export const updatedAtAtom = atom<string>("");
 
 export const useCareerTableSections = () => {
-
   // const loadedCareerTableSections = ref<
   //   (DocumentSection | ProjectGroupSection)[]
   // >([]); // TODO: Vueでのrefの記述を下記のようにuseStateにするようにする
@@ -19,14 +20,15 @@ export const useCareerTableSections = () => {
     setUpdatedAt,
     isTableView,
     isSecrets,
-  } = useCareerTableSectionState()
+  } = useCareerTableSectionState();
 
   const projectGroupsOfSections = loadedCareerTableSections.find(
     (s) => s.type === "project-groups",
   ) as ProjectGroupSection | undefined;
 
   const handleSelectFile = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = (event.target as HTMLInputElement)?.files?.[0];    if (!file) {
+    const file = (event.target as HTMLInputElement)?.files?.[0];
+    if (!file) {
       return;
     }
     const reader = new FileReader();
@@ -43,7 +45,7 @@ export const useCareerTableSections = () => {
         return;
       }
       const parsedSectionData = JSON.parse(json) as BiographyData;
-      setLoadedCareerTableSections(parsedSectionData.sections)
+      setLoadedCareerTableSections(parsedSectionData.sections);
       setUpdatedAt(parsedSectionData.updatedAt);
     };
 

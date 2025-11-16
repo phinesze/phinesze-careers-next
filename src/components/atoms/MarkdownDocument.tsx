@@ -6,9 +6,9 @@ import { useMemo } from "react";
 const md = markdownit();
 
 type Props = {
-  className?: string,
-  markdownText?: string
-}
+  className?: string;
+  markdownText?: string;
+};
 
 export default function MarkdownDocument({ className, markdownText }: Props) {
   const renderedHtml = useMemo(() => {
@@ -16,10 +16,10 @@ export default function MarkdownDocument({ className, markdownText }: Props) {
   }, []);
 
   return (
-    markdownText && <section className={className}>
-      <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-    </section>
-
+    markdownText && (
+      <section className={className}>
+        <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+      </section>
+    )
   );
-
 }
