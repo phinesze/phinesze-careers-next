@@ -9,6 +9,6 @@ export interface Project {
     start: string;
     end?: string;
   };
-  teams?: {};
+  teams?: { [key: string]: number };
   environments?: CareerEnvironmentList;
 }

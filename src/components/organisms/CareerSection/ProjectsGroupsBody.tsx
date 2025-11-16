@@ -4,6 +4,7 @@ import { ProjectGroup } from "@/types/ProjectGroup";
 import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
 import IntervalDateLabel from "@/components/molecules/IntervalDateLabel";
 import MarkdownDocument from "@/components/atoms/MarkdownDocument";
+import TeamNumberLabel from "@/components/atoms/TeamNumberLabel";
 
 type Props = {
   groups: ProjectGroup[];
@@ -25,7 +26,6 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
               {isSecrets
                 ? (group.company ?? group.companyAlias)
                 : group.companyAlias}
-              ProjectsGroupsBody
             </div>
             {/* 会社のプロジェクト */}
             {group.projects.map((project) => {
@@ -64,6 +64,34 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                           className={"w-0 flex-grow px-2 py-4"}
                           markdownText={project.detail}
                         ></MarkdownDocument>
+                        {/* チーム人数、言語・フレームワーク */}
+                        <div className={"align-top w-[50mm] flex-grow-0 pt-4"}>
+                          {/* チーム人数 */}
+                          <div
+                            v-if="career.teams"
+                            className={"bg-gray-200 p-0.5 font-bold"}
+                          >
+                            チーム人数
+                          </div>
+                          {/* チーム詳細 */}
+                          {project.teams && (
+                            <ul className={"inline-block w-fit p-2"}>
+                              {Object.entries(project.teams).map(
+                                ([team, teamNumber]) => {
+                                  return (
+                                    <li
+                                      key={teamNumber}
+                                      className={"text-left"}
+                                    >
+                                      {team}:
+                                      <TeamNumberLabel value={teamNumber} />
+                                    </li>
+                                  );
+                                },
+                              )}
+                            </ul>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
