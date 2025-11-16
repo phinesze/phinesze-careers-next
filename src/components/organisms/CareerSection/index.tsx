@@ -5,6 +5,7 @@ import { useCareerTableSections } from "@/composables/useCareerTableSections";
 import CareerSectionDocumentBody from "@/components/organisms/CareerSection/DocumentBody";
 import CareerSectionProjectsGroupsBody from "@/components/organisms/CareerSection/ProjectsGroupsBody";
 import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
+import { Fragment } from "react";
 
 export default function CareerSection() {
   const { loadedCareerTableSections, updatedAt } = useCareerTableSectionState();
@@ -26,21 +27,17 @@ export default function CareerSection() {
           className={`career-section border-2 ${isSecrets ? "secret" : ""}`}
         >
           {loadedCareerTableSections.map((section, index) => (
-            <>
+            <Fragment key={index}>
               {section.type === "document" && (
                 <CareerSectionDocumentBody
-                  key={index}
                   label={section.label}
                   markdownText={section.detail}
                 />
               )}
               {section.type === "project-groups" && (
-                <CareerSectionProjectsGroupsBody
-                  key={index}
-                  groups={section.groups}
-                />
+                <CareerSectionProjectsGroupsBody groups={section.groups} />
               )}
-            </>
+            </Fragment>
           ))}
         </section>
       )}
