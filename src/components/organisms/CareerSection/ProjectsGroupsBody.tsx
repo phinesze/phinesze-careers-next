@@ -15,9 +15,9 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
   let projectIndex = 0;
   return (
     <>
-      {groups.map((group) => {
+      {groups.map((group, groupIndex) => {
         return (
-          <section key={group.companyAlias}>
+          <section key={groupIndex}>
             {/* {group.companyAlias} */}
             {/* 会社名 */}
             <div
