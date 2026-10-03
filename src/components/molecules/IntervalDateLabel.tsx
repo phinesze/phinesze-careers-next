@@ -15,7 +15,7 @@ export default function IntervalDateLabel({ value }: Props) {
     const getMonthNum = (date: Date) =>
       date.getFullYear() * 12 + date.getMonth();
 
-    if (!value.end) {
+    if (!value?.end) {
       return null;
     }
     const startDate = new Date(value.start);
