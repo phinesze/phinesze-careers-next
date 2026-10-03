@@ -16,11 +16,11 @@ export const useCareerTableSectionState = () => {
 
   const isTableView = useMemo(() => {
     return Boolean(searchParams.get("is_table"));
-  }, []);
+  }, [searchParams]);
 
   const isSecrets = useMemo(() => {
     return Boolean(searchParams.get("is_secrets"));
-  }, []);
+  }, [searchParams]);
 
   return {
     loadedCareerTableSections,

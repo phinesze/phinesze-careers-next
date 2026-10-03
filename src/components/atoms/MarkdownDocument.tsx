@@ -13,7 +13,7 @@ type Props = {
 export default function MarkdownDocument({ className, markdownText }: Props) {
   const renderedHtml = useMemo(() => {
     return markdownText ? md.render(markdownText) : "";
-  }, []);
+  }, [markdownText]);
 
   return (
     markdownText && (

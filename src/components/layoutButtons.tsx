@@ -5,7 +5,7 @@
 
 import { useCareerTableSections } from "@/composables/useCareerTableSections";
 
-export default function LayoutButtons({}: Readonly<{}>) {
+export default function LayoutButtons() {
   const { handleSelectFile } = useCareerTableSections();
 
   const handlePrint = () => print();

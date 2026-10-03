@@ -1,7 +1,7 @@
 "use client";
 
 export default function CareerSectionTableDocumentBody({
-  value,
+  value: _value,
 }: {
   value: string;
 }) {}

@@ -1,3 +1,7 @@
 "use client";
 
-export default function CareerSectionTable({ value }: { value: string }) {}
+export default function CareerSectionTable({
+  value: _value,
+}: {
+  value: string;
+}) {}
