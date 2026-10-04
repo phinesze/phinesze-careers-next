@@ -91,6 +91,58 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                               )}
                             </ul>
                           )}
+                          {/* 言語・フレームワーク詳細 */}
+                          {project.environments && (
+                            <>
+                              <div className={"bg-gray-200 p-0.5 font-bold"}>
+                                言語・フレームワーク
+                              </div>
+                              <ul className={"inline-block w-fit p-2"}>
+                                {Object.entries(project.environments).map(
+                                  ([environment, environmentDetail]) => {
+                                    return (
+                                      <li
+                                        key={environment}
+                                        className={"text-left"}
+                                      >
+                                        {environment}:
+                                        <div className={"ml-1"}>
+                                          {environmentDetail.map(
+                                            (detail, index) => (
+                                              <div
+                                                key={index}
+                                                className={"block"}
+                                              >
+                                                {Array.isArray(detail) ? (
+                                                  <>
+                                                    {/* 言語・フレームワーク名 */}
+                                                    <span>{detail[0]}</span>
+                                                    {/* バージョン情報 */}
+                                                    {detail[1] &&
+                                                      detail[1].version && (
+                                                        <span
+                                                          className={
+                                                            "ml-[1mm] italic text-gray-500"
+                                                          }
+                                                        >
+                                                          (v{detail[1].version})
+                                                        </span>
+                                                      )}
+                                                  </>
+                                                ) : (
+                                                  <span>{detail}</span>
+                                                )}
+                                              </div>
+                                            ),
+                                          )}
+                                        </div>
+                                      </li>
+                                    );
+                                  },
+                                )}
+                              </ul>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
