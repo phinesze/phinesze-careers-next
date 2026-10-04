@@ -21,7 +21,7 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
             {/* {group.companyAlias} */}
             {/* 会社名 */}
             <div
-              className={"bg-blue-100 border-y p-2 font-bold break-after-avoid"}
+              className={"break-after-avoid border-y bg-blue-100 p-2 font-bold"}
             >
               {isSecrets
                 ? (group.company ?? group.companyAlias)
@@ -38,12 +38,12 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                   }
                 >
                   {/* 文章行部分 */}
-                  <div className={"align-top flex p-0"}>
+                  <div className={"flex p-0 align-top"}>
                     {/* 番号・期間 */}
                     <div className={"w-[20mm]"}>
                       <div
                         className={
-                          "flex items-center border-r-2 h-full bg-lime-300 text-center"
+                          "flex h-full items-center border-r-2 bg-lime-300 text-center"
                         }
                       >
                         <div className={"text-center"}>
@@ -55,7 +55,7 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                     {/* 本文タイトル、本文、チーム人数・言語・フレームワーク */}
                     <div className={"w-full"}>
                       {/* 本文タイトル */}
-                      <div className="font-bold p-2 bg-cyan-100 flex">
+                      <div className="flex bg-cyan-100 p-2 font-bold">
                         {project.title}
                       </div>
                       <div className="flex">
@@ -65,7 +65,7 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                           markdownText={project.detail}
                         ></MarkdownDocument>
                         {/* チーム人数、言語・フレームワーク */}
-                        <div className={"align-top w-[50mm] flex-grow-0 pt-4"}>
+                        <div className={"w-[50mm] flex-grow-0 pt-4 align-top"}>
                           {/* チーム人数 */}
                           <div
                             v-if="career.teams"

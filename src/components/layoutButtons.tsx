@@ -11,18 +11,18 @@ export default function LayoutButtons() {
   const handlePrint = () => print();
 
   return (
-    <footer className="print:hidden fixed left-0 bottom-0 w-full h-16 bg-gray-400 shadow-lg shadow-indigo-500/50">
-      <button className="inline-block border border-gray-200 h-16 px-5 relative">
+    <footer className="fixed bottom-0 left-0 h-16 w-full bg-gray-400 shadow-lg shadow-indigo-500/50 print:hidden">
+      <button className="relative inline-block h-16 border border-gray-200 px-5">
         <span>biographyData JSONファイル選択</span>
         <input
           type="file"
           accept="application/json"
-          className="absolute left-0 top-0 w-full h-full bg-amber-300 opacity-0"
+          className="absolute top-0 left-0 h-full w-full bg-amber-300 opacity-0"
           onChange={(event) => handleSelectFile(event)}
         />
       </button>
       <button
-        className="inline-block border border-gray-200 h-16 px-5"
+        className="inline-block h-16 border border-gray-200 px-5"
         onClick={handlePrint}
       >
         印刷

@@ -7,7 +7,7 @@ export default function IndexPage() {
       <Link href="/preview">
         <button
           type="button"
-          className="inline-block bg-blue-500 text-white p-4 rounded-8"
+          className="rounded-8 inline-block bg-blue-500 p-4 text-white"
         >
           プレビューページへ移動
         </button>
