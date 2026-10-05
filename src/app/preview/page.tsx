@@ -8,7 +8,7 @@ export default function PreviewPage() {
       <div className="fixed top-0 left-0 w-full">
         <LayoutButtons />
       </div>
-      <div className="mt-16 p-[5mm]">
+      <div className="mt-16">
         <CareerSection />
       </div>
     </div>

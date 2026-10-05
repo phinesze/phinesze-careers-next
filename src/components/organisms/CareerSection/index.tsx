@@ -12,7 +12,7 @@ export default function CareerSection() {
   const { isSecrets } = useCareerTableSections();
 
   return (
-    <main className="min-h-[297mm] w-[210mm] bg-white text-black">
+    <main className="min-h-[297mm] w-[210mm] bg-white p-[5mm] text-black">
       <section className="relative mb-5">
         <div className="text-center text-5xl">職務経歴書</div>
         {isSecrets && <div className="text-xl">機密要素あり</div>}
