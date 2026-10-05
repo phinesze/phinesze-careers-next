@@ -16,11 +16,11 @@ export default function CareerSectionDocumentBody({
       className={"[&:not(:first-child)]:border-t [&:not(:last-child)]:border-b"}
     >
       {/* タイトル */}
-      <div v-if="label" className={"bg-gray-300 p-2 font-bold"}>
+      <div v-if="label" className={"bg-gray-300 p-[1mm] font-bold"}>
         {label}
       </div>
       {/* 本文 */}
-      <div className={"p-4"}>
+      <div className={"p-[2mm]"}>
         <MarkdownDocument markdownText={markdownText} />
       </div>
     </section>

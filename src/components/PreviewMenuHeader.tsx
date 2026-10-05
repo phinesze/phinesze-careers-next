@@ -8,18 +8,18 @@ export default function PreviewMenuHeader() {
   const handlePrint = () => print();
 
   return (
-    <header className="h-16 w-full bg-gray-400 shadow-lg shadow-indigo-500/50 print:hidden">
-      <button className="relative inline-block h-16 border border-gray-200 px-5">
+    <header className="flex h-9 w-full cursor-pointer bg-gray-400 shadow-lg shadow-indigo-500/50 print:hidden">
+      <button className="relative inline-block border border-gray-200 px-2 text-sm">
         <span>biographyData JSONファイル選択</span>
         <input
           type="file"
           accept="application/json"
-          className="absolute top-0 left-0 h-full w-full bg-amber-300 opacity-0"
+          className="absolute top-0 left-0 h-full w-full cursor-pointer bg-amber-300 opacity-0"
           onChange={(event) => handleSelectFile(event)}
         />
       </button>
       <button
-        className="inline-block h-16 border border-gray-200 px-5"
+        className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"
         onClick={handlePrint}
       >
         印刷

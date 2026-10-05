@@ -8,7 +8,7 @@ export default function PreviewPage() {
       <div className="fixed top-0 left-0 w-full">
         <PreviewMenuHeader />
       </div>
-      <div className="not-print:mt-16">
+      <div className="not-print:mt-[8mm]">
         <CareerSection />
       </div>
     </div>

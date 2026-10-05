@@ -12,11 +12,11 @@ export default function CareerSection() {
   const { isSecrets } = useCareerTableSections();
 
   return (
-    <main className="min-h-[297mm] w-[210mm] bg-white p-[5mm] text-black">
-      <section className="relative mb-5">
-        <div className="text-center text-5xl">職務経歴書</div>
-        {isSecrets && <div className="text-xl">機密要素あり</div>}
-        <div className="absolute right-0 bottom-0 text-sm">
+    <main className=" min-h-[297mm] w-[210mm] bg-white p-[5mm] text-[2mm] text-black">
+      <section className="relative mb-[2.5mm]">
+        <div className="text-center text-[6mm]/none">職務経歴書</div>
+        {isSecrets && <div className="text-[2.5mm]/[3.5mm]">機密要素あり</div>}
+        <div className="absolute right-0 bottom-0 text-[1.75mm]/[2.5mm]">
           {updatedAt && <DateLabel value={updatedAt} />} 更新
         </div>
       </section>
@@ -40,7 +40,7 @@ export default function CareerSection() {
         </section>
       )}
       {!loadedCareerTableSections.length && (
-        <div className="mt-8 text-center text-3xl">
+        <div className="mt-[4mm] text-center text-[3.75mm]/[4.5mm]">
           「biographyData.jsonファイル選択」からファイルを選択してください
         </div>
       )}

@@ -22,7 +22,9 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
             {/* {group.companyAlias} */}
             {/* 会社名 */}
             <div
-              className={"break-after-avoid border-y bg-blue-100 p-2 font-bold"}
+              className={
+                "break-after-avoid border-y bg-blue-100 p-[1mm] font-bold"
+              }
             >
               {isSecrets
                 ? (group.company ?? group.companyAlias)
@@ -56,22 +58,24 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                     {/* 本文タイトル、本文、チーム人数・言語・フレームワーク */}
                     <div className={"w-full"}>
                       {/* 本文タイトル */}
-                      <div className="flex bg-cyan-100 p-2 font-bold">
+                      <div className="flex bg-cyan-100 p-[1mm] font-bold">
                         {project.title}
                       </div>
                       <div className="flex">
                         {/* 本文 */}
                         <MarkdownDocument
-                          className={"w-0 flex-grow px-2 py-4"}
+                          className={"w-0 flex-grow px-[1mm] py-[2mm]"}
                           markdownText={project.detail}
                         ></MarkdownDocument>
                         {/* チーム人数、言語・フレームワーク */}
-                        <div className={"w-[50mm] flex-grow-0 pt-4 align-top"}>
+                        <div
+                          className={"w-[50mm] flex-grow-0 pt-[2mm] align-top"}
+                        >
                           {/* チーム人数 */}
                           <SubHeadingLabel>チーム人数</SubHeadingLabel>
                           {/* チーム詳細 */}
                           {project.teams && (
-                            <ul className={"inline-block w-fit p-2"}>
+                            <ul className={"inline-block w-fit p-[1mm]"}>
                               {Object.entries(project.teams).map(
                                 ([team, teamNumber]) => {
                                   return (
@@ -93,7 +97,7 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                               <SubHeadingLabel>
                                 言語・フレームワーク
                               </SubHeadingLabel>
-                              <ul className={"inline-block w-fit p-2"}>
+                              <ul className={"inline-block w-fit p-[1mm]"}>
                                 {Object.entries(project.environments).map(
                                   ([environment, environmentDetail]) => {
                                     return (
@@ -102,7 +106,7 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                                         className={"text-left"}
                                       >
                                         {environment}:
-                                        <div className={"ml-1"}>
+                                        <div className={"ml-[0.5mm]"}>
                                           {environmentDetail.map(
                                             (detail, index) => (
                                               <div
@@ -118,7 +122,7 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                                                       detail[1].version && (
                                                         <span
                                                           className={
-                                                            "ml-[1mm] italic text-gray-500"
+                                                            "ml-[1mm] text-gray-500 italic"
                                                           }
                                                         >
                                                           (v{detail[1].version})
