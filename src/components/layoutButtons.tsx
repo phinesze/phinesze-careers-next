@@ -11,7 +11,7 @@ export default function LayoutButtons() {
   const handlePrint = () => print();
 
   return (
-    <footer className="fixed bottom-0 left-0 h-16 w-full bg-gray-400 shadow-lg shadow-indigo-500/50 print:hidden">
+    <footer className="h-16 w-full bg-gray-400 shadow-lg shadow-indigo-500/50 print:hidden">
       <button className="relative inline-block h-16 border border-gray-200 px-5">
         <span>biographyData JSONファイル選択</span>
         <input
