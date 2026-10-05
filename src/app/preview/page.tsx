@@ -1,12 +1,12 @@
 import CareerSection from "@/components/organisms/CareerSection";
-import LayoutButtons from "@/components/layoutButtons";
+import PreviewMenuHeader from "@/components/PreviewMenuHeader";
 
 // プレビュー用ページ
 export default function PreviewPage() {
   return (
     <div className="bg-white">
       <div className="fixed top-0 left-0 w-full">
-        <LayoutButtons />
+        <PreviewMenuHeader />
       </div>
       <div className="mt-16">
         <CareerSection />
