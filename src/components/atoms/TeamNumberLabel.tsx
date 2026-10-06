@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 
-export default function TeamNumberLabel({
+export default function ProjectTeamNumberLabel({
   value,
 }: {
   value: number | [number, number];

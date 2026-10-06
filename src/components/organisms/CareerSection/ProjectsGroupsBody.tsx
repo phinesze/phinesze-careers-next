@@ -4,7 +4,7 @@ import { ProjectGroup } from "@/types/ProjectGroup";
 import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
 import IntervalDateLabel from "@/components/molecules/IntervalDateLabel";
 import MarkdownDocument from "@/components/atoms/MarkdownDocument";
-import TeamNumberLabel from "@/components/atoms/TeamNumberLabel";
+import ProjectTeamNumberList from "@/components/molecules/ProjectTeamNumberList";
 import SubHeadingLabel from "@/components/atoms/SubHeadingLabel";
 
 type Props = {
@@ -72,24 +72,11 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                           className={"w-[50mm] flex-grow-0 pt-[2mm] align-top"}
                         >
                           {/* チーム人数 */}
-                          <SubHeadingLabel>チーム人数</SubHeadingLabel>
-                          {/* チーム詳細 */}
                           {project.teams && (
-                            <ul className={"inline-block w-fit p-[1mm]"}>
-                              {Object.entries(project.teams).map(
-                                ([team, teamNumber]) => {
-                                  return (
-                                    <li
-                                      key={teamNumber}
-                                      className={"text-left"}
-                                    >
-                                      {team}:
-                                      <TeamNumberLabel value={teamNumber} />
-                                    </li>
-                                  );
-                                },
-                              )}
-                            </ul>
+                            <>
+                              <SubHeadingLabel>チーム人数</SubHeadingLabel>
+                              <ProjectTeamNumberList teams={project.teams} />
+                            </>
                           )}
                           {/* 言語・フレームワーク詳細 */}
                           {project.environments && (
