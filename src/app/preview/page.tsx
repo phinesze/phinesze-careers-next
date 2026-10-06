@@ -4,13 +4,13 @@ import PreviewMenuHeader from "@/components/PreviewMenuHeader";
 // プレビュー用ページ
 export default function PreviewPage() {
   return (
-    <div className="bg-white">
+    <>
       <div className="fixed top-0 left-0 w-full">
         <PreviewMenuHeader />
       </div>
-      <div className="not-print:mt-[8mm]">
+      <div className="bg-white not-print:pt-[8mm]">
         <CareerSection />
       </div>
-    </div>
+    </>
   );
 }
