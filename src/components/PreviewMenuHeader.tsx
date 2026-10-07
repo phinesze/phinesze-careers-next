@@ -1,9 +1,9 @@
 "use client";
 
-import { useCareerTableSections } from "@/composables/useCareerTableSections";
+import { useCareerSections } from "@/composables/useCareerSections";
 
 export default function PreviewMenuHeader() {
-  const { handleSelectFile } = useCareerTableSections();
+  const { handleSelectFile } = useCareerSections();
 
   const handlePrint = () => print();
 

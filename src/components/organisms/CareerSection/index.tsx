@@ -1,7 +1,7 @@
 "use client";
 
 import DateLabel from "@/components/atoms/DateLabel";
-import { useCareerTableSections } from "@/composables/useCareerTableSections";
+import { useCareerSections } from "@/composables/useCareerSections";
 import CareerSectionDocumentBody from "@/components/organisms/CareerSection/DocumentBody";
 import CareerSectionProjectsGroupsBody from "@/components/organisms/CareerSection/ProjectsGroupsBody";
 import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
@@ -9,7 +9,7 @@ import { Fragment } from "react";
 
 export default function CareerSection() {
   const { loadedCareerTableSections, updatedAt } = useCareerTableSectionState();
-  const { isSecrets } = useCareerTableSections();
+  const { isSecrets } = useCareerSections();
 
   return (
     <main className=" min-h-[297mm] w-[210mm] bg-white p-[5mm] text-[2mm] text-black">

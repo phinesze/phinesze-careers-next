@@ -10,7 +10,7 @@ export const loadedCareerTableSectionsAtom = atom<
 >([]);
 export const updatedAtAtom = atom<string>("");
 
-export const useCareerTableSections = () => {
+export const useCareerSections = () => {
   // const loadedCareerTableSections = ref<
   //   (DocumentSection | ProjectGroupSection)[]
   // >([]); // TODO: Vueでのrefの記述を下記のようにuseStateにするようにする

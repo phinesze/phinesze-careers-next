@@ -2,7 +2,7 @@ import { useAtom } from "jotai/index";
 import {
   loadedCareerTableSectionsAtom,
   updatedAtAtom,
-} from "@/composables/useCareerTableSections";
+} from "@/composables/useCareerSections";
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 
