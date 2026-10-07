@@ -1,28 +1,25 @@
 "use client";
 
-import { useMemo } from "react";
-
-type EnvironmentElement = string | [string, { version?: number | string }?];
+import { CareerEnvironment } from "@/types/CareerEnvironment";
 
 export default function EnvironmentLabel({
   element,
 }: {
-  element: EnvironmentElement;
+  element: CareerEnvironment;
 }) {
-  const elementName = useMemo(() => {
-    return typeof element === "string" ? element : element[0];
-  }, [element]);
-
-  const elementOptions = useMemo(() => {
-    return typeof element === "string" ? undefined : element[1];
-  }, [element]);
-
+  const [elementName, elementOptions] = Array.isArray(element)
+    ? element
+    : [element, undefined];
   return (
-    <div className={"inline-block"}>
+    <>
+      {/* 言語・フレームワーク名 */}
       <span>{elementName}</span>
+      {/* バージョン情報 */}
       {elementOptions?.version && (
-        <i v-if="elementOptions.version"> {elementOptions.version} </i>
+        <span className={"ml-[1mm] text-gray-500 italic"}>
+          (v{elementOptions.version})
+        </span>
       )}
-    </div>
+    </>
   );
 }

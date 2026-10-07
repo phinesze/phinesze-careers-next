@@ -5,6 +5,7 @@ import { useCareerSectionState } from "@/composables/useCareerSectionState";
 import IntervalDateLabel from "@/components/molecules/IntervalDateLabel";
 import MarkdownDocument from "@/components/atoms/MarkdownDocument";
 import ProjectTeamNumberList from "@/components/molecules/ProjectTeamNumberList";
+import ProjectEnvironmentList from "@/components/molecules/ProjectEnvironmentList";
 import SubHeadingLabel from "@/components/atoms/SubHeadingLabel";
 
 type Props = {
@@ -84,52 +85,9 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                               <SubHeadingLabel>
                                 言語・フレームワーク
                               </SubHeadingLabel>
-                              <ul className={"inline-block w-fit p-[1mm]"}>
-                                {Object.entries(project.environments).map(
-                                  ([environment, environmentDetail]) => {
-                                    return (
-                                      <li
-                                        key={environment}
-                                        className={"text-left"}
-                                      >
-                                        <span className={"font-bold"}>
-                                          {environment}:
-                                        </span>
-                                        <div className={"ml-[0.5mm]"}>
-                                          {environmentDetail.map(
-                                            (detail, index) => (
-                                              <div
-                                                key={index}
-                                                className={"block"}
-                                              >
-                                                {Array.isArray(detail) ? (
-                                                  <>
-                                                    {/* 言語・フレームワーク名 */}
-                                                    <span>{detail[0]}</span>
-                                                    {/* バージョン情報 */}
-                                                    {detail[1] &&
-                                                      detail[1].version && (
-                                                        <span
-                                                          className={
-                                                            "ml-[1mm] text-gray-500 italic"
-                                                          }
-                                                        >
-                                                          (v{detail[1].version})
-                                                        </span>
-                                                      )}
-                                                  </>
-                                                ) : (
-                                                  <span>{detail}</span>
-                                                )}
-                                              </div>
-                                            ),
-                                          )}
-                                        </div>
-                                      </li>
-                                    );
-                                  },
-                                )}
-                              </ul>
+                              <ProjectEnvironmentList
+                                environments={project.environments}
+                              />
                             </>
                           )}
                         </div>
