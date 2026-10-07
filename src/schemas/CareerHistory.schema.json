@@ -1,0 +1,191 @@
+{
+  "$ref": "#/definitions/CareerHistory",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "CareerEnvironment": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "version": {
+                  "type": ["string", "number"]
+                }
+              },
+              "type": "object"
+            }
+          ],
+          "maxItems": 2,
+          "minItems": 1,
+          "type": "array"
+        }
+      ]
+    },
+    "CareerEnvironmentList": {
+      "additionalProperties": {
+        "items": {
+          "$ref": "#/definitions/CareerEnvironment"
+        },
+        "type": "array"
+      },
+      "type": "object"
+    },
+    "CareerHistory": {
+      "additionalProperties": false,
+      "description": "経歴データのルート",
+      "properties": {
+        "sections": {
+          "description": "セクションの種類は、ドキュメントセクションとプロジェクトグループセクションの2種類がある",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/DocumentSection"
+              },
+              {
+                "$ref": "#/definitions/ProjectGroupSection"
+              }
+            ]
+          },
+          "title": "経歴データのセクションの配列",
+          "type": "array"
+        },
+        "updatedAt": {
+          "description": "経歴データの更新日を表す。YYYY-MM-DD形式で表す",
+          "format": "date",
+          "title": "更新日",
+          "type": "string"
+        }
+      },
+      "required": ["updatedAt", "sections"],
+      "type": "object"
+    },
+    "CareerMemberList": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          }
+        ]
+      },
+      "description": "経歴データにおける開発メンバーの数を表す { \"PM\": 参加人数, \"開発\": [最小人数, 最大人数] } のような形で表す",
+      "type": "object"
+    },
+    "DocumentSection": {
+      "additionalProperties": false,
+      "description": "経歴データの中で、自己PRや全体の経歴を自由形式で記述するドキュメントのセクションを表す",
+      "properties": {
+        "label": {
+          "description": "ドキュメントのラベルを自由形式で記述する。",
+          "format": "text",
+          "title": "ドキュメントのラベル",
+          "type": "string"
+        },
+        "detail": {
+          "description": "ドキュメントの本文を自由形式で記述する。HTML形式で記述することができる",
+          "format": "text",
+          "title": "ドキュメントの本文",
+          "type": "string"
+        },
+        "type": {
+          "const": "document",
+          "type": "string"
+        }
+      },
+      "required": ["label", "detail", "type"],
+      "title": "ドキュメントセクション",
+      "type": "object"
+    },
+    "Project": {
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "environments": {
+          "$ref": "#/definitions/CareerEnvironmentList"
+        },
+        "id": {
+          "type": "number"
+        },
+        "secretDetail": {
+          "type": "string"
+        },
+        "teams": {
+          "$ref": "#/definitions/CareerMemberList"
+        },
+        "times": {
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "type": "string"
+            },
+            "end": {
+              "type": "string"
+            }
+          },
+          "required": ["start"],
+          "type": "object"
+        }
+      },
+      "required": ["id"],
+      "type": "object"
+    },
+    "ProjectGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "company": {
+          "type": "string"
+        },
+        "companyAlias": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "projects": {
+          "items": {
+            "$ref": "#/definitions/Project"
+          },
+          "type": "array"
+        }
+      },
+      "required": ["projects"],
+      "type": "object"
+    },
+    "ProjectGroupSection": {
+      "additionalProperties": false,
+      "properties": {
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/ProjectGroup"
+          },
+          "type": "array"
+        },
+        "type": {
+          "const": "project-groups",
+          "type": "string"
+        }
+      },
+      "required": ["groups", "type"],
+      "type": "object"
+    }
+  }
+}
