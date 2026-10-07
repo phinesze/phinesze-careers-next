@@ -1,27 +1,13 @@
 import { ChangeEvent } from "react";
-import { DocumentSection } from "@/types/DocumentSection";
 import { ProjectGroupSection } from "@/types/ProjectGroupSection";
 import { CareerHistory } from "@/types/CareerHistory";
-import { atom } from "jotai";
-import { useCareerSectionState } from "@/composables/useCareerSectionState";
-
-export const loadedCareerSectionsAtom = atom<
-  (DocumentSection | ProjectGroupSection)[]
->([]);
-export const updatedAtAtom = atom<string>("");
+import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 
 export const useCareerSections = () => {
-  // const loadedCareerSections = ref<
-  //   (DocumentSection | ProjectGroupSection)[]
-  // >([]); // TODO: Vueでのrefの記述を下記のようにuseStateにするようにする
-  const {
-    loadedCareerSections,
-    setLoadedCareerSections,
-    setUpdatedAt,
-    isSecrets,
-  } = useCareerSectionState();
+  const { careerHistory, setCareerHistory, isSecrets } =
+    useCareerHistoryState();
 
-  const projectGroupsOfSections = loadedCareerSections.find(
+  const projectGroupsOfSections = careerHistory.sections.find(
     (s) => s.type === "project-groups",
   ) as ProjectGroupSection | undefined;
 
@@ -44,8 +30,7 @@ export const useCareerSections = () => {
         return;
       }
       const parsedSectionData = JSON.parse(json) as CareerHistory;
-      setLoadedCareerSections(parsedSectionData.sections);
-      setUpdatedAt(parsedSectionData.updatedAt);
+      setCareerHistory(parsedSectionData);
     };
 
     reader.readAsText(file);

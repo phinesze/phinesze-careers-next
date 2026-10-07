@@ -5,11 +5,11 @@ import { cn } from "@/utils/cn";
 import { useCareerSections } from "@/composables/useCareerSections";
 import CareerHistoryViewDocumentBody from "@/components/organisms/CareerHistoryView/DocumentBody";
 import CareerHistoryViewProjectsGroupsBody from "@/components/organisms/CareerHistoryView/ProjectsGroupsBody";
-import { useCareerSectionState } from "@/composables/useCareerSectionState";
+import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import { Fragment } from "react";
 
 export default function CareerHistoryView() {
-  const { loadedCareerSections, updatedAt } = useCareerSectionState();
+  const { careerHistorySections, updatedAt } = useCareerHistoryState();
   const { isSecrets } = useCareerSections();
 
   return (
@@ -21,9 +21,9 @@ export default function CareerHistoryView() {
           {updatedAt && <DateLabel value={updatedAt} />} 更新
         </div>
       </section>
-      {loadedCareerSections.length > 0 && (
+      {careerHistorySections.length > 0 && (
         <section className={cn("border-2", isSecrets && "bg-orange-100")}>
-          {loadedCareerSections.map((section, index) => (
+          {careerHistorySections.map((section, index) => (
             <Fragment key={index}>
               {section.type === "document" && (
                 <CareerHistoryViewDocumentBody
@@ -38,7 +38,7 @@ export default function CareerHistoryView() {
           ))}
         </section>
       )}
-      {!loadedCareerSections.length && (
+      {!careerHistorySections.length && (
         <div className="mt-[4mm] text-center text-[3.75mm]/[4.5mm]">
           「careerHistory.jsonファイル選択」からファイルを選択してください
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { ProjectGroup } from "@/types/ProjectGroup";
-import { useCareerSectionState } from "@/composables/useCareerSectionState";
+import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import IntervalDateLabel from "@/components/molecules/IntervalDateLabel";
 import MarkdownDocument from "@/components/atoms/MarkdownDocument";
 import ProjectTeamNumberList from "@/components/molecules/ProjectTeamNumberList";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
-  const { isSecrets } = useCareerSectionState();
+  const { isSecrets } = useCareerHistoryState();
   let projectIndex = 0;
   return (
     <>
