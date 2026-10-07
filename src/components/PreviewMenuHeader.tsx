@@ -10,7 +10,15 @@ export default function PreviewMenuHeader() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const isPreview = pathname === "/preview";
+
   const handlePrint = () => print();
+
+  const togglePage = () => {
+    const query = searchParams.toString();
+    const path = isPreview ? "/" : "/preview";
+    router.push(query ? `${path}?${query}` : path);
+  };
 
   const toggleIsSecrets = () => {
     const params = new URLSearchParams(searchParams.toString());
@@ -33,6 +41,12 @@ export default function PreviewMenuHeader() {
           className="absolute top-0 left-0 h-full w-full cursor-pointer bg-amber-300 opacity-0"
           onChange={(event) => handleSelectFile(event)}
         />
+      </button>
+      <button
+        className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"
+        onClick={togglePage}
+      >
+        {isPreview ? "編集へ" : "プレビューへ"}
       </button>
       <button
         className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"
