@@ -18,7 +18,6 @@ export const useCareerSections = () => {
     loadedCareerTableSections,
     setLoadedCareerTableSections,
     setUpdatedAt,
-    isTableView,
     isSecrets,
   } = useCareerTableSectionState();
 
@@ -52,7 +51,6 @@ export const useCareerSections = () => {
     reader.readAsText(file);
   };
   return {
-    isTableView,
     isSecrets,
     projectGroupsOfSections,
     handleSelectFile,

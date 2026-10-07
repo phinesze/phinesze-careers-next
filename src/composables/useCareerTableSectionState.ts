@@ -14,10 +14,6 @@ export const useCareerTableSectionState = () => {
 
   const searchParams = useSearchParams();
 
-  const isTableView = useMemo(() => {
-    return Boolean(searchParams.get("is_table"));
-  }, [searchParams]);
-
   const isSecrets = useMemo(() => {
     return Boolean(searchParams.get("is_secrets"));
   }, [searchParams]);
@@ -27,7 +23,6 @@ export const useCareerTableSectionState = () => {
     setLoadedCareerTableSections,
     updatedAt,
     setUpdatedAt,
-    isTableView,
     isSecrets,
   };
 };
