@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "npm run dev",
+      "problemMatcher": [],
+      "label": "phinesze-careers-next: 開発サーバーを起動",
+      "detail": "next dev --turbopack",
+      "options": {
+        "cwd": "${workspaceFolder:phinesze-careers-next}"
+      },
+      "presentation": {
+        "panel": "dedicated"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "lint:fix",
+      "problemMatcher": [],
+      "label": "phinesze-careers-next: linterを実行",
+      "detail": "next lint --fix"
+    },
+    {
+      "type": "npm",
+      "script": "format",
+      "problemMatcher": [],
+      "label": "phinesze-careers-next: フォーマッタを実行",
+      "detail": "prettier --write **/*.{ts,tsx,json,md}"
+    }
+  ]
+}
