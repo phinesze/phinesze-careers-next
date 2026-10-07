@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function IndexPage() {
   return (
-    <section>
+    <div className="bg-white not-print:pt-[8mm]">
       <h1 className="text-[3mm]/[4mm] font-bold">
         Careers 職務経歴書表示用システム
       </h1>
@@ -14,6 +14,6 @@ export default function IndexPage() {
           プレビューページへ移動
         </button>
       </Link>
-    </section>
+    </div>
   );
 }

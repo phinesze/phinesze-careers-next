@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import PreviewMenuHeader from "@/components/PreviewMenuHeader";
+import { cn } from "@//utils/cn";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,10 +27,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(geistSans.variable, geistMono.variable, "antialiased")}
       >
-        {/* <div>(layout/preview.vueに相当するファイル)</div> */}
-        <section>{children}</section>
+        <section className="flex h-screen w-full flex-col print:h-full">
+          <PreviewMenuHeader />
+          <main className="flex-1 not-print:overflow-y-scroll">{children}</main>
+        </section>
       </body>
     </html>
   );
