@@ -7,6 +7,7 @@ import { RJSFSchema } from "@rjsf/utils";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
 import { CareerHistory } from "@/types/CareerHistory";
+import CompanyRowObjectFieldTemplate from "@/components/rjsf/CompanyRowObjectFieldTemplate";
 
 const validator = customizeValidator<CareerHistory>();
 
@@ -56,6 +57,7 @@ const uiSchema = {
               "連続した期間内の同じ会社／組織内の1つまたは複数のプロジェクトをグループ化して記述してください。",
             items: {
               "ui:title": "",
+              "ui:ObjectFieldTemplate": CompanyRowObjectFieldTemplate,
               company: {
                 "ui:title": "会社／組織名",
                 "ui:description": "会社／組織名を入力してください。",
