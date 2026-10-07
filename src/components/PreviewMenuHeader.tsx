@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCareerSections } from "@/composables/useCareerSections";
+import { cn } from "@/utils/cn";
 
 export default function PreviewMenuHeader() {
   const { handleSelectFile, isSecrets } = useCareerSections();
@@ -40,7 +41,10 @@ export default function PreviewMenuHeader() {
         印刷
       </button>
       <button
-        className={`inline-block cursor-pointer border border-gray-200 px-2 text-sm ${isSecrets ? "bg-orange-300" : ""}`}
+        className={cn(
+          "inline-block cursor-pointer border border-gray-200 px-2 text-sm",
+          isSecrets && "bg-orange-300",
+        )}
         onClick={toggleIsSecrets}
       >
         機密表示: {isSecrets ? "あり" : "なし"}
