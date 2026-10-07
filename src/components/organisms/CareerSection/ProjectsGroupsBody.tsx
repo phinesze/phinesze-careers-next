@@ -92,7 +92,9 @@ export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
                                         key={environment}
                                         className={"text-left"}
                                       >
-                                        {environment}:
+                                        <span className={"font-bold"}>
+                                          {environment}:
+                                        </span>
                                         <div className={"ml-[0.5mm]"}>
                                           {environmentDetail.map(
                                             (detail, index) => (
