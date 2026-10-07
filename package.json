@@ -11,6 +11,9 @@
     "format": "prettier --write **/*.{ts,tsx,json,md}"
   },
   "dependencies": {
+    "@rjsf/core": "^6.11.0",
+    "@rjsf/utils": "^6.11.0",
+    "@rjsf/validator-ajv8": "^6.11.0",
     "clsx": "^2.1.1",
     "jotai": "^2.15.0",
     "markdown-it": "^14.1.0",
