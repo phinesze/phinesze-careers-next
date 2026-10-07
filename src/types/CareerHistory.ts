@@ -4,7 +4,7 @@ import { ProjectGroupSection } from "@/types/ProjectGroupSection";
 /**
  * 経歴データのルート
  */
-export interface BiographyData {
+export interface CareerHistory {
   updatedAt: string;
   sections: (DocumentSection | ProjectGroupSection)[];
 }

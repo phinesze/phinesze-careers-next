@@ -26,7 +26,7 @@ export default function PreviewMenuHeader() {
   return (
     <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 shadow-lg shadow-indigo-500/50 print:hidden">
       <button className="relative inline-block border border-gray-200 px-2 text-sm">
-        <span>biographyData JSONファイル選択</span>
+        <span>careerHistory JSONファイル選択</span>
         <input
           type="file"
           accept="application/json"

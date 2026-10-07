@@ -45,7 +45,7 @@ export default function CareerSection() {
       )}
       {!loadedCareerSections.length && (
         <div className="mt-[4mm] text-center text-[3.75mm]/[4.5mm]">
-          「biographyData.jsonファイル選択」からファイルを選択してください
+          「careerHistory.jsonファイル選択」からファイルを選択してください
         </div>
       )}
     </main>

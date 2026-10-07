@@ -1,6 +1,6 @@
 # phinesze-careers-next
 
-職務経歴書をJSONデータ（`biographyData.json`）から表示・印刷（PDF出力）するためのNext.jsアプリです。
+職務経歴書をJSONデータ（`careerHistory.json`）から表示・印刷（PDF出力）するためのNext.jsアプリです。
 
 ## 必要環境
 
@@ -24,7 +24,7 @@ npm run dev
 ## 使い方
 
 1. トップページの「プレビューページへ移動」から`/preview`を開く
-2. ヘッダーの「biographyData JSONファイル選択」で経歴データのJSONを読み込む
+2. ヘッダーの「careerHistory JSONファイル選択」で経歴データのJSONを読み込む
 3. 「印刷」ボタン（またはブラウザの印刷）で印刷・PDF保存する（ヘッダーは印刷時に非表示）
 
 ### URLクエリパラメーター
@@ -37,7 +37,7 @@ npm run dev
 
 ## データ形式
 
-経歴データは別リポジトリ`phinesze-careers-data`の`biographyData.json`を想定しています。型定義は[src/types/](src/types/)を参照してください。
+経歴データは別リポジトリ`phinesze-careers-data`の`careerHistory.json`を想定しています。型定義は[src/types/](src/types/)を参照してください。
 
 ```jsonc
 {

@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { DocumentSection } from "@/types/DocumentSection";
 import { ProjectGroupSection } from "@/types/ProjectGroupSection";
-import { BiographyData } from "@/types/BiographyData";
+import { CareerHistory } from "@/types/CareerHistory";
 import { atom } from "jotai";
 import { useCareerSectionState } from "@/composables/useCareerSectionState";
 
@@ -43,7 +43,7 @@ export const useCareerSections = () => {
         alert("error");
         return;
       }
-      const parsedSectionData = JSON.parse(json) as BiographyData;
+      const parsedSectionData = JSON.parse(json) as CareerHistory;
       setLoadedCareerSections(parsedSectionData.sections);
       setUpdatedAt(parsedSectionData.updatedAt);
     };
