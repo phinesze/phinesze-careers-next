@@ -23,7 +23,10 @@ export default function CareerSection() {
       </section>
       {loadedCareerSections.length > 0 && (
         <section
-          className={cn("career-section border-2", isSecrets && "secret")}
+          className={cn(
+            "career-section border-2",
+            isSecrets && "bg-orange-100",
+          )}
         >
           {loadedCareerSections.map((section, index) => (
             <Fragment key={index}>
