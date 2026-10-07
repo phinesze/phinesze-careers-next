@@ -1,14 +1,14 @@
 import { useAtom } from "jotai/index";
 import {
-  loadedCareerTableSectionsAtom,
+  loadedCareerSectionsAtom,
   updatedAtAtom,
 } from "@/composables/useCareerSections";
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 
-export const useCareerTableSectionState = () => {
-  const [loadedCareerTableSections, setLoadedCareerTableSections] = useAtom(
-    loadedCareerTableSectionsAtom,
+export const useCareerSectionState = () => {
+  const [loadedCareerSections, setLoadedCareerSections] = useAtom(
+    loadedCareerSectionsAtom,
   );
   const [updatedAt, setUpdatedAt] = useAtom(updatedAtAtom);
 
@@ -19,8 +19,8 @@ export const useCareerTableSectionState = () => {
   }, [searchParams]);
 
   return {
-    loadedCareerTableSections,
-    setLoadedCareerTableSections,
+    loadedCareerSections,
+    setLoadedCareerSections,
     updatedAt,
     setUpdatedAt,
     isSecrets,

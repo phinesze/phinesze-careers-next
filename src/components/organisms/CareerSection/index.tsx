@@ -4,11 +4,11 @@ import DateLabel from "@/components/atoms/DateLabel";
 import { useCareerSections } from "@/composables/useCareerSections";
 import CareerSectionDocumentBody from "@/components/organisms/CareerSection/DocumentBody";
 import CareerSectionProjectsGroupsBody from "@/components/organisms/CareerSection/ProjectsGroupsBody";
-import { useCareerTableSectionState } from "@/composables/useCareerTableSectionState";
+import { useCareerSectionState } from "@/composables/useCareerSectionState";
 import { Fragment } from "react";
 
 export default function CareerSection() {
-  const { loadedCareerTableSections, updatedAt } = useCareerTableSectionState();
+  const { loadedCareerSections, updatedAt } = useCareerSectionState();
   const { isSecrets } = useCareerSections();
 
   return (
@@ -20,11 +20,11 @@ export default function CareerSection() {
           {updatedAt && <DateLabel value={updatedAt} />} 更新
         </div>
       </section>
-      {loadedCareerTableSections.length > 0 && (
+      {loadedCareerSections.length > 0 && (
         <section
           className={`career-section border-2 ${isSecrets ? "secret" : ""}`}
         >
-          {loadedCareerTableSections.map((section, index) => (
+          {loadedCareerSections.map((section, index) => (
             <Fragment key={index}>
               {section.type === "document" && (
                 <CareerSectionDocumentBody
@@ -39,7 +39,7 @@ export default function CareerSection() {
           ))}
         </section>
       )}
-      {!loadedCareerTableSections.length && (
+      {!loadedCareerSections.length && (
         <div className="mt-[4mm] text-center text-[3.75mm]/[4.5mm]">
           「biographyData.jsonファイル選択」からファイルを選択してください
         </div>
