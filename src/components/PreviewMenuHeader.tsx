@@ -43,7 +43,7 @@ export default function PreviewMenuHeader() {
       <button
         className={cn(
           "inline-block cursor-pointer border border-gray-200 px-2 text-sm",
-          isSecrets && "bg-orange-300",
+          isSecrets && "bg-orange-200",
         )}
         onClick={toggleIsSecrets}
       >
