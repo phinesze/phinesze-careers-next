@@ -1,4 +1,5 @@
 import { CareerEnvironmentList } from "@/types/CareerEnvironmentList";
+import { CareerMemberList } from "@/types/CareerMemberList";
 
 export interface Project {
   id: number;
@@ -9,6 +10,6 @@ export interface Project {
     start: string;
     end?: string;
   };
-  teams?: { [key: string]: number };
+  teams?: CareerMemberList;
   environments?: CareerEnvironmentList;
 }
