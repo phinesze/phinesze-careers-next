@@ -12,7 +12,7 @@ type Props = {
   groups: ProjectGroup[];
 };
 
-export default function CareerSectionProjectsGroupsBody({ groups }: Props) {
+export default function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
   const { isSecrets } = useCareerSectionState();
   let projectIndex = 0;
   return (

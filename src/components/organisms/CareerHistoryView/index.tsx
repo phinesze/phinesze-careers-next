@@ -3,12 +3,12 @@
 import DateLabel from "@/components/atoms/DateLabel";
 import { cn } from "@/utils/cn";
 import { useCareerSections } from "@/composables/useCareerSections";
-import CareerSectionDocumentBody from "@/components/organisms/CareerSection/DocumentBody";
-import CareerSectionProjectsGroupsBody from "@/components/organisms/CareerSection/ProjectsGroupsBody";
+import CareerHistoryViewDocumentBody from "@/components/organisms/CareerHistoryView/DocumentBody";
+import CareerHistoryViewProjectsGroupsBody from "@/components/organisms/CareerHistoryView/ProjectsGroupsBody";
 import { useCareerSectionState } from "@/composables/useCareerSectionState";
 import { Fragment } from "react";
 
-export default function CareerSection() {
+export default function CareerHistoryView() {
   const { loadedCareerSections, updatedAt } = useCareerSectionState();
   const { isSecrets } = useCareerSections();
 
@@ -22,22 +22,17 @@ export default function CareerSection() {
         </div>
       </section>
       {loadedCareerSections.length > 0 && (
-        <section
-          className={cn(
-            "career-section border-2",
-            isSecrets && "bg-orange-100",
-          )}
-        >
+        <section className={cn("border-2", isSecrets && "bg-orange-100")}>
           {loadedCareerSections.map((section, index) => (
             <Fragment key={index}>
               {section.type === "document" && (
-                <CareerSectionDocumentBody
+                <CareerHistoryViewDocumentBody
                   label={section.label}
                   markdownText={section.detail}
                 />
               )}
               {section.type === "project-groups" && (
-                <CareerSectionProjectsGroupsBody groups={section.groups} />
+                <CareerHistoryViewProjectsGroupsBody groups={section.groups} />
               )}
             </Fragment>
           ))}

@@ -7,7 +7,7 @@ type Props = {
   markdownText?: string;
 };
 
-export default function CareerSectionDocumentBody({
+export default function CareerHistoryViewDocumentBody({
   label,
   markdownText,
 }: Props) {
