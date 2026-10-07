@@ -3,30 +3,17 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "CareerEnvironment": {
-      "anyOf": [
-        {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
           "type": "string"
         },
-        {
-          "items": [
-            {
-              "type": "string"
-            },
-            {
-              "additionalProperties": false,
-              "properties": {
-                "version": {
-                  "type": ["string", "number"]
-                }
-              },
-              "type": "object"
-            }
-          ],
-          "maxItems": 2,
-          "minItems": 1,
-          "type": "array"
+        "version": {
+          "type": "string"
         }
-      ]
+      },
+      "required": ["name"],
+      "type": "object"
     },
     "CareerEnvironmentList": {
       "additionalProperties": {

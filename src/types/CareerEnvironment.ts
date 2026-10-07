@@ -1,3 +1,4 @@
-export type CareerEnvironment =
-  | string
-  | [string, { version?: string | number }?];
+export interface CareerEnvironment {
+  name: string;
+  version?: string;
+}
