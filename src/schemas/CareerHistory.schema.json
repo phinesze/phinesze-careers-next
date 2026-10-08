@@ -99,11 +99,11 @@
         "detail": {
           "type": "string"
         },
-        "environments": {
-          "$ref": "#/definitions/ProjectEnvironmentList"
-        },
         "secretDetail": {
           "type": "string"
+        },
+        "environments": {
+          "$ref": "#/definitions/ProjectEnvironmentList"
         },
         "teams": {
           "$ref": "#/definitions/ProjectTeamList"
