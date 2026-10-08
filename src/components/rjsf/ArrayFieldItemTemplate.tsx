@@ -35,7 +35,7 @@ export default function ArrayFieldItemTemplate(
             />
           </Box>
         )}
-        <Box sx={{ p: 2 }}>{children}</Box>
+        <Box className="px-4">{children}</Box>
       </Paper>
     </Box>
   );
