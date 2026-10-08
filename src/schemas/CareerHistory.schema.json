@@ -55,14 +55,9 @@
     },
     "ProjectTeamList": {
       "additionalProperties": {
-        "items": {
-          "type": "number"
-        },
-        "maxItems": 2,
-        "minItems": 1,
-        "type": "array"
+        "type": "string"
       },
-      "description": "経歴データにおける開発メンバーの数を表す { \"PM\": [参加人数], \"開発\": [最小人数, 最大人数] } のような形で表す",
+      "description": "経歴データにおける開発メンバーの数などを文字列のリストで表す { \"PM\": \"約8~10人\" のような形で表す",
       "type": "object"
     },
     "DocumentSection": {

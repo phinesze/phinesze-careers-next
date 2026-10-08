@@ -128,15 +128,11 @@ const uiSchema = {
                     "ui:field": "ObjectField",
                     "ui:options": { addable: true, orderable: false },
                     additionalProperties: {
-                      "ui:title": "チーム人数項目",
+                      "ui:title": "チーム人数など",
                       "ui:keyTitle": "カテゴリ名（開発／PMなど）",
                       "ui:description":
-                        "人数を1つ指定するか、[最小人数, 最大人数] の2つで指定します。",
-                      "ui:options": { orderable: false },
-                      items: {
-                        "ui:title": "人数",
-                        "ui:widget": "updown",
-                      },
+                        "人数を文字列で記述します（例: 約8~10人）。",
+                      "ui:widget": "text",
                     },
                   },
                   times: {

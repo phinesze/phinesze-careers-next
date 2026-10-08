@@ -1,7 +1,7 @@
 /**
- * 経歴データにおける開発メンバーの数を表す
- * { "PM": [参加人数], "開発": [最小人数, 最大人数] } のような形で表す
+ * 経歴データにおける開発メンバーの数などを表す
+ * { "PM": "8~10人" のような形で表す
  */
 export interface ProjectTeamList {
-  [key: string]: [number, number?];
+  [key: string]: string;
 }
