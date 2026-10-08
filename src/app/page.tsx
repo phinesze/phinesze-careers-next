@@ -8,6 +8,7 @@ import { customizeValidator } from "@rjsf/validator-ajv8";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
 import { CareerHistory } from "@/types/CareerHistory";
 import CompanyRowObjectFieldTemplate from "@/components/rjsf/CompanyRowObjectFieldTemplate";
+import KeyTitleWrapIfAdditionalTemplate from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
 
 const validator = customizeValidator<CareerHistory>();
 
@@ -99,14 +100,17 @@ const uiSchema = {
                     "ui:options": { rows: 10 },
                   },
                   environments: {
-                    "ui:title": "環境",
+                    "ui:title": "言語・フレームワーク",
                     "ui:description":
                       "各プロジェクトの環境を記述する。使用言語、フレームワーク、ライブラリ、OS、DB、クラウドサービスなどを記述することができます。",
-                    "ui:options": { orderable: false },
-                    "ui:additionalProperties": {
-                      "ui:title": "環境カテゴリ",
+                    "ui:options": { addable: true, orderable: false },
+                    additionalProperties: {
+                      "ui:title": "言語・フレームワーク項目",
+                      "ui:keyTitle":
+                        "カテゴリ名（フロントエンド／バックエンドなど）",
+                      "ui:title": "言語・フレームワーク項目",
                       items: {
-                        "ui:title": "環境項目",
+                        "ui:title": "",
                         name: {
                           "ui:title": "名称",
                           "ui:widget": "text",
@@ -160,6 +164,9 @@ export default function IndexPage() {
         schema={careerHistorySchema as RJSFSchema}
         uiSchema={uiSchema}
         validator={validator}
+        templates={{
+          WrapIfAdditionalTemplate: KeyTitleWrapIfAdditionalTemplate,
+        }}
         formData={careerHistory}
         onChange={(event) => event.formData && setCareerHistory(event.formData)}
       >
