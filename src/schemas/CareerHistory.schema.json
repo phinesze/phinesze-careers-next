@@ -135,6 +135,7 @@
           "items": {
             "$ref": "#/definitions/Project"
           },
+          "minItems": 1,
           "type": "array"
         }
       },
