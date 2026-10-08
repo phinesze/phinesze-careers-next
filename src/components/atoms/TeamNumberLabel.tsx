@@ -5,10 +5,10 @@ import { useMemo } from "react";
 export default function ProjectTeamNumberLabel({
   value,
 }: {
-  value: number | [number, number];
+  value: [number, number?];
 }) {
   const teamNumberStr = useMemo(
-    () => (Array.isArray(value) ? `${value[0]}~${value[1]}` : `${value}`),
+    () => (value[1] === undefined ? `${value[0]}` : `${value[0]}~${value[1]}`),
     [value],
   );
 

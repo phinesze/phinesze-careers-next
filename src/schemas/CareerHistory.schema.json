@@ -55,21 +55,14 @@
     },
     "ProjectTeamList": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "items": {
-              "type": "number"
-            },
-            "maxItems": 2,
-            "minItems": 2,
-            "type": "array"
-          }
-        ]
+        "items": {
+          "type": "number"
+        },
+        "maxItems": 2,
+        "minItems": 1,
+        "type": "array"
       },
-      "description": "経歴データにおける開発メンバーの数を表す { \"PM\": 参加人数, \"開発\": [最小人数, 最大人数] } のような形で表す",
+      "description": "経歴データにおける開発メンバーの数を表す { \"PM\": [参加人数], \"開発\": [最小人数, 最大人数] } のような形で表す",
       "type": "object"
     },
     "DocumentSection": {
