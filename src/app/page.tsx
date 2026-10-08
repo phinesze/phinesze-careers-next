@@ -11,6 +11,7 @@ import CompanyRowObjectFieldTemplate from "@/components/rjsf/CompanyRowObjectFie
 import TwoObjectFieldTemplate from "@/components/rjsf/TwoObjectFieldTemplate";
 import KeyTitleWrapIfAdditionalTemplate from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
 import ArrayFieldItemTemplate from "@/components/rjsf/ArrayFieldItemTemplate";
+import ArrayFieldTemplate from "@/components/rjsf/ArrayFieldTemplate";
 import { Box } from "@mui/material";
 
 const validator = customizeValidator<CareerHistory>();
@@ -206,6 +207,7 @@ export default function IndexPage() {
             validator={validator}
             templates={{
               WrapIfAdditionalTemplate: KeyTitleWrapIfAdditionalTemplate,
+              ArrayFieldTemplate,
               ArrayFieldItemTemplate,
             }}
             formData={careerHistory}
