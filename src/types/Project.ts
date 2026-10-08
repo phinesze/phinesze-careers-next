@@ -1,5 +1,5 @@
-import { CareerEnvironmentList } from "@/types/CareerEnvironmentList";
-import { CareerMemberList } from "@/types/CareerMemberList";
+import { ProjectEnvironmentList } from "@/types/ProjectEnvironmentList";
+import { ProjectTeamList } from "@/types/ProjectTeamList";
 
 export interface Project {
   title?: string;
@@ -9,6 +9,6 @@ export interface Project {
     start: string;
     end?: string;
   };
-  teams?: CareerMemberList;
-  environments?: CareerEnvironmentList;
+  teams?: ProjectTeamList;
+  environments?: ProjectEnvironmentList;
 }

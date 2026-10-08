@@ -1,4 +1,4 @@
-export interface CareerEnvironment {
+export interface ProjectEnvironment {
   name: string;
   version?: string;
 }

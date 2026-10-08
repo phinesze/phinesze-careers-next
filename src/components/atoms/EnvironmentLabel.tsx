@@ -1,11 +1,11 @@
 "use client";
 
-import { CareerEnvironment } from "@/types/CareerEnvironment";
+import { ProjectEnvironment } from "@/types/ProjectEnvironment";
 
 export default function EnvironmentLabel({
   element,
 }: {
-  element: CareerEnvironment;
+  element: ProjectEnvironment;
 }) {
   return (
     <>
