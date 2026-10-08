@@ -32,11 +32,11 @@ export default function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
                 : group.companyAlias}
             </div>
             {/* 会社のプロジェクト */}
-            {group.projects.map((project) => {
+            {group.projects.map((project, index) => {
               projectIndex++;
               return (
                 <section
-                  key={project.id}
+                  key={index}
                   className={
                     "career-row break-inside-avoid border-t-[1px] border-b-[1px]"
                   }

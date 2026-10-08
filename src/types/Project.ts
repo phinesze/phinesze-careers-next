@@ -2,7 +2,6 @@ import { CareerEnvironmentList } from "@/types/CareerEnvironmentList";
 import { CareerMemberList } from "@/types/CareerMemberList";
 
 export interface Project {
-  id: number;
   title?: string;
   detail?: string;
   secretDetail?: string;

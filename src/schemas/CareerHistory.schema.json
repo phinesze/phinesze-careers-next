@@ -109,9 +109,6 @@
         "environments": {
           "$ref": "#/definitions/CareerEnvironmentList"
         },
-        "id": {
-          "type": "number"
-        },
         "secretDetail": {
           "type": "string"
         },
@@ -132,7 +129,6 @@
           "type": "object"
         }
       },
-      "required": ["id"],
       "type": "object"
     },
     "ProjectGroup": {
