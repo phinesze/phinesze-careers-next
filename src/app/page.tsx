@@ -3,7 +3,6 @@
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import Form from "@rjsf/mui";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import { RJSFSchema } from "@rjsf/utils";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
@@ -11,12 +10,22 @@ import { CareerHistory } from "@/types/CareerHistory";
 import CompanyRowObjectFieldTemplate from "@/components/rjsf/CompanyRowObjectFieldTemplate";
 import TwoObjectFieldTemplate from "@/components/rjsf/TwoObjectFieldTemplate";
 import KeyTitleWrapIfAdditionalTemplate from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
+import ArrayFieldItemTemplate from "@/components/rjsf/ArrayFieldItemTemplate";
+import { Box } from "@mui/material";
 
 const validator = customizeValidator<CareerHistory>();
 
 const formTheme = createTheme({
   typography: { fontSize: 12 },
+  // theme.spacing(1) の単位 (デフォルト 8px)。Grid の spacing や Paper/Box の padding がまとめて縮む
+  spacing: 4,
   components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        // 入力欄内側の余白 (size="small" のデフォルトは 8.5px 14px)
+        input: { padding: "6px 8px" },
+      },
+    },
     MuiTextField: { defaultProps: { size: "small", margin: "dense" } },
     MuiFormControl: { defaultProps: { size: "small", margin: "dense" } },
     MuiSelect: { defaultProps: { size: "small" } },
@@ -79,9 +88,9 @@ const uiSchema = {
                 "ui:widget": "text",
               },
               companyAlias: {
-                "ui:title": "会社／組織名の略称",
+                "ui:title": "会社／組織名のエイリアス",
                 "ui:description":
-                  "会社／組織名の略称を入力してください。省略形や通称などを入力することができます。",
+                  "会社／組織名を伏せ字にする際の名称を入力してください。",
                 "ui:widget": "text",
               },
               url: {
@@ -104,14 +113,14 @@ const uiSchema = {
                     "ui:description":
                       "各プロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます。",
                     "ui:widget": "textarea",
-                    "ui:options": { rows: 10 },
+                    "ui:options": { rows: 5 },
                   },
                   secretDetail: {
                     "ui:title": "秘密の詳細",
                     "ui:description":
                       "機密表示にした場合にのみ表示されるプロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます",
                     "ui:widget": "textarea",
-                    "ui:options": { rows: 10 },
+                    "ui:options": { rows: 5 },
                   },
                   environments: {
                     "ui:title": "言語・フレームワーク",
@@ -120,7 +129,7 @@ const uiSchema = {
                     "ui:options": {
                       addable: true,
                       orderable: false,
-                      newKeyName: "カテゴリ",
+                      newKeyName: "カテゴリ", // /Users/inoueshinichi01/Projects/phinesze-careers-next/patches/@rjsf+core+6.11.0.patch
                     },
                     additionalProperties: {
                       "ui:title": "言語・フレームワーク項目",
@@ -148,7 +157,7 @@ const uiSchema = {
                     "ui:options": {
                       addable: true,
                       orderable: false,
-                      newKeyName: "PM",
+                      newKeyName: "PM", // /Users/inoueshinichi01/Projects/phinesze-careers-next/patches/@rjsf+core+6.11.0.patch
                     },
                     additionalProperties: {
                       "ui:title": "チーム人数など",
@@ -187,24 +196,27 @@ export default function IndexPage() {
   const { careerHistory, setCareerHistory } = useCareerHistoryState();
 
   return (
-    <div className="m-5 max-w-200 bg-white not-print:pt-[8mm]">
+    <div className="m-5 max-w-300 bg-white not-print:pt-[8mm]">
       <div className="text-lg font-bold ">Careers 職務経歴書表示用システム</div>
       <ThemeProvider theme={formTheme}>
-        <Form
-          schema={careerHistorySchema as RJSFSchema}
-          uiSchema={uiSchema}
-          validator={validator}
-          templates={{
-            WrapIfAdditionalTemplate: KeyTitleWrapIfAdditionalTemplate,
-          }}
-          formData={careerHistory}
-          onChange={(event) =>
-            event.formData && setCareerHistory(event.formData)
-          }
-        >
-          {/* submitボタンを非表示にするため空のfragmentを渡す */}
-          <></>
-        </Form>
+        <Box sx={{ "& textarea": { resize: "vertical" } }}>
+          <Form
+            schema={careerHistorySchema as RJSFSchema}
+            uiSchema={uiSchema}
+            validator={validator}
+            templates={{
+              WrapIfAdditionalTemplate: KeyTitleWrapIfAdditionalTemplate,
+              ArrayFieldItemTemplate,
+            }}
+            formData={careerHistory}
+            onChange={(event) =>
+              event.formData && setCareerHistory(event.formData)
+            }
+          >
+            {/* submitボタンを非表示にするため空のfragmentを渡す */}
+            <></>
+          </Form>
+        </Box>
       </ThemeProvider>
 
       <div>{JSON.stringify(careerHistory)}</div>
