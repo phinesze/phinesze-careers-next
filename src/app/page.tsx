@@ -95,8 +95,21 @@ const uiSchema = {
                     "ui:title": "環境",
                     "ui:description":
                       "各プロジェクトの環境を記述する。使用言語、フレームワーク、ライブラリ、OS、DB、クラウドサービスなどを記述することができます。",
-                    "ui:field": "ObjectField",
-                    // TODO 入力途中
+                    "ui:options": { orderable: false },
+                    "ui:additionalProperties": {
+                      "ui:title": "環境カテゴリ",
+                      items: {
+                        "ui:title": "環境項目",
+                        name: {
+                          "ui:title": "名称",
+                          "ui:widget": "text",
+                        },
+                        version: {
+                          "ui:title": "バージョン",
+                          "ui:widget": "text",
+                        },
+                      },
+                    },
                   },
                   teams: {
                     "ui:title": "チーム",
