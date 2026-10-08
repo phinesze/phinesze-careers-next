@@ -22,13 +22,16 @@ export default function ArrayFieldItemTemplate(
   );
 
   return (
-    <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2, my: 4 }}>
+    <Box className="my-4 flex items-start gap-2">
       <Paper
         elevation={0}
         className="min-w-0 flex-1 rounded-md border border-gray-300"
       >
         {hasToolbar && (
-          <Box className="flex flex-shrink-0 justify-end bg-gray-200">
+          <Box className="flex flex-shrink-0 items-center justify-end bg-gray-200">
+            <div className="ml-2 flex-1 text-sm">
+              {`${props.parentUiSchema?.["ui:title"]}-${props.index + 1}`}
+            </div>
             <ArrayFieldItemButtonsTemplate
               {...buttonsProps}
               style={{ paddingLeft: 6, paddingRight: 6, minWidth: 0 }}
