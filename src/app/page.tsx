@@ -108,7 +108,6 @@ const uiSchema = {
                       "ui:title": "言語・フレームワーク項目",
                       "ui:keyTitle":
                         "カテゴリ名（フロントエンド／バックエンドなど）",
-                      "ui:title": "言語・フレームワーク項目",
                       items: {
                         "ui:title": "",
                         name: {
@@ -127,7 +126,18 @@ const uiSchema = {
                     "ui:description":
                       "各プロジェクトのチーム人数を記述します。",
                     "ui:field": "ObjectField",
-                    // TODO 入力途中
+                    "ui:options": { addable: true, orderable: false },
+                    additionalProperties: {
+                      "ui:title": "チーム人数項目",
+                      "ui:keyTitle": "カテゴリ名（開発／PMなど）",
+                      "ui:description":
+                        "人数を1つ指定するか、[最小人数, 最大人数] の2つで指定します。",
+                      "ui:options": { orderable: false },
+                      items: {
+                        "ui:title": "人数",
+                        "ui:widget": "updown",
+                      },
+                    },
                   },
                   times: {
                     "ui:title": "期間",
