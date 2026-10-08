@@ -2,6 +2,7 @@
 
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import Form from "@rjsf/mui";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { RJSFSchema } from "@rjsf/utils";
 import { customizeValidator } from "@rjsf/validator-ajv8";
@@ -12,6 +13,18 @@ import TwoObjectFieldTemplate from "@/components/rjsf/TwoObjectFieldTemplate";
 import KeyTitleWrapIfAdditionalTemplate from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
 
 const validator = customizeValidator<CareerHistory>();
+
+const formTheme = createTheme({
+  typography: { fontSize: 12 },
+  components: {
+    MuiTextField: { defaultProps: { size: "small", margin: "dense" } },
+    MuiFormControl: { defaultProps: { size: "small", margin: "dense" } },
+    MuiSelect: { defaultProps: { size: "small" } },
+    MuiCheckbox: { defaultProps: { size: "small" } },
+    MuiButton: { defaultProps: { size: "small" } },
+    MuiIconButton: { defaultProps: { size: "small" } },
+  },
+});
 
 const uiSchema = {
   updatedAt: {
@@ -174,22 +187,25 @@ export default function IndexPage() {
   const { careerHistory, setCareerHistory } = useCareerHistoryState();
 
   return (
-    <div className="m-5 bg-white not-print:pt-[8mm]">
-      <div className="text-lg font-bold">Careers 職務経歴書表示用システム</div>
-
-      <Form
-        schema={careerHistorySchema as RJSFSchema}
-        uiSchema={uiSchema}
-        validator={validator}
-        templates={{
-          WrapIfAdditionalTemplate: KeyTitleWrapIfAdditionalTemplate,
-        }}
-        formData={careerHistory}
-        onChange={(event) => event.formData && setCareerHistory(event.formData)}
-      >
-        {/* submitボタンを非表示にするため空のfragmentを渡す */}
-        <></>
-      </Form>
+    <div className="m-5 max-w-200 bg-white not-print:pt-[8mm]">
+      <div className="text-lg font-bold ">Careers 職務経歴書表示用システム</div>
+      <ThemeProvider theme={formTheme}>
+        <Form
+          schema={careerHistorySchema as RJSFSchema}
+          uiSchema={uiSchema}
+          validator={validator}
+          templates={{
+            WrapIfAdditionalTemplate: KeyTitleWrapIfAdditionalTemplate,
+          }}
+          formData={careerHistory}
+          onChange={(event) =>
+            event.formData && setCareerHistory(event.formData)
+          }
+        >
+          {/* submitボタンを非表示にするため空のfragmentを渡す */}
+          <></>
+        </Form>
+      </ThemeProvider>
 
       <div>{JSON.stringify(careerHistory)}</div>
     </div>
