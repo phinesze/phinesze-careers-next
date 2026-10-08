@@ -28,6 +28,12 @@
       "additionalProperties": false,
       "description": "経歴データのルート",
       "properties": {
+        "updatedAt": {
+          "description": "経歴データの更新日を表す。YYYY-MM-DD形式で表す",
+          "format": "date",
+          "title": "更新日",
+          "type": "string"
+        },
         "sections": {
           "description": "セクションの種類は、ドキュメントセクションとプロジェクトグループセクションの2種類がある",
           "items": {
@@ -42,12 +48,6 @@
           },
           "title": "経歴データのセクションの配列",
           "type": "array"
-        },
-        "updatedAt": {
-          "description": "経歴データの更新日を表す。YYYY-MM-DD形式で表す",
-          "format": "date",
-          "title": "更新日",
-          "type": "string"
         }
       },
       "required": ["updatedAt", "sections"],
