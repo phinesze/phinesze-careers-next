@@ -8,6 +8,7 @@ import { customizeValidator } from "@rjsf/validator-ajv8";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
 import { CareerHistory } from "@/types/CareerHistory";
 import CompanyRowObjectFieldTemplate from "@/components/rjsf/CompanyRowObjectFieldTemplate";
+import TwoObjectFieldTemplate from "@/components/rjsf/TwoObjectFieldTemplate";
 import KeyTitleWrapIfAdditionalTemplate from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
 
 const validator = customizeValidator<CareerHistory>();
@@ -103,13 +104,18 @@ const uiSchema = {
                     "ui:title": "言語・フレームワーク",
                     "ui:description":
                       "各プロジェクトの環境を記述する。使用言語、フレームワーク、ライブラリ、OS、DB、クラウドサービスなどを記述することができます。",
-                    "ui:options": { addable: true, orderable: false },
+                    "ui:options": {
+                      addable: true,
+                      orderable: false,
+                      newKeyName: "カテゴリ",
+                    },
                     additionalProperties: {
                       "ui:title": "言語・フレームワーク項目",
                       "ui:keyTitle":
                         "カテゴリ名（フロントエンド／バックエンドなど）",
                       items: {
                         "ui:title": "",
+                        "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
                         name: {
                           "ui:title": "名称",
                           "ui:widget": "text",
@@ -126,7 +132,11 @@ const uiSchema = {
                     "ui:description":
                       "各プロジェクトのチーム人数を記述します。",
                     "ui:field": "ObjectField",
-                    "ui:options": { addable: true, orderable: false },
+                    "ui:options": {
+                      addable: true,
+                      orderable: false,
+                      newKeyName: "PM",
+                    },
                     additionalProperties: {
                       "ui:title": "チーム人数など",
                       "ui:keyTitle": "カテゴリ名（開発／PMなど）",
@@ -139,6 +149,7 @@ const uiSchema = {
                     "ui:title": "期間",
                     "ui:description":
                       "各プロジェクトの期間を記述する。YYYY-MM形式で記述することができます。",
+                    "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
                     start: {
                       "ui:title": "開始",
                       "ui:widget": "date",
