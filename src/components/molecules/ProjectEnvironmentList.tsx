@@ -10,10 +10,10 @@ export default function ProjectEnvironmentList({
 }) {
   return (
     <ul className={"inline-block w-fit p-[1mm]"}>
-      {Object.entries(environments).map(([environment, environmentDetail]) => {
+      {environments.map(({ category, environments: environmentDetail }) => {
         return (
-          <li key={environment} className={"text-left"}>
-            <span className={"font-bold"}>{environment}:</span>
+          <li key={category} className={"text-left"}>
+            <span className={"font-bold"}>{category}:</span>
             <div className={"ml-[0.5mm]"}>
               {environmentDetail.map((detail, index) => (
                 <div key={index} className={"block"}>

@@ -16,13 +16,23 @@
       "type": "object"
     },
     "ProjectEnvironmentList": {
-      "additionalProperties": {
-        "items": {
-          "$ref": "#/definitions/ProjectEnvironment"
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "environments": {
+            "items": {
+              "$ref": "#/definitions/ProjectEnvironment"
+            },
+            "type": "array"
+          }
         },
-        "type": "array"
+        "required": ["category", "environments"],
+        "type": "object"
       },
-      "type": "object"
+      "type": "array"
     },
     "CareerHistory": {
       "additionalProperties": false,

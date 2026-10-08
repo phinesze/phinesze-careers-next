@@ -127,25 +127,26 @@ const uiSchema = {
                     "ui:title": "言語・フレームワーク",
                     "ui:description":
                       "各プロジェクトの環境を記述する。使用言語、フレームワーク、ライブラリ、OS、DB、クラウドサービスなどを記述することができます。",
-                    "ui:options": {
-                      addable: true,
-                      orderable: false,
-                      newKeyName: "カテゴリ", // /Users/inoueshinichi01/Projects/phinesze-careers-next/patches/@rjsf+core+6.11.0.patch
-                    },
-                    additionalProperties: {
+                    items: {
                       "ui:title": "言語・フレームワーク項目",
-                      "ui:keyTitle":
-                        "カテゴリ名（フロントエンド／バックエンドなど）",
-                      items: {
+                      category: {
+                        "ui:title":
+                          "カテゴリ名（フロントエンド／バックエンドなど）",
+                        "ui:widget": "text",
+                      },
+                      environments: {
                         "ui:title": "",
-                        "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
-                        name: {
-                          "ui:title": "名称",
-                          "ui:widget": "text",
-                        },
-                        version: {
-                          "ui:title": "バージョン",
-                          "ui:widget": "text",
+                        items: {
+                          "ui:title": "",
+                          "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
+                          name: {
+                            "ui:title": "名称",
+                            "ui:widget": "text",
+                          },
+                          version: {
+                            "ui:title": "バージョン",
+                            "ui:widget": "text",
+                          },
                         },
                       },
                     },

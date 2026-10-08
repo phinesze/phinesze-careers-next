@@ -10,5 +10,5 @@ export interface Project {
     end?: string;
   };
   teams?: ProjectTeamList;
-  environments?: ProjectEnvironmentList;
+  environments?: ProjectEnvironmentList[];
 }
