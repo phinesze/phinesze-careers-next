@@ -91,6 +91,13 @@ const uiSchema = {
                     "ui:widget": "textarea",
                     "ui:options": { rows: 10 },
                   },
+                  secretDetail: {
+                    "ui:title": "秘密の詳細",
+                    "ui:description":
+                      "機密表示にした場合にのみ表示されるプロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます",
+                    "ui:widget": "textarea",
+                    "ui:options": { rows: 10 },
+                  },
                   environments: {
                     "ui:title": "環境",
                     "ui:description":
