@@ -17,9 +17,9 @@ export default function MarkdownDocument({ className, markdownText }: Props) {
 
   return (
     markdownText && (
-      <section className={className}>
+      <div className={className}>
         <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-      </section>
+      </div>
     )
   );
 }

@@ -64,10 +64,23 @@ export default function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
                       </div>
                       <div className="flex">
                         {/* 本文 */}
-                        <MarkdownDocument
-                          className={"w-0 flex-grow px-[1mm] py-[2mm]"}
-                          markdownText={project.detail}
-                        ></MarkdownDocument>
+                        <section
+                          className={
+                            "w-0 flex-grow gap-y-[2mm] px-[1mm] py-[2mm]"
+                          }
+                        >
+                          <MarkdownDocument
+                            markdownText={project.detail}
+                          ></MarkdownDocument>
+                          {/* 機密表示モードの本文 */}
+                          {isSecrets && project.secretDetail && (
+                            <MarkdownDocument
+                              className={"mt-[2mm] text-gray-600 italic"}
+                              markdownText={project.secretDetail}
+                            ></MarkdownDocument>
+                          )}
+                        </section>
+
                         {/* チーム人数、言語・フレームワーク */}
                         <div
                           className={"w-[50mm] flex-grow-0 pt-[2mm] align-top"}
