@@ -5,12 +5,19 @@ import {
   getUiOptions,
 } from "@rjsf/utils";
 import { Box, Button, Paper } from "@mui/material";
+import { createContext } from "react";
+import { cn } from "@/utils/cn";
 
-/**
- * @rjsf/mui 標準の ArrayFieldTemplate は elevation 付きの Paper と p: 2 の余白で囲むため、
- * 入れ子になると影と余白が重なって見づらい。枠線のみの Paper にして余白を詰め、
- * 追加ボタンは右寄せで表示する。
- */
+export const FLEX_FIELDS = ["environments", "teams"];
+
+export const ArrayFieldTemplateContext = createContext<{
+  title: string;
+  isShortFields: boolean;
+}>({
+  title: "",
+  isShortFields: false,
+});
+
 export default function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
   const {
     canAdd,
@@ -64,7 +71,13 @@ export default function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
           registry={registry}
         />
         {!showOptionalDataControlInTitle ? optionalDataControl : undefined}
-        {items}
+        <Box className={cn(FLEX_FIELDS.includes(title) && "flex flex-wrap")}>
+          <ArrayFieldTemplateContext.Provider
+            value={{ title, isShortFields: !!FLEX_FIELDS.includes(title) }}
+          >
+            {items}
+          </ArrayFieldTemplateContext.Provider>
+        </Box>
         {canAdd && (
           <Box className="mb-1 flex items-center justify-end">
             <Button onClick={onAddClick}>
