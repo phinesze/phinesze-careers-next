@@ -3,7 +3,7 @@ import { ProjectGroupSection } from "@/types/ProjectGroupSection";
 import { CareerHistory } from "@/types/CareerHistory";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 
-export const useCareerSections = () => {
+export const useCareerHistory = () => {
   const { careerHistory, setCareerHistory, isSecrets } =
     useCareerHistoryState();
 

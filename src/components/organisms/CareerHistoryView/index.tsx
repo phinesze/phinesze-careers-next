@@ -2,7 +2,7 @@
 
 import DateLabel from "@/components/atoms/DateLabel";
 import { cn } from "@/utils/cn";
-import { useCareerSections } from "@/composables/useCareerSections";
+import { useCareerHistory } from "@/composables/useCareerHistory";
 import CareerHistoryViewDocumentBody from "@/components/organisms/CareerHistoryView/DocumentBody";
 import CareerHistoryViewProjectsGroupsBody from "@/components/organisms/CareerHistoryView/ProjectsGroupsBody";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
@@ -10,7 +10,7 @@ import { Fragment } from "react";
 
 export default function CareerHistoryView() {
   const { careerHistorySections, updatedAt } = useCareerHistoryState();
-  const { isSecrets } = useCareerSections();
+  const { isSecrets } = useCareerHistory();
 
   return (
     <main className="min-h-[297mm] w-[210mm] bg-white p-[5mm] text-[2mm] text-black">

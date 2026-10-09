@@ -1,11 +1,11 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCareerSections } from "@/composables/useCareerSections";
+import { useCareerHistory } from "@/composables/useCareerHistory";
 import { cn } from "@/utils/cn";
 
 export default function PreviewMenuHeader() {
-  const { handleSelectFile, isSecrets } = useCareerSections();
+  const { handleSelectFile, isSecrets } = useCareerHistory();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
