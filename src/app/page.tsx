@@ -124,18 +124,18 @@ const uiSchema = {
                     "ui:options": { rows: 5 },
                   },
                   environments: {
-                    "ui:title": "言語・フレームワーク",
+                    "ui:title": "言語・フレームワークのカテゴリ",
                     "ui:description":
                       "各プロジェクトの環境を記述する。使用言語、フレームワーク、ライブラリ、OS、DB、クラウドサービスなどを記述することができます。",
                     items: {
-                      "ui:title": "言語・フレームワークのカテゴリ",
+                      "ui:title": "",
                       category: {
                         "ui:title":
                           "カテゴリ名（フロントエンド／バックエンドなど）",
                         "ui:widget": "text",
                       },
                       environments: {
-                        "ui:title": "言語・フレームワーク",
+                        "ui:title": "カテゴリ内の言語・フレームワーク",
                         items: {
                           "ui:title": "",
                           "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
