@@ -154,18 +154,16 @@ const uiSchema = {
                   teams: {
                     "ui:title": "チーム",
                     "ui:description":
-                      "各プロジェクトのチーム人数を記述します。",
+                      "各プロジェクトのチーム人数を記述します。「カテゴリ名」には「開発」／「PM」などを記述、「チーム人数など」には「約8~10人」などを記述",
                     items: {
                       "ui:title": "",
                       "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
                       category: {
-                        "ui:title": "カテゴリ名（開発／PMなど）",
+                        "ui:title": "カテゴリ名",
                         "ui:widget": "text",
                       },
                       detail: {
                         "ui:title": "チーム人数など",
-                        "ui:description":
-                          "人数を文字列で記述します（例: 約8~10人）。",
                         "ui:widget": "text",
                       },
                     },
