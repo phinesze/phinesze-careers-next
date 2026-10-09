@@ -155,18 +155,19 @@ const uiSchema = {
                     "ui:title": "チーム",
                     "ui:description":
                       "各プロジェクトのチーム人数を記述します。",
-                    "ui:field": "ObjectField",
-                    "ui:options": {
-                      addable: true,
-                      orderable: false,
-                      newKeyName: "PM", // /Users/inoueshinichi01/Projects/phinesze-careers-next/patches/@rjsf+core+6.11.0.patch
-                    },
-                    additionalProperties: {
-                      "ui:title": "チーム人数など",
-                      "ui:keyTitle": "カテゴリ名（開発／PMなど）",
-                      "ui:description":
-                        "人数を文字列で記述します（例: 約8~10人）。",
-                      "ui:widget": "text",
+                    items: {
+                      "ui:title": "",
+                      "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
+                      category: {
+                        "ui:title": "カテゴリ名（開発／PMなど）",
+                        "ui:widget": "text",
+                      },
+                      detail: {
+                        "ui:title": "チーム人数など",
+                        "ui:description":
+                          "人数を文字列で記述します（例: 約8~10人）。",
+                        "ui:widget": "text",
+                      },
                     },
                   },
                   times: {

@@ -10,11 +10,11 @@ export default function ProjectTeamNumberList({
 }) {
   return (
     <ul className={"inline-block w-fit p-[1mm]"}>
-      {Object.entries(teams).map(([team, teamNumber]) => {
+      {teams.map(({ category, detail }) => {
         return (
-          <li key={team} className={"text-left"}>
-            {team}:
-            <ProjectTeamNumberLabel value={teamNumber} />
+          <li key={category} className={"text-left"}>
+            {category}:
+            <ProjectTeamNumberLabel value={detail} />
           </li>
         );
       })}

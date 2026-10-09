@@ -9,6 +9,6 @@ export interface Project {
     start: string;
     end?: string;
   };
-  teams?: ProjectTeamList;
+  teams?: ProjectTeamList[];
   environments?: ProjectEnvironmentList[];
 }
