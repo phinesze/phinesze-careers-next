@@ -220,8 +220,6 @@ export default function IndexPage() {
           </Form>
         </Box>
       </ThemeProvider>
-
-      <div>{JSON.stringify(careerHistory)}</div>
     </div>
   );
 }

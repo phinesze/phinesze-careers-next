@@ -10,15 +10,7 @@ export default function PreviewMenuHeader() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const isPreview = pathname === "/preview";
-
   const handlePrint = () => print();
-
-  const togglePage = () => {
-    const query = searchParams.toString();
-    const path = isPreview ? "/" : "/preview";
-    router.push(query ? `${path}?${query}` : path);
-  };
 
   const toggleIsSecrets = () => {
     const params = new URLSearchParams(searchParams.toString());
@@ -32,9 +24,9 @@ export default function PreviewMenuHeader() {
   };
 
   return (
-    <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 shadow-lg shadow-indigo-500/50 print:hidden">
+    <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
       <button className="relative inline-block border border-gray-200 px-2 text-sm">
-        <span>careerHistory JSONファイル選択</span>
+        <span>ファイルを開く</span>
         <input
           type="file"
           accept="application/json"
@@ -44,9 +36,19 @@ export default function PreviewMenuHeader() {
       </button>
       <button
         className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"
-        onClick={togglePage}
+        onClick={() => {
+          router.push("/");
+        }}
       >
-        {isPreview ? "編集へ" : "プレビューへ"}
+        編集へ
+      </button>
+      <button
+        className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"
+        onClick={() => {
+          router.push("/preview");
+        }}
+      >
+        プレビューへ
       </button>
       <button
         className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"

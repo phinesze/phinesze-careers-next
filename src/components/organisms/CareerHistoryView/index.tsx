@@ -40,7 +40,7 @@ export default function CareerHistoryView() {
       )}
       {!careerHistorySections.length && (
         <div className="mt-[4mm] text-center text-[3.75mm]/[4.5mm]">
-          「careerHistory.jsonファイル選択」からファイルを選択してください
+          「ファイルを開く」からファイルを選択してください
         </div>
       )}
     </main>
