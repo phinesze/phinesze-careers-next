@@ -13,11 +13,9 @@ export const FLEX_FIELDS = ["environments", "teams"];
 
 export const ArrayFieldTemplateContext = createContext<{
   title: string;
-  isShortFields: boolean;
   minItems: number;
 }>({
   title: "",
-  isShortFields: false,
   minItems: 0,
 });
 
@@ -81,7 +79,6 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
         <ArrayFieldTemplateContext.Provider
           value={{
             title,
-            isShortFields: !!FLEX_FIELDS.includes(title),
             minItems: schema.minItems ?? 0,
           }}
         >
