@@ -110,18 +110,6 @@
         "title": {
           "type": "string"
         },
-        "detail": {
-          "type": "string"
-        },
-        "secretDetail": {
-          "type": "string"
-        },
-        "environments": {
-          "$ref": "#/definitions/ProjectEnvironmentList"
-        },
-        "teams": {
-          "$ref": "#/definitions/ProjectTeamList"
-        },
         "times": {
           "additionalProperties": false,
           "properties": {
@@ -134,6 +122,18 @@
           },
 
           "type": "object"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "secretDetail": {
+          "type": "string"
+        },
+        "environments": {
+          "$ref": "#/definitions/ProjectEnvironmentList"
+        },
+        "teams": {
+          "$ref": "#/definitions/ProjectTeamList"
         }
       },
       "type": "object"
