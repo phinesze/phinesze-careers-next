@@ -1,4 +1,4 @@
-import CareerHistoryView from "@/components/organisms/CareerHistoryView";
+import { CareerHistoryView } from "@/components/organisms/CareerHistoryView";
 
 // プレビュー用ページ
 export default function PreviewPage() {

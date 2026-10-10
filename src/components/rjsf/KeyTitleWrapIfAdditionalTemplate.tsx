@@ -11,7 +11,7 @@ import { Grid, TextField } from "@mui/material";
  * additionalProperties のキー入力欄のラベルを uiSchema の "ui:keyTitle" で指定できる WrapIfAdditionalTemplate
  * 未指定の場合は RJSF 標準の "<キー名> Key" を表示する
  */
-export default function KeyTitleWrapIfAdditionalTemplate(
+export function KeyTitleWrapIfAdditionalTemplate(
   props: WrapIfAdditionalTemplateProps,
 ) {
   const {

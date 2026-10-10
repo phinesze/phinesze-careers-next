@@ -1,9 +1,9 @@
 "use client";
 
 import { Project } from "@/types/Project";
-import EnvironmentLabel from "@/components/atoms/EnvironmentLabel";
+import { EnvironmentLabel } from "@/components/atoms/EnvironmentLabel";
 
-export default function ProjectEnvironmentList({
+export function ProjectEnvironmentList({
   environments,
 }: {
   environments: NonNullable<Project["environments"]>;

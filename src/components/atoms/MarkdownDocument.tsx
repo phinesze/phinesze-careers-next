@@ -10,7 +10,7 @@ type Props = {
   markdownText?: string;
 };
 
-export default function MarkdownDocument({ className, markdownText }: Props) {
+export function MarkdownDocument({ className, markdownText }: Props) {
   const renderedHtml = useMemo(() => {
     return markdownText ? md.render(markdownText) : "";
   }, [markdownText]);

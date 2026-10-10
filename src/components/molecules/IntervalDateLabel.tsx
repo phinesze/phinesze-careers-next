@@ -1,6 +1,6 @@
 "use client";
 
-import DateLabel from "@/components/atoms/DateLabel";
+import { DateLabel } from "@/components/atoms/DateLabel";
 import { useMemo } from "react";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
   };
 };
 
-export default function IntervalDateLabel({ value }: Props) {
+export function IntervalDateLabel({ value }: Props) {
   const months = useMemo(() => {
     const getMonthNum = (date: Date) =>
       date.getFullYear() * 12 + date.getMonth();

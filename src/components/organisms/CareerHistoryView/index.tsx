@@ -1,14 +1,14 @@
 "use client";
 
-import DateLabel from "@/components/atoms/DateLabel";
+import { DateLabel } from "@/components/atoms/DateLabel";
 import { cn } from "@/utils/cn";
 import { useCareerHistory } from "@/composables/useCareerHistory";
-import CareerHistoryViewDocumentBody from "@/components/organisms/CareerHistoryView/DocumentBody";
-import CareerHistoryViewProjectsGroupsBody from "@/components/organisms/CareerHistoryView/ProjectsGroupsBody";
+import { CareerHistoryViewDocumentBody } from "@/components/organisms/CareerHistoryView/DocumentBody";
+import { CareerHistoryViewProjectsGroupsBody } from "@/components/organisms/CareerHistoryView/ProjectsGroupsBody";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import { Fragment } from "react";
 
-export default function CareerHistoryView() {
+export function CareerHistoryView() {
   const { careerHistorySections, updatedAt } = useCareerHistoryState();
   const { isSecrets } = useCareerHistory();
 

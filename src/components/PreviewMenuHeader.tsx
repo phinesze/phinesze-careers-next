@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { cn } from "@/utils/cn";
 
-export default function PreviewMenuHeader() {
+export function PreviewMenuHeader() {
   const { handleSelectFile, handleSaveFile, isSecrets } = useCareerHistory();
   const router = useRouter();
   const pathname = usePathname();

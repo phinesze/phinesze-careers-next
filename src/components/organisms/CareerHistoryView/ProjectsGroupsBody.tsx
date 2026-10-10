@@ -2,17 +2,17 @@
 
 import { ProjectGroup } from "@/types/ProjectGroup";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
-import IntervalDateLabel from "@/components/molecules/IntervalDateLabel";
-import MarkdownDocument from "@/components/atoms/MarkdownDocument";
-import ProjectTeamNumberList from "@/components/molecules/ProjectTeamNumberList";
-import ProjectEnvironmentList from "@/components/molecules/ProjectEnvironmentList";
-import SubHeadingLabel from "@/components/atoms/SubHeadingLabel";
+import { IntervalDateLabel } from "@/components/molecules/IntervalDateLabel";
+import { MarkdownDocument } from "@/components/atoms/MarkdownDocument";
+import { ProjectTeamNumberList } from "@/components/molecules/ProjectTeamNumberList";
+import { ProjectEnvironmentList } from "@/components/molecules/ProjectEnvironmentList";
+import { SubHeadingLabel } from "@/components/atoms/SubHeadingLabel";
 
 type Props = {
   groups: ProjectGroup[];
 };
 
-export default function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
+export function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
   const { isSecrets } = useCareerHistoryState();
   let projectIndex = 0;
   return (

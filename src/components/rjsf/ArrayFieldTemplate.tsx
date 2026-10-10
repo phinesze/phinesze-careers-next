@@ -18,7 +18,7 @@ export const ArrayFieldTemplateContext = createContext<{
   isShortFields: false,
 });
 
-export default function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
+export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
   const {
     canAdd,
     disabled,

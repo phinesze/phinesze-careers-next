@@ -3,7 +3,7 @@ import { Box, Grid } from "@mui/material";
 
 const ROW_FIELDS = ["company", "companyAlias", "url"];
 
-export default function CompanyRowObjectFieldTemplate(
+export function CompanyRowObjectFieldTemplate(
   props: ObjectFieldTemplateProps,
 ) {
   const rowItems = ROW_FIELDS.map((name) =>

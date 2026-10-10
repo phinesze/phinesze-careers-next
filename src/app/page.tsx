@@ -7,11 +7,11 @@ import { RJSFSchema } from "@rjsf/utils";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
 import { CareerHistory } from "@/types/CareerHistory";
-import CompanyRowObjectFieldTemplate from "@/components/rjsf/CompanyRowObjectFieldTemplate";
-import TwoObjectFieldTemplate from "@/components/rjsf/TwoObjectFieldTemplate";
-import KeyTitleWrapIfAdditionalTemplate from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
-import ArrayFieldItemTemplate from "@/components/rjsf/ArrayFieldItemTemplate";
-import ArrayFieldTemplate from "@/components/rjsf/ArrayFieldTemplate";
+import { CompanyRowObjectFieldTemplate } from "@/components/rjsf/CompanyRowObjectFieldTemplate";
+import { TwoObjectFieldTemplate } from "@/components/rjsf/TwoObjectFieldTemplate";
+import { KeyTitleWrapIfAdditionalTemplate } from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
+import { ArrayFieldItemTemplate } from "@/components/rjsf/ArrayFieldItemTemplate";
+import { ArrayFieldTemplate } from "@/components/rjsf/ArrayFieldTemplate";
 import { Box } from "@mui/material";
 
 const validator = customizeValidator<CareerHistory>();

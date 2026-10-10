@@ -1,13 +1,13 @@
 "use client";
 
-import MarkdownDocument from "@/components/atoms/MarkdownDocument";
+import { MarkdownDocument } from "@/components/atoms/MarkdownDocument";
 
 type Props = {
   label: string;
   markdownText?: string;
 };
 
-export default function CareerHistoryViewDocumentBody({
+export function CareerHistoryViewDocumentBody({
   label,
   markdownText,
 }: Props) {

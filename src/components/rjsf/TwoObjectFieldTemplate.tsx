@@ -1,7 +1,7 @@
 import { ObjectFieldTemplateProps } from "@rjsf/utils";
 import { Box, Grid } from "@mui/material";
 
-export default function TwoObjectFieldTemplate(
+export function TwoObjectFieldTemplate(
   props: ObjectFieldTemplateProps,
 ) {
   return (

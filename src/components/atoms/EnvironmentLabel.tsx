@@ -2,7 +2,7 @@
 
 import { ProjectEnvironment } from "@/types/ProjectEnvironment";
 
-export default function EnvironmentLabel({
+export function EnvironmentLabel({
   element,
 }: {
   element: ProjectEnvironment;

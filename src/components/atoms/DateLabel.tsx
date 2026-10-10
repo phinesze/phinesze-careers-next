@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 
-export default function DateLabel({ value }: Readonly<{ value?: string }>) {
+export function DateLabel({ value }: Readonly<{ value?: string }>) {
   const toDateString = useMemo(() => {
     if (value) {
       const [year, month, day] = value.split("-");

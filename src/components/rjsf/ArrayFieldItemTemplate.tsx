@@ -8,7 +8,7 @@ import { cn } from "@/utils/cn";
 import { useContext } from "react";
 import { ArrayFieldTemplateContext } from "./ArrayFieldTemplate";
 
-export default function ArrayFieldItemTemplate(
+export function ArrayFieldItemTemplate(
   props: ArrayFieldItemTemplateProps,
 ) {
   const { children, buttonsProps, hasToolbar, uiSchema, registry } = props;

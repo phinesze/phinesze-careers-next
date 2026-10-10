@@ -1,9 +1,9 @@
 "use client";
 
 import { Project } from "@/types/Project";
-import ProjectTeamNumberLabel from "@/components/atoms/TeamNumberLabel";
+import { ProjectTeamNumberLabel } from "@/components/atoms/TeamNumberLabel";
 
-export default function ProjectTeamNumberList({
+export function ProjectTeamNumberList({
   teams,
 }: {
   teams: NonNullable<Project["teams"]>;
