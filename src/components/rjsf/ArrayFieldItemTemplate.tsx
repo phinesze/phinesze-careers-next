@@ -7,6 +7,7 @@ import { Box, Paper } from "@mui/material";
 import { cn } from "@/utils/cn";
 import { useContext } from "react";
 import { ArrayFieldTemplateContext } from "./ArrayFieldTemplate";
+import { CompanyFieldContext } from "./CompanyRowObjectFieldTemplate";
 
 export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
   const { children, buttonsProps, hasToolbar, uiSchema, registry } = props;
@@ -18,6 +19,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
   );
 
   const { isShortFields, minItems } = useContext(ArrayFieldTemplateContext);
+  const { showingCompany } = useContext(CompanyFieldContext);
 
   return (
     <Box className="mt-2 flex items-start gap-2">
@@ -34,7 +36,9 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
           >
             {!isShortFields && (
               <div className="ml-2 flex-1 text-sm">
-                {`${props.parentUiSchema?.["ui:title"]}-${props.index + 1}`}
+                {/* 会社／組織別のプロジェクトの内部のプロジェクトの各アイテムのタイトルは「（会社／組織名）のプロジェクト」となる */}{" "}
+                {/* その他のアイテムのタイトルは「・・のプロジェクト-（インデックス + 1）」となる */}
+                {`${showingCompany ? `${showingCompany}の` : ""}${props.parentUiSchema?.["ui:title"]}${props.totalItems >= 2 ? `-${props.index + 1}` : ""}`}
               </div>
             )}
             <ArrayFieldItemButtonsTemplate
