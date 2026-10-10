@@ -12,6 +12,7 @@ import { TwoObjectFieldTemplate } from "@/components/rjsf/TwoObjectFieldTemplate
 import { KeyTitleWrapIfAdditionalTemplate } from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
 import { ArrayFieldItemTemplate } from "@/components/rjsf/ArrayFieldItemTemplate";
 import { ArrayFieldTemplate } from "@/components/rjsf/ArrayFieldTemplate";
+import { DataGridArrayField } from "@/components/rjsf/DataGridArrayField";
 import { Box } from "@mui/material";
 
 const validator = customizeValidator<CareerHistory>();
@@ -136,6 +137,7 @@ const uiSchema = {
                       },
                       environments: {
                         "ui:title": "カテゴリ内の言語・フレームワーク",
+                        "ui:field": DataGridArrayField,
                         items: {
                           "ui:title": "",
                           "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
@@ -155,9 +157,8 @@ const uiSchema = {
                     "ui:title": "チーム",
                     "ui:description":
                       "各プロジェクトのチーム人数を記述します。「カテゴリ名」には「開発」／「PM」などを記述、「チーム人数など」には「約8~10人」などを記述",
+                    "ui:field": DataGridArrayField,
                     items: {
-                      "ui:title": "",
-                      "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
                       category: {
                         "ui:title": "カテゴリ名",
                         "ui:widget": "text",
