@@ -13,9 +13,11 @@ export const FLEX_FIELDS = ["environments", "teams"];
 export const ArrayFieldTemplateContext = createContext<{
   title: string;
   isShortFields: boolean;
+  minItems: number;
 }>({
   title: "",
   isShortFields: false,
+  minItems: 0,
 });
 
 export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
@@ -49,6 +51,8 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
     ButtonTemplates: { AddButton },
   } = registry.templates;
 
+  console.log("props", props);
+
   return (
     <Paper elevation={0} className="rounded-md border border-gray-300">
       <Box className="px-1 py-1">
@@ -71,9 +75,13 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
           registry={registry}
         />
         {!showOptionalDataControlInTitle ? optionalDataControl : undefined}
-        <Box className={cn(FLEX_FIELDS.includes(title) && "flex flex-wrap")}>
+        <Box className={cn(FLEX_FIELDS.includes(title) && "flex flex-wrap ")}>
           <ArrayFieldTemplateContext.Provider
-            value={{ title, isShortFields: !!FLEX_FIELDS.includes(title) }}
+            value={{
+              title,
+              isShortFields: !!FLEX_FIELDS.includes(title),
+              minItems: schema.minItems ?? 0,
+            }}
           >
             {items}
           </ArrayFieldTemplateContext.Provider>

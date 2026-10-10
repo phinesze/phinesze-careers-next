@@ -8,9 +8,7 @@ import { cn } from "@/utils/cn";
 import { useContext } from "react";
 import { ArrayFieldTemplateContext } from "./ArrayFieldTemplate";
 
-export function ArrayFieldItemTemplate(
-  props: ArrayFieldItemTemplateProps,
-) {
+export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
   const { children, buttonsProps, hasToolbar, uiSchema, registry } = props;
   const uiOptions = getUiOptions(uiSchema);
   const ArrayFieldItemButtonsTemplate = getTemplate(
@@ -19,7 +17,7 @@ export function ArrayFieldItemTemplate(
     uiOptions,
   );
 
-  const { isShortFields } = useContext(ArrayFieldTemplateContext);
+  const { isShortFields, minItems } = useContext(ArrayFieldTemplateContext);
 
   return (
     <Box className="mt-4 flex items-start gap-2">
@@ -30,7 +28,7 @@ export function ArrayFieldItemTemplate(
         {hasToolbar && (
           <Box
             className={cn(
-              "flex flex-shrink-0 items-center justify-end ",
+              "flex h-6 flex-shrink-0 items-center justify-end ",
               isShortFields ? "" : "bg-gray-200",
             )}
           >
@@ -41,6 +39,9 @@ export function ArrayFieldItemTemplate(
             )}
             <ArrayFieldItemButtonsTemplate
               {...buttonsProps}
+              hasRemove={
+                buttonsProps.hasRemove && buttonsProps.totalItems > minItems
+              }
               style={{ paddingLeft: 6, paddingRight: 6, minWidth: 0 }}
             />
           </Box>
