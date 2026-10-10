@@ -169,6 +169,7 @@
           "items": {
             "$ref": "#/definitions/ProjectGroup"
           },
+          "minItems": 1,
           "type": "array"
         },
         "type": {
