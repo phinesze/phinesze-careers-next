@@ -1,3 +1,5 @@
+"use strict";
+
 import { ChangeEvent } from "react";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import { RJSFSchema } from "@rjsf/utils";
@@ -5,10 +7,32 @@ import { CareerHistory } from "@/types/CareerHistory";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
 
+/**
+ * window.showSaveFilePickerの型チェックが通るように実装する
+ * https://developer.mozilla.org/ja/docs/Web/API/Window/showSaveFilePicker)
+ */
+declare global {
+  interface Window {
+    showSaveFilePicker(options?: {
+      suggestedName?: string;
+      startIn?:
+        | FileSystemHandle
+        | "desktop"
+        | "documents"
+        | "downloads"
+        | "music"
+        | "pictures"
+        | "videos";
+      types?: { description?: string; accept: Record<string, string[]> }[];
+    }): Promise<FileSystemFileHandle>;
+  }
+}
+
 const validator = customizeValidator<CareerHistory>();
 
 export const useCareerHistory = () => {
-  const { setCareerHistory, isSecrets } = useCareerHistoryState();
+  const { careerHistory, setCareerHistory, isSecrets } =
+    useCareerHistoryState();
 
   /**
    * 職務履歴データに合致するかのバリデーションチェック
@@ -71,8 +95,60 @@ export const useCareerHistory = () => {
     };
     reader.readAsText(file);
   };
+
+  /**
+   * ファイル保存を選択した時の動作
+   */
+  const handleSaveFile = async () => {
+    console.log("handleSaveFile");
+    // ファイル保存ダイアログを表示する（showSaveFilePickerは一部ブラウザのみ対応）
+    if ("showSaveFilePicker" in window) {
+      await saveWithShowSaveFilePicker();
+    } else {
+      // TODO showSaveFilePicker非対応の場合はdownloadフォルダに直接ダウンロードさせる
+      return;
+    }
+  };
+
+  /**
+   * saveWithShowSaveFilePickerを使用してファイル保存ダイアログを開き職務経歴ファイルを保存する
+   */
+  const saveWithShowSaveFilePicker = async () => {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: "careerHistory.json",
+        startIn: "downloads",
+        types: [
+          {
+            accept: {
+              "text/json": [".json"],
+            },
+          },
+        ],
+      });
+
+      //　書き込み用のストリームを作成
+      const writable = await handle.createWritable();
+
+      // データを書き込む
+      const careerHistoryStr = JSON.stringify(careerHistory);
+      await writable.write(careerHistoryStr);
+
+      // ストリームを閉じる
+      await writable.close();
+
+      alert("ファイルを保存しました。");
+    } catch (err) {
+      if (err.name === "AbortError") {
+        console.log("ユーザーが保存をキャンセルしました。");
+      } else {
+        console.error("エラーが発生しました:", err);
+      }
+    }
+  };
   return {
     isSecrets,
     handleSelectFile,
+    handleSaveFile,
   };
 };

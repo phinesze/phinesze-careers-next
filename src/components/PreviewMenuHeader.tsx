@@ -5,7 +5,7 @@ import { useCareerHistory } from "@/composables/useCareerHistory";
 import { cn } from "@/utils/cn";
 
 export default function PreviewMenuHeader() {
-  const { handleSelectFile, isSecrets } = useCareerHistory();
+  const { handleSelectFile, handleSaveFile, isSecrets } = useCareerHistory();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -32,6 +32,13 @@ export default function PreviewMenuHeader() {
           accept="application/json"
           className="absolute top-0 left-0 h-full w-full cursor-pointer bg-amber-300 opacity-0"
           onChange={(event) => handleSelectFile(event)}
+        />
+      </button>
+      <button className="relative inline-block border border-gray-200 px-2 text-sm">
+        <span>ファイルを保存</span>
+        <button
+          className="absolute top-0 left-0 h-full w-full cursor-pointer bg-amber-300 opacity-0"
+          onClick={() => handleSaveFile()}
         />
       </button>
       <button
