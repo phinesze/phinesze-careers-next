@@ -18,7 +18,9 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
     uiOptions,
   );
 
-  const { isShortFields, minItems } = useContext(ArrayFieldTemplateContext);
+  const { title, isShortFields, minItems } = useContext(
+    ArrayFieldTemplateContext,
+  );
   const { showingCompany } = useContext(CompanyFieldContext);
 
   return (
@@ -38,7 +40,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
               <div className="ml-2 flex-1 text-sm">
                 {/* 会社／組織別のプロジェクトの内部のプロジェクトの各アイテムのタイトルは「（会社／組織名）のプロジェクト」となる */}{" "}
                 {/* その他のアイテムのタイトルは「・・のプロジェクト-（インデックス + 1）」となる */}
-                {`${showingCompany ? `${showingCompany}の` : ""}${props.parentUiSchema?.["ui:title"]}${props.totalItems >= 2 ? `-${props.index + 1}` : ""}`}
+                {`${showingCompany && title === "projects" ? `${showingCompany}の` : ""}${props.parentUiSchema?.["ui:title"]}${props.totalItems >= 2 ? `-${props.index + 1}` : ""}`}
               </div>
             )}
             <ArrayFieldItemButtonsTemplate

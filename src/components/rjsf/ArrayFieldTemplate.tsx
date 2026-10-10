@@ -4,9 +4,10 @@ import {
   getTemplate,
   getUiOptions,
 } from "@rjsf/utils";
-import { Box, Button, Paper } from "@mui/material";
-import { createContext } from "react";
+import { Box, Button } from "@mui/material";
+import { createContext, useContext } from "react";
 import { cn } from "@/utils/cn";
+import { CompanyFieldContext } from "./CompanyRowObjectFieldTemplate";
 
 export const FLEX_FIELDS = ["environments", "teams"];
 
@@ -53,6 +54,8 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
 
   console.log("props", props);
 
+  const { showingCompany } = useContext(CompanyFieldContext);
+
   return (
     <Box className="px-1 py-1 ">
       <ArrayFieldTitleTemplate
@@ -88,7 +91,8 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
       {canAdd && (
         <Box className="mb-1 flex items-center justify-end">
           <Button onClick={onAddClick}>
-            {`${uiOptions.title}を追加`}{" "}
+            {showingCompany && title === "projects" && `${showingCompany}の`}
+            {`${uiOptions.title}を追加`}
             <AddButton
               id={buttonId(fieldPathId, "add")}
               className="rjsf-array-item-add"
