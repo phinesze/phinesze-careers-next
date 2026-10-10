@@ -174,11 +174,11 @@ const uiSchema = {
                       "各プロジェクトの期間を記述する。YYYY-MM形式で記述することができます。",
                     "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
                     start: {
-                      "ui:title": "開始",
+                      "ui:title": "開始時期",
                       "ui:widget": "date",
                     },
                     end: {
-                      "ui:title": "終了",
+                      "ui:title": "終了時期",
                       "ui:widget": "date",
                     },
                   },
@@ -199,6 +199,7 @@ export default function IndexPage() {
   return (
     <div className="m-5 max-w-300 bg-white not-print:pt-[8mm]">
       <div className="text-lg font-bold ">Careers 職務経歴書表示用システム</div>
+      <div>{JSON.stringify(careerHistory)}</div>
       <ThemeProvider theme={formTheme}>
         <Box sx={{ "& textarea": { resize: "vertical" } }}>
           <Form
