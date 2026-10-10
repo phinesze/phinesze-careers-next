@@ -19,12 +19,12 @@ const validator = customizeValidator();
 const formTheme = createTheme({
   typography: { fontSize: 12 },
   // theme.spacing(1) の単位 (デフォルト 8px)。Grid の spacing や Paper/Box の padding がまとめて縮む
-  spacing: 4,
+  spacing: 2,
   components: {
     MuiOutlinedInput: {
       styleOverrides: {
         // 入力欄内側の余白 (size="small" のデフォルトは 8.5px 14px)
-        input: { padding: "6px 8px" },
+        input: { padding: "6px 6px" },
       },
     },
     MuiTextField: { defaultProps: { size: "small", margin: "dense" } },

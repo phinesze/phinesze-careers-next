@@ -86,7 +86,7 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
         </ArrayFieldTemplateContext.Provider>
       </Box>
       {canAdd && (
-        <Box className="mb-1 flex items-center justify-end">
+        <Box className="m-0 flex items-center justify-end">
           <Button onClick={onAddClick}>
             {titles[title] || uiOptions.title}
             {`を追加`}
