@@ -101,19 +101,43 @@ export const useCareerHistory = () => {
    */
   const handleSaveFile = async () => {
     console.log("handleSaveFile");
-    // ファイル保存ダイアログを表示する（showSaveFilePickerは一部ブラウザのみ対応）
-    if ("showSaveFilePicker" in window) {
-      await saveWithShowSaveFilePicker();
+
+    if ("showSaveFilePicker==" in window) {
+      // showSaveFilePickerに対応している場合はファイル保存ダイアログを表示する
+      await saveFileWithShowSaveFilePicker();
     } else {
-      // TODO showSaveFilePicker非対応の場合はdownloadフォルダに直接ダウンロードさせる
-      return;
+      // showSaveFilePickerに非対応の場合はaタグを生成してダウンロードさせる
+      return saveFile();
     }
   };
 
   /**
+   * aタグを生成してdownloadフォルダに直接ダウンロードさせる
+   * @returns
+   */
+  function saveFile() {
+    const fileNameWithJson = `careerHistory.json`;
+    // データを書き込む
+    const careerHistoryStr = JSON.stringify(careerHistory);
+
+    const blobData = new Blob([careerHistoryStr], {
+      type: "text/json",
+    });
+
+    // aタグを生成してダウンロードさせる
+    const url = URL.createObjectURL(blobData);
+    const anchorElem = document.createElement("a");
+    anchorElem.href = url;
+    anchorElem.download = fileNameWithJson;
+    anchorElem.click();
+    URL.revokeObjectURL(url);
+    return;
+  }
+
+  /**
    * saveWithShowSaveFilePickerを使用してファイル保存ダイアログを開き職務経歴ファイルを保存する
    */
-  const saveWithShowSaveFilePicker = async () => {
+  const saveFileWithShowSaveFilePicker = async () => {
     try {
       const handle = await window.showSaveFilePicker({
         suggestedName: "careerHistory.json",
