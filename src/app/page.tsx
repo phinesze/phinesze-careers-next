@@ -59,13 +59,13 @@ const uiSchema = {
           label: {
             "ui:title": "ラベル",
             "ui:description":
-              "ドキュメントセクションの見出し部分のラベルを入力してください",
+              "ドキュメントセクションの見出し部分のラベルを入力してください。",
             "ui:widget": "text",
           },
           detail: {
             "ui:title": "詳細",
             "ui:description":
-              "ドキュメントの本文を自由形式で記述する。Markdown形式で記述することができる",
+              "ドキュメントの本文を自由形式で記述する。Markdown形式で記述することができます。",
             "ui:widget": "textarea",
             "ui:options": { rows: 10 },
           },
@@ -76,7 +76,7 @@ const uiSchema = {
           "ui:title": "プロジェクトグループセクション",
           "ui:description":
             "プロジェクトグループセクションは、複数のプロジェクトをグループ化して記述するセクションです。",
-          "ui:help": "プロジェクトグループセクションの詳細を入力してください",
+          "ui:help": "プロジェクトグループセクションの詳細を入力してください。",
           groups: {
             "ui:title": "会社／組織別のプロジェクトグループ",
             "ui:description":

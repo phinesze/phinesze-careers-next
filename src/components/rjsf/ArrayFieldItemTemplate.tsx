@@ -20,7 +20,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
   const { isShortFields, minItems } = useContext(ArrayFieldTemplateContext);
 
   return (
-    <Box className="mt-4 flex items-start gap-2">
+    <Box className="mt-2 flex items-start gap-2">
       <Paper
         elevation={0}
         className="min-w-0 flex-1 rounded-md border border-gray-300"

@@ -54,53 +54,51 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
   console.log("props", props);
 
   return (
-    <Paper elevation={0} className="rounded-md border border-gray-300">
-      <Box className="px-1 py-1">
-        <ArrayFieldTitleTemplate
-          fieldPathId={fieldPathId}
-          title={uiOptions.title || title}
-          schema={schema}
-          uiSchema={uiSchema}
-          required={required}
-          registry={registry}
-          optionalDataControl={
-            showOptionalDataControlInTitle ? optionalDataControl : undefined
-          }
-        />
-        <ArrayFieldDescriptionTemplate
-          fieldPathId={fieldPathId}
-          description={uiOptions.description || schema.description}
-          schema={schema}
-          uiSchema={uiSchema}
-          registry={registry}
-        />
-        {!showOptionalDataControlInTitle ? optionalDataControl : undefined}
-        <Box className={cn(FLEX_FIELDS.includes(title) && "flex flex-wrap ")}>
-          <ArrayFieldTemplateContext.Provider
-            value={{
-              title,
-              isShortFields: !!FLEX_FIELDS.includes(title),
-              minItems: schema.minItems ?? 0,
-            }}
-          >
-            {items}
-          </ArrayFieldTemplateContext.Provider>
-        </Box>
-        {canAdd && (
-          <Box className="mb-1 flex items-center justify-end">
-            <Button onClick={onAddClick}>
-              {`${uiOptions.title}を追加`}{" "}
-              <AddButton
-                id={buttonId(fieldPathId, "add")}
-                className="rjsf-array-item-add"
-                disabled={disabled || readonly}
-                uiSchema={uiSchema}
-                registry={registry}
-              />
-            </Button>
-          </Box>
-        )}
+    <Box className="px-1 py-1 ">
+      <ArrayFieldTitleTemplate
+        fieldPathId={fieldPathId}
+        title={uiOptions.title || title}
+        schema={schema}
+        uiSchema={uiSchema}
+        required={required}
+        registry={registry}
+        optionalDataControl={
+          showOptionalDataControlInTitle ? optionalDataControl : undefined
+        }
+      />
+      <ArrayFieldDescriptionTemplate
+        fieldPathId={fieldPathId}
+        description={uiOptions.description || schema.description}
+        schema={schema}
+        uiSchema={uiSchema}
+        registry={registry}
+      />
+      {!showOptionalDataControlInTitle ? optionalDataControl : undefined}
+      <Box className={cn(FLEX_FIELDS.includes(title) && "flex flex-wrap ")}>
+        <ArrayFieldTemplateContext.Provider
+          value={{
+            title,
+            isShortFields: !!FLEX_FIELDS.includes(title),
+            minItems: schema.minItems ?? 0,
+          }}
+        >
+          {items}
+        </ArrayFieldTemplateContext.Provider>
       </Box>
-    </Paper>
+      {canAdd && (
+        <Box className="mb-1 flex items-center justify-end">
+          <Button onClick={onAddClick}>
+            {`${uiOptions.title}を追加`}{" "}
+            <AddButton
+              id={buttonId(fieldPathId, "add")}
+              className="rjsf-array-item-add"
+              disabled={disabled || readonly}
+              uiSchema={uiSchema}
+              registry={registry}
+            />
+          </Button>
+        </Box>
+      )}
+    </Box>
   );
 }
