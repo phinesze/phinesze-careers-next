@@ -1,18 +1,8 @@
 import { ObjectFieldTemplateProps } from "@rjsf/utils";
 import { Box, Grid } from "@mui/material";
-import { createContext } from "react";
+import { CustomUiTitleContext } from "./CustomUiTitleContext";
 
 const ROW_FIELDS = ["company", "companyAlias", "url"];
-
-export const CompanyFieldContext = createContext<{
-  company: string;
-  companyAlias: string;
-  showingCompany: string;
-}>({
-  showingCompany: "",
-  company: "",
-  companyAlias: "",
-});
 
 export function CompanyRowObjectFieldTemplate(props: ObjectFieldTemplateProps) {
   const rowItems = ROW_FIELDS.map((name) =>
@@ -21,7 +11,6 @@ export function CompanyRowObjectFieldTemplate(props: ObjectFieldTemplateProps) {
   const restItems = props.properties.filter(
     (p) => !ROW_FIELDS.includes(p.name),
   );
-  console.log("props.formData", props.formData);
   return (
     <Box>
       {/* 会社名・略称・URL を1行に表示 */}
@@ -33,17 +22,20 @@ export function CompanyRowObjectFieldTemplate(props: ObjectFieldTemplateProps) {
         ))}
       </Grid>
       {/* projects などそれ以外の項目は従来どおり縦に並べる */}
-      <CompanyFieldContext.Provider
+      <CustomUiTitleContext.Provider
         value={{
-          company: props.formData.company,
-          companyAlias: props.formData.companyAlias,
-          showingCompany: props.formData.company || props.formData.companyAlias,
+          titles: {
+            projects:
+              props.formData.company || props.formData.companyAlias
+                ? `${props.formData.company || props.formData.companyAlias}のプロジェクト`
+                : undefined,
+          },
         }}
       >
         {restItems.map((p) => (
           <Box key={p.name}>{p.content}</Box>
         ))}
-      </CompanyFieldContext.Provider>
+      </CustomUiTitleContext.Provider>
     </Box>
   );
 }
