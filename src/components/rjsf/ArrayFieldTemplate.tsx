@@ -1,9 +1,9 @@
 import {
   ArrayFieldTemplateProps,
-  buttonId,
   getTemplate,
   getUiOptions,
 } from "@rjsf/utils";
+import AddIcon from "@mui/icons-material/Add";
 import { Box, Button } from "@mui/material";
 import { createContext, useContext } from "react";
 import { cn } from "@/utils/cn";
@@ -46,9 +46,6 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
     uiOptions,
   );
   const showOptionalDataControlInTitle = !readonly && !disabled;
-  const {
-    ButtonTemplates: { AddButton },
-  } = registry.templates;
 
   console.log("props", props);
 
@@ -87,16 +84,9 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
       </Box>
       {canAdd && (
         <Box className="m-0 flex items-center justify-end">
-          <Button onClick={onAddClick}>
+          <Button startIcon={<AddIcon />} onClick={onAddClick} sx={{ mt: 2 }}>
             {titles[title] || uiOptions.title}
             {`を追加`}
-            <AddButton
-              id={buttonId(fieldPathId, "add")}
-              className="rjsf-array-item-add"
-              disabled={disabled || readonly}
-              uiSchema={uiSchema}
-              registry={registry}
-            />
           </Button>
         </Box>
       )}
