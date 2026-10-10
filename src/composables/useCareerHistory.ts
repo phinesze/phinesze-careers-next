@@ -102,7 +102,7 @@ export const useCareerHistory = () => {
   const handleSaveFile = async () => {
     console.log("handleSaveFile");
 
-    if ("showSaveFilePicker==" in window) {
+    if ("showSaveFilePicker" in window) {
       // showSaveFilePickerに対応している場合はファイル保存ダイアログを表示する
       await saveFileWithShowSaveFilePicker();
     } else {
