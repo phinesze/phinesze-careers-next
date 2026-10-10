@@ -1,6 +1,6 @@
 import { ProjectEnvironment } from "@/types/ProjectEnvironment";
 
 export interface ProjectEnvironmentList {
-  category: string;
+  category?: string;
   environments: ProjectEnvironment[];
 }

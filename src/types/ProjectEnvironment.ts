@@ -1,4 +1,4 @@
 export interface ProjectEnvironment {
-  name: string;
+  name?: string;
   version?: string;
 }

@@ -3,7 +3,7 @@
 import { MarkdownDocument } from "@/components/atoms/MarkdownDocument";
 
 type Props = {
-  label: string;
+  label?: string;
   markdownText?: string;
 };
 

@@ -5,7 +5,7 @@ import { useMemo } from "react";
 
 type Props = {
   value?: {
-    start: string;
+    start?: string;
     end?: string;
   };
 };
@@ -15,7 +15,7 @@ export function IntervalDateLabel({ value }: Props) {
     const getMonthNum = (date: Date) =>
       date.getFullYear() * 12 + date.getMonth();
 
-    if (!value?.end) {
+    if (!value?.start || !value?.end) {
       return null;
     }
     const startDate = new Date(value.start);

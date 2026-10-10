@@ -6,7 +6,7 @@ export interface Project {
   detail?: string;
   secretDetail?: string;
   times?: {
-    start: string;
+    start?: string;
     end?: string;
   };
   teams?: ProjectTeamList[];

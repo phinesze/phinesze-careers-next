@@ -12,7 +12,7 @@
           "type": "string"
         }
       },
-      "required": ["name"],
+
       "type": "object"
     },
     "ProjectEnvironmentList": {
@@ -29,7 +29,7 @@
             "type": "array"
           }
         },
-        "required": ["category", "environments"],
+        "required": ["environments"],
         "type": "object"
       },
       "type": "array"
@@ -40,7 +40,6 @@
       "properties": {
         "updatedAt": {
           "description": "経歴データの更新日を表す。YYYY-MM-DD形式で表す",
-          "format": "date",
           "title": "更新日",
           "type": "string"
         },
@@ -60,7 +59,7 @@
           "type": "array"
         }
       },
-      "required": ["updatedAt", "sections"],
+      "required": ["sections"],
       "type": "object"
     },
     "ProjectTeamList": {
@@ -75,7 +74,7 @@
             "type": "string"
           }
         },
-        "required": ["category", "detail"],
+
         "type": "object"
       },
       "type": "array"
@@ -101,7 +100,7 @@
           "type": "string"
         }
       },
-      "required": ["label", "detail", "type"],
+      "required": ["type"],
       "title": "ドキュメントセクション",
       "type": "object"
     },
@@ -133,7 +132,7 @@
               "type": "string"
             }
           },
-          "required": ["start"],
+
           "type": "object"
         }
       },

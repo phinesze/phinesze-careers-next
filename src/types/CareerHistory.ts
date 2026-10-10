@@ -11,7 +11,7 @@ export interface CareerHistory {
    * @description 経歴データの更新日を表す。YYYY-MM-DD形式で表す
    * @example 2025-01-01
    */
-  updatedAt: string;
+  updatedAt?: string;
 
   /**
    * @title 経歴データのセクションの配列

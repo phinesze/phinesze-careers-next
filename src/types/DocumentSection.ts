@@ -12,11 +12,11 @@ export interface DocumentSection extends Section {
    * @description ドキュメントのラベルを自由形式で記述する。
    * @type string
    */
-  label: string;
+  label?: string;
   /**
    * @title ドキュメントの本文
    * @description ドキュメントの本文を自由形式で記述する。HTML形式で記述することができる
    * @type string
    */
-  detail: string;
+  detail?: string;
 }
