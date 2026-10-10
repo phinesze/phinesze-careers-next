@@ -6,7 +6,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { RJSFSchema } from "@rjsf/utils";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
-import { CareerHistory } from "@/types/CareerHistory";
 import { CompanyRowObjectFieldTemplate } from "@/components/rjsf/CompanyRowObjectFieldTemplate";
 import { TwoObjectFieldTemplate } from "@/components/rjsf/TwoObjectFieldTemplate";
 import { KeyTitleWrapIfAdditionalTemplate } from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
@@ -15,7 +14,7 @@ import { ArrayFieldTemplate } from "@/components/rjsf/ArrayFieldTemplate";
 import { DataGridArrayField } from "@/components/rjsf/DataGridArrayField";
 import { Box } from "@mui/material";
 
-const validator = customizeValidator<CareerHistory>();
+const validator = customizeValidator();
 
 const formTheme = createTheme({
   typography: { fontSize: 12 },
