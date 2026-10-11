@@ -171,15 +171,15 @@ const uiSchema = {
                   times: {
                     "ui:title": "期間",
                     "ui:description":
-                      "各プロジェクトの期間を記述する。YYYY-MM形式で記述することができます。",
+                      "各プロジェクトの開始／終了時期を選択してください。",
                     "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
                     start: {
                       "ui:title": "開始時期",
-                      "ui:widget": "date",
+                      "ui:options": { inputType: "month" },
                     },
                     end: {
                       "ui:title": "終了時期",
-                      "ui:widget": "date",
+                      "ui:options": { inputType: "month" },
                     },
                   },
                 },
