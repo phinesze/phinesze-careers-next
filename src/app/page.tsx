@@ -199,7 +199,6 @@ export default function IndexPage() {
   return (
     <div className="m-5 max-w-300 bg-white not-print:pt-[8mm]">
       <div className="text-lg font-bold ">Careers 職務経歴書表示用システム</div>
-      <div>{JSON.stringify(careerHistory)}</div>
       <ThemeProvider theme={formTheme}>
         <Box sx={{ "& textarea": { resize: "vertical" } }}>
           <Form
