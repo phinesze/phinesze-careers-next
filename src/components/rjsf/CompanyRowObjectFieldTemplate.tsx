@@ -1,6 +1,5 @@
 import { ObjectFieldTemplateProps } from "@rjsf/utils";
 import { Box, Grid } from "@mui/material";
-import { CustomUiTitleContext } from "./CustomUiTitleContext";
 
 const ROW_FIELDS = ["company", "companyAlias", "url"];
 
@@ -22,20 +21,9 @@ export function CompanyRowObjectFieldTemplate(props: ObjectFieldTemplateProps) {
         ))}
       </Grid>
       {/* projects などそれ以外の項目は従来どおり縦に並べる */}
-      <CustomUiTitleContext.Provider
-        value={{
-          titles: {
-            projects:
-              props.formData.company || props.formData.companyAlias
-                ? `${props.formData.company || props.formData.companyAlias}のプロジェクト`
-                : undefined,
-          },
-        }}
-      >
-        {restItems.map((p) => (
+              {restItems.map((p) => (
           <Box key={p.name}>{p.content}</Box>
         ))}
-      </CustomUiTitleContext.Provider>
     </Box>
   );
 }

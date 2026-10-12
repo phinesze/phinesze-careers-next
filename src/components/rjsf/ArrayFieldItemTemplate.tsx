@@ -16,7 +16,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ReactElement, useContext } from "react";
 
 import { ArrayFieldTemplateContext } from "./ArrayFieldTemplate";
-import { CustomUiTitleContext } from "./CustomUiTitleContext";
 import { start } from "repl";
 
 export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
@@ -28,9 +27,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
     uiOptions,
   );
 
-  const { title, minItems } = useContext(ArrayFieldTemplateContext);
-  const { titles } = useContext(CustomUiTitleContext);
-
+  const { minItems } = useContext(ArrayFieldTemplateContext);
   const formData = (children as ReactElement<FieldProps>).props.formData;
 
   const accordionLabelFunctions = {
@@ -70,7 +67,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
     if (value) {
       return value;
     } else {
-      return `${titles[title] ? titles[title] : props.parentUiSchema?.["ui:title"]} ${props.totalItems >= 2 ? `-${props.index + 1}` : ""}`;
+      return `${props.parentUiSchema?.["ui:title"]} ${props.totalItems >= 2 ? `-${props.index + 1}` : ""}`;
     }
   };
 

@@ -5,9 +5,8 @@ import {
 } from "@rjsf/utils";
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button } from "@mui/material";
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 import { cn } from "@/utils/cn";
-import { CustomUiTitleContext } from "./CustomUiTitleContext";
 
 export const FLEX_FIELDS = ["environments", "teams"];
 
@@ -49,8 +48,6 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
 
   console.log("props", props);
 
-  const { titles } = useContext(CustomUiTitleContext);
-
   return (
     <Box className="px-1 py-1 ">
       <ArrayFieldTitleTemplate
@@ -85,7 +82,7 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
       {canAdd && (
         <Box className="m-0 flex items-center justify-end">
           <Button startIcon={<AddIcon />} onClick={onAddClick} sx={{ mt: 2 }}>
-            {titles[title] || uiOptions.title}
+            {uiOptions.title}
             {`を追加`}
           </Button>
         </Box>
