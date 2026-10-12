@@ -114,11 +114,9 @@
           "additionalProperties": false,
           "properties": {
             "start": {
-              "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
               "type": "string"
             },
             "end": {
-              "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
               "type": "string"
             }
           },
