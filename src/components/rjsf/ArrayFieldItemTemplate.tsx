@@ -42,11 +42,11 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
     groups: () => {
       const companyStr = formData.company || formData.companyAlias;
       const startTime = formData.projects
-        .map((project: { times: { start: string } }) => project.times.start)
-        .sort()[0];
+        .map((project: { times: { start: string } }) => project?.times?.start)
+        .sort()?.[0];
 
       const endTime = formData.projects
-        .map((project: { times: { end: string } }) => project.times.end)
+        .map((project: { times: { end: string } }) => project?.times?.end)
         .sort()
         ?.at(-1);
 
