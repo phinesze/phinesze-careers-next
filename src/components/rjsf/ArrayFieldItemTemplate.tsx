@@ -34,11 +34,14 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
     sections: () => {
       switch (formData.type) {
         case "document":
-          return `ドキュメントセクション${formData.label ? `(${formData.label})` : ""}`;
+          return formData.label
+            ? `${formData.label}(ドキュメントセクション)`
+            : "(新しいドキュメントセクション)";
         case "project-groups":
-          return `プロジェクトグループセクション`;
+          return `${JSON.stringify(formData.groups?.length)}件の一連の期間の会社／組織が登録されたプロジェクトグループセクション`;
       }
     },
+    //
     groups: () => {
       const companyStr = formData.company || formData.companyAlias;
       const startTime = formData.projects
@@ -50,13 +53,18 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
         .sort()
         ?.at(-1);
 
-      return `${props.parentUiSchema?.["ui:title"]} ${companyStr ? `(${companyStr})` : ""} ${startTime ? `${startTime}~${endTime}` : ""}`;
+      return `${companyStr ? companyStr : `(新しい${props.parentUiSchema?.["ui:title"]})`} ${startTime ? `${startTime}~${endTime || ""}` : ""}`;
     },
+    // 組織内で携わったプロジェクト
     projects: () => {
-      return `${formData.title ? `(${formData.title})` : props.parentUiSchema?.["ui:title"]}`;
+      const startTime = formData.times?.start;
+      const endTime = formData.times?.end;
+
+      return `${formData.title ? formData.title : "(新しいプロジェクト)"} ${startTime ? `${startTime}~${endTime || ""}` : ""}`;
     },
+    // 言語・フレームワークのカテゴリ
     environments: () => {
-      return `${formData.category ? formData.category : `(新しいカテゴリ)`}`;
+      return `${formData.category ? formData.category : `(新しいカテゴリ)`} `;
     },
   };
 

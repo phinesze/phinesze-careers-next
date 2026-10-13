@@ -43,9 +43,9 @@ export const careerHistoryUiSchema = {
             "プロジェクトグループセクションは、複数のプロジェクトを一連の組織に属した期間別にグループ化して記述するセクションです。",
           "ui:help": "プロジェクトグループセクションの詳細を入力してください。",
           groups: {
-            "ui:title": "同一組織内の一連のプロジェクト",
+            "ui:title": "組織内のプロジェクト一覧",
             "ui:description":
-              "連続した期間内の同じ会社／組織内の1つまたは複数のプロジェクトをグループ化して記述してください。",
+              "連続した期間内の同じ組織内の1つまたは複数のプロジェクトをグループ化して記述してください。",
             items: {
               "ui:title": "",
               "ui:ObjectFieldTemplate": CompanyRowObjectFieldTemplate,
@@ -66,7 +66,7 @@ export const careerHistoryUiSchema = {
                 "ui:widget": "text",
               },
               projects: {
-                "ui:title": "プロジェクト",
+                "ui:title": "組織内で携わったプロジェクト",
                 items: {
                   "ui:title": "",
                   title: {
