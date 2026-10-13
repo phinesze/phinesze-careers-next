@@ -10,6 +10,7 @@ import { careerHistoryUiSchema } from "@/schemas/careerHistoryUiSchema";
 import { KeyTitleWrapIfAdditionalTemplate } from "@/components/rjsf/KeyTitleWrapIfAdditionalTemplate";
 import { ArrayFieldItemTemplate } from "@/components/rjsf/ArrayFieldItemTemplate";
 import { ArrayFieldTemplate } from "@/components/rjsf/ArrayFieldTemplate";
+import { ArrayFieldItemButtonsTemplate } from "@/components/rjsf/ArrayFieldItemButtonsTemplate";
 import { Box } from "@mui/material";
 
 const validator = customizeValidator();
@@ -50,6 +51,7 @@ export default function IndexPage() {
               WrapIfAdditionalTemplate: KeyTitleWrapIfAdditionalTemplate,
               ArrayFieldTemplate,
               ArrayFieldItemTemplate,
+              ArrayFieldItemButtonsTemplate,
             }}
             formData={careerHistory}
             onChange={(event) =>
