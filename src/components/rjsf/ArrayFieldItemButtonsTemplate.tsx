@@ -1,5 +1,10 @@
-import { ArrayFieldItemButtonsTemplateProps, buttonId } from "@rjsf/utils";
-import { Box } from "@mui/material";
+import {
+  ArrayFieldItemButtonsTemplateProps,
+  TranslatableString,
+  buttonId,
+} from "@rjsf/utils";
+import { Box, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export function ArrayFieldItemButtonsTemplate(
   props: ArrayFieldItemButtonsTemplateProps,
@@ -23,7 +28,7 @@ export function ArrayFieldItemButtonsTemplate(
     formData?: unknown;
   };
   void formData;
-  const { CopyButton, MoveDownButton, MoveUpButton, RemoveButton } =
+  const { CopyButton, MoveDownButton, MoveUpButton } =
     registry.templates.ButtonTemplates;
 
   return (
@@ -65,18 +70,21 @@ export function ArrayFieldItemButtonsTemplate(
         />
       )}
       {hasRemove && (
-        <RemoveButton
+        <IconButton
           id={buttonId(fieldPathId, "remove")}
           className="rjsf-array-item-remove"
+          size="small"
+          color="error"
+          title={registry.translateString(TranslatableString.RemoveButton)}
           disabled={disabled || readonly}
           onClick={() => {
             if (confirm("削除しますか？")) {
               onRemoveItem();
             }
           }}
-          uiSchema={uiSchema}
-          registry={registry}
-        />
+        >
+          <DeleteIcon fontSize="small" />
+        </IconButton>
       )}
     </Box>
   );
