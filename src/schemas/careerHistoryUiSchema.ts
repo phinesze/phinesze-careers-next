@@ -1,6 +1,7 @@
 import { CompanyRowObjectFieldTemplate } from "@/components/rjsf/CompanyRowObjectFieldTemplate";
 import { TwoObjectFieldTemplate } from "@/components/rjsf/TwoObjectFieldTemplate";
 import { DataGridArrayField } from "@/components/rjsf/DataGridArrayField";
+import { MonthOrDateWidget } from "@/components/rjsf/MonthOrDateWidget";
 
 export const careerHistoryUiSchema = {
   updatedAt: {
@@ -141,11 +142,11 @@ export const careerHistoryUiSchema = {
                     "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
                     start: {
                       "ui:title": "開始時期",
-                      "ui:options": { inputType: "month" },
+                      "ui:widget": MonthOrDateWidget,
                     },
                     end: {
                       "ui:title": "終了時期",
-                      "ui:options": { inputType: "month" },
+                      "ui:widget": MonthOrDateWidget,
                     },
                   },
                 },
