@@ -56,7 +56,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
       return `${formData.title ? `(${formData.title})` : props.parentUiSchema?.["ui:title"]}`;
     },
     environments: () => {
-      return `${props.parentUiSchema?.["ui:title"]} ${formData.category ? formData.category : ""}`;
+      return `${formData.category ? formData.category : `(新しいカテゴリ)`}`;
     },
   };
 
