@@ -50,4 +50,5 @@ npm run format    # Prettier
 - `useSearchParams` を使うクライアントコンポーネントがあるため、`"use client"` の有無に注意する。
 - コメント・UI 文言・コミットメッセージは日本語で書く。
 - Claude Codeとのチャットでの返答も日本語で行う。
+- コードを変更したら、変更したファイルを `git add` でステージングする（コミットは指示があるまで行わない）。
 - README の「データ形式」例（`environments` が配列／タプル形式）は古い。現在の正しい形式はスキーマ（`{ category, environments: [{ name, version }] }`）を見ること。
