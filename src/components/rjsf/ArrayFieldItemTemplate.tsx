@@ -83,12 +83,13 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
     <Box className="mt-2 flex items-start">
       {/* {JSON.stringify(formData)} */}
       {hasToolbar && (
-        <Accordion className="w-full">
+        <Accordion className="w-full border">
           <AccordionSummary
-            className="bg-gray-300"
+            className="my-0 bg-gray-300"
             expandIcon={<ExpandMoreIcon />}
+            sx={{ "& .MuiAccordionSummary-content": { margin: 0 } }}
           >
-            <Typography component="span">
+            <Typography component="span" className="my-0">
               {/* 会社／組織別のプロジェクトの内部のプロジェクトの各アイテムのタイトルは「（会社／組織名）のプロジェクト」となる */}{" "}
               {/* その他のアイテムのタイトルは「・・のプロジェクト-（インデックス + 1）」となる */}
               {getItemAccordionLabel()}
