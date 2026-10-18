@@ -33,13 +33,14 @@ const formTheme = createTheme({
     MuiButton: { defaultProps: { size: "small" } },
     MuiIconButton: { defaultProps: { size: "small" } },
   },
+  palette: { mode: "dark" },
 });
 
 export default function IndexPage() {
   const { careerHistory, setCareerHistory } = useCareerHistoryState();
 
   return (
-    <div className="m-5 max-w-300 bg-white not-print:pt-[8mm]">
+    <div className="m-5 max-w-300 not-print:pt-[8mm]">
       <div className="text-lg font-bold ">Careers 職務経歴書表示用システム</div>
       <ThemeProvider theme={formTheme}>
         <Box sx={{ "& textarea": { resize: "vertical" } }}>

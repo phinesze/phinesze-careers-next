@@ -85,7 +85,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
       {hasToolbar && (
         <Accordion className="w-full border">
           <AccordionSummary
-            className="my-0 bg-gray-300"
+            className="my-0"
             expandIcon={<ExpandMoreIcon />}
             sx={{ "& .MuiAccordionSummary-content": { margin: 0 } }}
           >
