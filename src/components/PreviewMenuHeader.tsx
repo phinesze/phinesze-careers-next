@@ -1,11 +1,19 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Divider,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  MenuList,
+} from "@mui/material";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import Check from "@mui/icons-material/Check";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
-import { cn } from "@/utils/cn";
 
 export function PreviewMenuHeader() {
   const { handleSelectFile, handleSaveFile, isSecrets } = useCareerHistory();
@@ -45,6 +53,16 @@ export function PreviewMenuHeader() {
     router.replace(query ? `${pathname}?${query}` : pathname);
   };
 
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const openViewMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const closeViewMenu = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
       <input
@@ -64,29 +82,49 @@ export function PreviewMenuHeader() {
           onClick={() => handleSaveFile()}
         />
       </Button>
-      <Button
-        className={cn(showEdit && "bg-orange-200")}
-        onClick={() => {
-          toggleShowEdit();
-        }}
-      >
-        エディターを表示／非表示
-      </Button>
-      <Button
-        className={cn(showPreview && "bg-orange-200")}
-        onClick={() => {
-          toggleShowPreview();
-        }}
-      >
-        プレビューを表示／非表示
-      </Button>
       <Button onClick={handlePrintCareer}>経歴書を印刷</Button>
-      <Button
-        className={cn(isSecrets && "bg-orange-200")}
-        onClick={toggleIsSecrets}
-      >
-        機密表示: {isSecrets ? "あり" : "なし"}
+
+      <Button onClick={openViewMenu} endIcon={<ArrowDropDown />}>
+        表示
       </Button>
+      <Menu anchorEl={anchorEl} open={!!anchorEl} onClose={closeViewMenu}>
+        <MenuList>
+          <MenuItem
+            onClick={() => {
+              toggleShowEdit();
+            }}
+          >
+            <ListItemIcon>
+              {showEdit ? <Check fontSize="small" /> : null}
+            </ListItemIcon>
+            編集
+          </MenuItem>
+
+          <MenuItem
+            onClick={() => {
+              toggleShowPreview();
+            }}
+          >
+            <ListItemIcon>
+              {showPreview ? <Check fontSize="small" /> : null}
+            </ListItemIcon>
+            プレビュー
+          </MenuItem>
+
+          <Divider />
+
+          <MenuItem
+            onClick={() => {
+              toggleIsSecrets();
+            }}
+          >
+            <ListItemIcon>
+              {isSecrets ? <Check fontSize="small" /> : null}
+            </ListItemIcon>
+            プレビューを機密要素ありにする
+          </MenuItem>
+        </MenuList>
+      </Menu>
     </header>
   );
 }
