@@ -2,15 +2,34 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCareerHistory } from "@/composables/useCareerHistory";
+import { useDisplayModeState } from "@/composables/useDisplayModeState";
 import { cn } from "@/utils/cn";
 
 export function PreviewMenuHeader() {
   const { handleSelectFile, handleSaveFile, isSecrets } = useCareerHistory();
+  const {
+    showEdit,
+    showPreview,
+    setShowEdit,
+    setShowPreview,
+    toggleShowEdit,
+    toggleShowPreview,
+  } = useDisplayModeState();
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const handlePrint = () => print();
+  /**
+   * 経歴書を印刷させるため、プレビューのみ表示させた上に印刷を開く。
+   */
+  const handlePrintCareer = () => {
+    setShowEdit(false);
+    setShowPreview(true);
+    setTimeout(() => {
+      print();
+    }, 0);
+  };
 
   const toggleIsSecrets = () => {
     const params = new URLSearchParams(searchParams.toString());
@@ -42,26 +61,32 @@ export function PreviewMenuHeader() {
         />
       </button>
       <button
-        className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"
+        className={cn(
+          "inline-block cursor-pointer border border-gray-200 px-2 text-sm",
+          showEdit && "bg-orange-200",
+        )}
         onClick={() => {
-          router.push("/");
+          toggleShowEdit();
         }}
       >
-        編集へ
+        エディターを表示／非表示
+      </button>
+      <button
+        className={cn(
+          "inline-block cursor-pointer border border-gray-200 px-2 text-sm",
+          showPreview && "bg-orange-200",
+        )}
+        onClick={() => {
+          toggleShowPreview();
+        }}
+      >
+        プレビューを表示／非表示
       </button>
       <button
         className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"
-        onClick={() => {
-          router.push("/preview");
-        }}
+        onClick={handlePrintCareer}
       >
-        プレビューへ
-      </button>
-      <button
-        className="inline-block cursor-pointer border border-gray-200 px-2 text-sm"
-        onClick={handlePrint}
-      >
-        印刷
+        経歴書を印刷
       </button>
       <button
         className={cn(
