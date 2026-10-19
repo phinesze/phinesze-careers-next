@@ -83,16 +83,19 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
     <Box className="mt-2 flex items-start">
       {/* {JSON.stringify(formData)} */}
       {hasToolbar && (
-        <Accordion className="w-full border">
+        <Accordion className="w-full border border-gray-300">
           <AccordionSummary
             className="my-0"
             expandIcon={<ExpandMoreIcon />}
-            sx={{ "& .MuiAccordionSummary-content": { margin: 0 } }}
+            sx={{
+              "& .MuiAccordionSummary-content, & .MuiAccordionSummary-content.Mui-expanded":
+                { margin: 0 },
+            }}
           >
-            <Typography component="span" className="my-0">
-              {/* 会社／組織別のプロジェクトの内部のプロジェクトの各アイテムのタイトルは「（会社／組織名）のプロジェクト」となる */}{" "}
-              {/* その他のアイテムのタイトルは「・・のプロジェクト-（インデックス + 1）」となる */}
-              {getItemAccordionLabel()}
+            <div className="flex w-full items-center justify-center">
+              <Typography component="span" className="my-0 flex-1">
+                {getItemAccordionLabel()}
+              </Typography>
               <ArrayFieldItemButtonsTemplate
                 {...buttonsProps}
                 hasRemove={
@@ -100,7 +103,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
                 }
                 style={{ paddingLeft: 3, paddingRight: 6, minWidth: 0 }}
               />
-            </Typography>
+            </div>
           </AccordionSummary>
           <AccordionDetails>
             <Box className="px-4">{children}</Box>
