@@ -16,7 +16,10 @@ import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
 
 export function PreviewMenuHeader() {
+  const [fileAnchorEl, setFileAnchorEl] = useState<null | HTMLElement>(null);
+  const [viewAnchorEl, setViewAnchorEl] = useState<null | HTMLElement>(null);
   const { handleSelectFile, handleSaveFile, isSecrets } = useCareerHistory();
+
   const {
     showEdit,
     showPreview,
@@ -53,14 +56,16 @@ export function PreviewMenuHeader() {
     router.replace(query ? `${pathname}?${query}` : pathname);
   };
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const openViewMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+  const openFileMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setFileAnchorEl(event.currentTarget);
   };
 
-  const closeViewMenu = () => {
-    setAnchorEl(null);
+  const closeFileMenu = () => {
+    setFileAnchorEl(null);
+  };
+
+  const openViewMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setViewAnchorEl(event.currentTarget);
   };
 
   return (
@@ -72,22 +77,41 @@ export function PreviewMenuHeader() {
         className="hidden"
         onChange={(event) => handleSelectFile(event)}
       />
-      <Button onClick={() => fileInputRef.current?.click()}>
-        <span>ファイルを開く</span>
+      <Button onClick={openFileMenu} endIcon={<ArrowDropDown />}>
+        ファイル
       </Button>
-      <Button>
-        <span>ファイルを保存</span>
-        <button
-          className="absolute top-0 left-0 h-full w-full cursor-pointer bg-amber-300 opacity-0"
-          onClick={() => handleSaveFile()}
-        />
-      </Button>
-      <Button onClick={handlePrintCareer}>経歴書を印刷</Button>
-
+      <Menu
+        anchorEl={fileAnchorEl}
+        open={!!fileAnchorEl}
+        onClose={closeFileMenu}
+      >
+        <MenuList>
+          <MenuItem
+            onClick={() => {
+              closeFileMenu();
+              fileInputRef.current?.click();
+            }}
+          >
+            開く
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              closeFileMenu();
+              handleSaveFile();
+            }}
+          >
+            保存
+          </MenuItem>
+        </MenuList>
+      </Menu>
       <Button onClick={openViewMenu} endIcon={<ArrowDropDown />}>
         表示
       </Button>
-      <Menu anchorEl={anchorEl} open={!!anchorEl} onClose={closeViewMenu}>
+      <Menu
+        anchorEl={viewAnchorEl}
+        open={!!viewAnchorEl}
+        onClose={() => setViewAnchorEl(null)}
+      >
         <MenuList>
           <MenuItem
             onClick={() => {
@@ -125,6 +149,7 @@ export function PreviewMenuHeader() {
           </MenuItem>
         </MenuList>
       </Menu>
+      <Button onClick={handlePrintCareer}>経歴書を印刷</Button>
     </header>
   );
 }
