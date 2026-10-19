@@ -40,7 +40,7 @@ export function CareerHistoryView() {
       )}
       {!careerHistorySections.length && (
         <div className="mt-[4mm] text-center text-[3.75mm]/[4.5mm]">
-          「ファイルを開く」からファイルを選択してください
+          「ファイル」→「開く」からファイルを選択してください
         </div>
       )}
     </main>
