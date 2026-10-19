@@ -16,7 +16,7 @@ export function TitledPane({ title, className, children }: Props) {
   return (
     <div
       className={cn(
-        "relative h-full overflow-auto border border-gray-300 print:border-0",
+        "h-full overflow-auto border border-gray-300 print:border-0",
         className,
       )}
     >
@@ -26,7 +26,6 @@ export function TitledPane({ title, className, children }: Props) {
       >
         {title}
       </Typography>
-
       <div className="overflow-scroll">{children}</div>
     </div>
   );
