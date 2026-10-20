@@ -9,12 +9,21 @@ export function TextFieldWidget(props: WidgetProps) {
   const { onChange, value } = props;
   const [inputValue, setInputValue] = useState(value);
 
+  const isMultiline = (props.options.rows ?? 1) >= 2;
+
   return (
     <TextField
       value={inputValue}
-      multiline={(props.options.rows ?? 1) >= 2}
+      multiline={isMultiline}
       onChange={(e) => setInputValue(e.target.value)}
       onBlur={(e) => onChange(e.target.value || undefined)}
+      slotProps={{
+        htmlInput: {
+          style: {
+            resize: "vertical",
+          },
+        },
+      }}
       {...props.options}
     />
   );

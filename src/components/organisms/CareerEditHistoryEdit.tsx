@@ -44,7 +44,7 @@ export function CareerEditHistoryEdit() {
   return (
     <div className="m-5 max-w-300 not-print:pt-[8mm]">
       <ThemeProvider theme={formTheme}>
-        <Box sx={{ "& textarea": { resize: "vertical" } }}>
+        <Box>
           <Form
             schema={careerHistorySchema as RJSFSchema}
             uiSchema={careerHistoryUiSchema}
