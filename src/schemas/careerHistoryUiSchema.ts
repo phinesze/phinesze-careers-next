@@ -1,6 +1,7 @@
 import { CompanyRowObjectFieldTemplate } from "@/components/rjsf/CompanyRowObjectFieldTemplate";
 import { TwoObjectFieldTemplate } from "@/components/rjsf/TwoObjectFieldTemplate";
 import { DataGridArrayField } from "@/components/rjsf/DataGridArrayField";
+import { SectionTypeWidget } from "@/components/rjsf/SectionTypeWidget";
 import { MonthOrDateWidget } from "@/components/rjsf/MonthOrDateWidget";
 
 export const careerHistoryUiSchema = {
@@ -16,6 +17,8 @@ export const careerHistoryUiSchema = {
     items: {
       // スキーマの anyOf と同じ順番の配列で指定する
       "ui:title": "セクション種別",
+      // 種別変更時に記述内容が消去されるため、確認ダイアログを出す
+      "ui:widget": SectionTypeWidget,
       anyOf: [
         // [0] DocumentSection
         {
