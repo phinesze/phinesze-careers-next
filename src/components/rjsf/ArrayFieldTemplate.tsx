@@ -46,8 +46,6 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
   );
   const showOptionalDataControlInTitle = !readonly && !disabled;
 
-  console.log("props", props);
-
   return (
     <Box className="px-1 py-1 ">
       <ArrayFieldTitleTemplate
