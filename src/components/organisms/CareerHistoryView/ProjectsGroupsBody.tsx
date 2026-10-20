@@ -17,7 +17,7 @@ export function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
   let projectIndex = 0;
   return (
     <>
-      {groups.map((group, groupIndex) => {
+      {groups?.map((group, groupIndex) => {
         return (
           <section key={groupIndex}>
             {/* {group.companyAlias} */}
