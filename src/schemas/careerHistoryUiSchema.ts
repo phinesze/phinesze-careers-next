@@ -52,18 +52,19 @@ export const careerHistoryUiSchema = {
               "ui:ObjectFieldTemplate": CompanyRowObjectFieldTemplate,
               company: {
                 "ui:title": "会社／組織名",
-                "ui:description": "会社／組織名を入力してください。",
+                "ui:description":
+                  "会社／組織名を入力（機密要素ありの場合のみ表示）",
                 "ui:widget": "text",
               },
               companyAlias: {
                 "ui:title": "会社／組織名のエイリアス",
                 "ui:description":
-                  "会社／組織名を伏せ字にする際の名称を入力してください。",
+                  "会社／組織名を伏せ字にする際の名称を入力（機密要素なしの場合に代わりに表示）",
                 "ui:widget": "text",
               },
               url: {
                 "ui:title": "会社／組織のURL",
-                "ui:description": "会社／組織のURLを入力してください。",
+                "ui:description": "会社／組織のURLを入力（表示未実装）",
                 "ui:widget": "text",
               },
               projects: {
@@ -84,9 +85,9 @@ export const careerHistoryUiSchema = {
                     "ui:options": { rows: 5 },
                   },
                   secretDetail: {
-                    "ui:title": "秘密の詳細",
+                    "ui:title": "詳細（機密要素）",
                     "ui:description":
-                      "機密表示にした場合にのみ表示されるプロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます",
+                      "機密要素ありにした場合にのみ表示されるプロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます",
                     "ui:widget": "textarea",
                     "ui:options": { rows: 5 },
                   },
