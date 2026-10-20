@@ -84,7 +84,9 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
       {/* {JSON.stringify(formData)} */}
       {hasToolbar && (
         <Accordion className="w-full border border-gray-300">
+          {/* buttonの入れ子によるhydration errorを防ぐため内部のcomponentをデフォルトのbuttonからdivに変更する */}
           <AccordionSummary
+            component="div"
             className="my-0"
             expandIcon={<ExpandMoreIcon />}
             sx={{
