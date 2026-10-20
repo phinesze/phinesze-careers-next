@@ -81,7 +81,6 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
 
   return (
     <Box className="mt-2 flex items-start">
-      {/* {JSON.stringify(formData)} */}
       {hasToolbar && (
         <Accordion className="w-full border border-gray-300">
           {/* buttonの入れ子によるhydration errorを防ぐため内部のcomponentをデフォルトのbuttonからdivに変更する */}
