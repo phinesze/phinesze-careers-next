@@ -107,7 +107,7 @@ export const useCareerHistory = () => {
       await saveFileWithShowSaveFilePicker();
     } else {
       // showSaveFilePickerに非対応の場合はaタグを生成してダウンロードさせる
-      return saveFile();
+      return downloadFile();
     }
   };
 
@@ -115,7 +115,7 @@ export const useCareerHistory = () => {
    * aタグを生成してdownloadフォルダに直接ダウンロードさせる
    * @returns
    */
-  function saveFile() {
+  function downloadFile() {
     const fileNameWithJson = `careerHistory.json`;
     // データを書き込む
     const careerHistoryStr = JSON.stringify(careerHistory);
