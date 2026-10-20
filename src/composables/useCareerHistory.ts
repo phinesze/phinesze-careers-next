@@ -102,18 +102,16 @@ export const useCareerHistory = () => {
   const handleSaveFile = async () => {
     console.log("handleSaveFile");
 
+    // showSaveFilePickerに対応している場合はファイル保存ダイアログを表示する。非対応の場合はaタグを生成してダウンロードさせる。
     if ("showSaveFilePicker" in window) {
-      // showSaveFilePickerに対応している場合はファイル保存ダイアログを表示する
       await saveFileWithShowSaveFilePicker();
     } else {
-      // showSaveFilePickerに非対応の場合はaタグを生成してダウンロードさせる
       return downloadFile();
     }
   };
 
   /**
-   * aタグを生成してdownloadフォルダに直接ダウンロードさせる
-   * @returns
+   * showSaveFilePickerに非対応の場合の処理としてaタグを生成してファイルをダウンロードさせる。
    */
   function downloadFile() {
     const fileNameWithJson = `careerHistory.json`;
@@ -135,7 +133,7 @@ export const useCareerHistory = () => {
   }
 
   /**
-   * saveWithShowSaveFilePickerを使用してファイル保存ダイアログを開き職務経歴ファイルを保存する
+   * saveWithShowSaveFilePickerを使用してファイル保存ダイアログを開き職務経歴ファイルを保存する。
    */
   const saveFileWithShowSaveFilePicker = async () => {
     try {
