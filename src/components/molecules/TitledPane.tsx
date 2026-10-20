@@ -16,7 +16,7 @@ export function TitledPane({ title, className, children }: Props) {
   return (
     <div
       className={cn(
-        "h-full overflow-auto border border-gray-300 print:border-0",
+        "h-full border border-gray-300 not-print:overflow-auto print:border-0",
         className,
       )}
     >
