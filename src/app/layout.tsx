@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <section className="flex h-screen w-full flex-col print:h-full">
           <PreviewMenuHeader />
-          <main className="flex-1 not-print:overflow-y-scroll">{children}</main>
+          <main className="h-0 flex-1">{children}</main>
         </section>
       </body>
     </html>

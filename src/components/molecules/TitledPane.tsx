@@ -26,7 +26,7 @@ export function TitledPane({ title, className, children }: Props) {
       >
         {title}
       </Typography>
-      <div className="overflow-scroll">{children}</div>
+      <div>{children}</div>
     </div>
   );
 }
