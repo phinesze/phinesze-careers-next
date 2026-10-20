@@ -22,7 +22,7 @@ export function TitledPane({ title, className, children }: Props) {
     >
       <Typography
         variant="subtitle1"
-        className="absolute z-1 bg-gray-200/75 px-2 text-sm print:hidden"
+        className="absolute z-1 bg-gray-200/75 px-2 text-sm text-black print:hidden"
       >
         {title}
       </Typography>
