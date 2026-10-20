@@ -3,6 +3,7 @@ import { TwoObjectFieldTemplate } from "@/components/rjsf/TwoObjectFieldTemplate
 import { DataGridArrayField } from "@/components/rjsf/DataGridArrayField";
 import { SectionTypeWidget } from "@/components/rjsf/SectionTypeWidget";
 import { MonthOrDateWidget } from "@/components/rjsf/MonthOrDateWidget";
+import { TextFieldWidget } from "@/components/rjsf/TextFieldWIdget";
 
 export const careerHistoryUiSchema = {
   updatedAt: {
@@ -20,7 +21,7 @@ export const careerHistoryUiSchema = {
       // 種別変更時に記述内容が消去されるため、確認ダイアログを出す
       "ui:widget": SectionTypeWidget,
       anyOf: [
-        // [0] DocumentSection
+        // ドキュメントセクション
         {
           "ui:title": "ドキュメントセクション",
           "ui:description":
@@ -29,18 +30,18 @@ export const careerHistoryUiSchema = {
             "ui:title": "ラベル",
             "ui:description":
               "ドキュメントセクションの見出し部分のラベルを入力してください。",
-            "ui:widget": "text",
+            "ui:widget": TextFieldWidget,
           },
           detail: {
             "ui:title": "詳細",
             "ui:description":
               "ドキュメントの本文を自由形式で記述する。Markdown形式で記述することができます。",
-            "ui:widget": "textarea",
+            "ui:widget": TextFieldWidget,
             "ui:options": { rows: 10 },
           },
           type: { "ui:widget": "hidden" },
         },
-        // [1] ProjectGroupSection
+        // プロジェクトセクション
         {
           "ui:title": "プロジェクトグループセクション",
           "ui:description":
@@ -57,18 +58,18 @@ export const careerHistoryUiSchema = {
                 "ui:title": "会社／組織名",
                 "ui:description":
                   "会社／組織名を入力（機密要素ありの場合のみ表示）",
-                "ui:widget": "text",
+                "ui:widget": TextFieldWidget,
               },
               companyAlias: {
                 "ui:title": "会社／組織名のエイリアス",
                 "ui:description":
                   "会社／組織名を伏せ字にする際の名称を入力（機密要素なしの場合に代わりに表示）",
-                "ui:widget": "text",
+                "ui:widget": TextFieldWidget,
               },
               url: {
                 "ui:title": "会社／組織のURL",
                 "ui:description": "会社／組織のURLを入力（表示未実装）",
-                "ui:widget": "text",
+                "ui:widget": TextFieldWidget,
               },
               projects: {
                 "ui:title": "組織内で携わったプロジェクト",
@@ -78,20 +79,20 @@ export const careerHistoryUiSchema = {
                     "ui:title": "タイトル",
                     "ui:description":
                       "各プロジェクトの概要を入力してください。",
-                    "ui:widget": "text",
+                    "ui:widget": TextFieldWidget,
                   },
                   detail: {
                     "ui:title": "詳細",
                     "ui:description":
                       "各プロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます。",
-                    "ui:widget": "textarea",
+                    "ui:widget": TextFieldWidget,
                     "ui:options": { rows: 5 },
                   },
                   secretDetail: {
                     "ui:title": "詳細（機密要素）",
                     "ui:description":
                       "機密要素ありにした場合にのみ表示されるプロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます",
-                    "ui:widget": "textarea",
+                    "ui:widget": TextFieldWidget,
                     "ui:options": { rows: 5 },
                   },
                   environments: {
@@ -103,7 +104,7 @@ export const careerHistoryUiSchema = {
                       category: {
                         "ui:title":
                           "カテゴリ名（フロントエンド／バックエンドなど）",
-                        "ui:widget": "text",
+                        "ui:widget": TextFieldWidget,
                       },
                       environments: {
                         "ui:title": "カテゴリ内の言語・フレームワーク",
@@ -113,11 +114,11 @@ export const careerHistoryUiSchema = {
                           "ui:ObjectFieldTemplate": TwoObjectFieldTemplate,
                           name: {
                             "ui:title": "名称",
-                            "ui:widget": "text",
+                            "ui:widget": TextFieldWidget,
                           },
                           version: {
                             "ui:title": "バージョン",
-                            "ui:widget": "text",
+                            "ui:widget": TextFieldWidget,
                           },
                         },
                       },
@@ -131,11 +132,11 @@ export const careerHistoryUiSchema = {
                     items: {
                       category: {
                         "ui:title": "カテゴリ名",
-                        "ui:widget": "text",
+                        "ui:widget": TextFieldWidget,
                       },
                       detail: {
                         "ui:title": "チーム人数など",
-                        "ui:widget": "text",
+                        "ui:widget": TextFieldWidget,
                       },
                     },
                   },
