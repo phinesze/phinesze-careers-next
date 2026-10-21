@@ -77,7 +77,11 @@ export function PreviewMenuHeader() {
         className="hidden"
         onChange={(event) => handleSelectFile(event)}
       />
-      <Button onClick={openFileMenu} endIcon={<ArrowDropDown />}>
+      <Button
+        color="inherit"
+        onClick={openFileMenu}
+        endIcon={<ArrowDropDown />}
+      >
         ファイル
       </Button>
       <Menu
@@ -104,7 +108,11 @@ export function PreviewMenuHeader() {
           </MenuItem>
         </MenuList>
       </Menu>
-      <Button onClick={openViewMenu} endIcon={<ArrowDropDown />}>
+      <Button
+        color="inherit"
+        onClick={openViewMenu}
+        endIcon={<ArrowDropDown />}
+      >
         表示
       </Button>
       <Menu
@@ -149,7 +157,9 @@ export function PreviewMenuHeader() {
           </MenuItem>
         </MenuList>
       </Menu>
-      <Button onClick={handlePrintCareer}>経歴書を印刷</Button>
+      <Button color="inherit" onClick={handlePrintCareer}>
+        経歴書を印刷
+      </Button>
     </header>
   );
 }
