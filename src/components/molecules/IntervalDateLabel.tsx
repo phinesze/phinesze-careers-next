@@ -42,7 +42,7 @@ export function IntervalDateLabel({ value }: Props) {
           <span></span>
         </div>
       ) : (
-        <div>(進行中)</div>
+        <div>（進行中）</div>
       )}
     </div>
   ) : (

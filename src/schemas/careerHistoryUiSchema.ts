@@ -35,7 +35,7 @@ export const careerHistoryUiSchema = {
           detail: {
             "ui:title": "詳細",
             "ui:description":
-              "ドキュメントの本文を自由形式で記述する。Markdown形式で記述することができます。",
+              "ドキュメントの本文を自由形式で入力してください。Markdown形式で記述できます。",
             "ui:widget": TextFieldWidget,
             "ui:options": { rows: 10 },
           },
@@ -45,30 +45,30 @@ export const careerHistoryUiSchema = {
         {
           "ui:title": "プロジェクトグループセクション",
           "ui:description":
-            "プロジェクトグループセクションは、複数のプロジェクトを一連の組織に属した期間別にグループ化して記述するセクションです。",
-          "ui:help": "プロジェクトグループセクションの詳細を入力してください。",
+            "プロジェクトグループセクションは、所属した組織・期間ごとに、1つ以上のプロジェクトをまとめて記述するセクションです。",
           groups: {
             "ui:title": "組織内のプロジェクト一覧",
             "ui:description":
-              "連続した期間内の同じ組織内の1つまたは複数のプロジェクトをグループ化して記述してください。",
+              "同じ組織に連続して所属した期間ごとに、1つ以上のプロジェクトをまとめて入力してください。",
             items: {
               "ui:title": "",
               "ui:ObjectFieldTemplate": CompanyRowObjectFieldTemplate,
               company: {
                 "ui:title": "会社／組織名",
                 "ui:description":
-                  "会社／組織名を入力（機密要素ありの場合のみ表示）",
+                  "会社／組織名を入力してください（機密要素ありの場合のみ表示）。",
                 "ui:widget": TextFieldWidget,
               },
               companyAlias: {
                 "ui:title": "会社／組織名のエイリアス",
                 "ui:description":
-                  "会社／組織名を伏せ字にする際の名称を入力（機密要素なしの場合に代わりに表示）",
+                  "会社名を伏せる場合に、代わりに表示する名称（例：A社）を入力してください（機密要素なしの場合に表示）。",
                 "ui:widget": TextFieldWidget,
               },
               url: {
                 "ui:title": "会社／組織のURL",
-                "ui:description": "会社／組織のURLを入力（表示未実装）",
+                "ui:description":
+                  "会社／組織のURLを入力してください（表示は未実装）。",
                 "ui:widget": TextFieldWidget,
               },
               projects: {
@@ -78,27 +78,27 @@ export const careerHistoryUiSchema = {
                   title: {
                     "ui:title": "タイトル",
                     "ui:description":
-                      "各プロジェクトの概要を入力してください。",
+                      "プロジェクトのタイトル（概要）を入力してください。",
                     "ui:widget": TextFieldWidget,
                   },
                   detail: {
                     "ui:title": "詳細",
                     "ui:description":
-                      "各プロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます。",
+                      "各プロジェクトの詳細を自由形式で入力してください。Markdown形式で記述できます。",
                     "ui:widget": TextFieldWidget,
                     "ui:options": { rows: 5 },
                   },
                   secretDetail: {
                     "ui:title": "詳細（機密要素）",
                     "ui:description":
-                      "機密要素ありにした場合にのみ表示されるプロジェクトの詳細を自由形式で記述する。Markdown形式で記述することができます",
+                      "機密要素ありの場合にのみ表示される、プロジェクトの詳細を入力してください。Markdown形式で記述できます。",
                     "ui:widget": TextFieldWidget,
                     "ui:options": { rows: 5 },
                   },
                   environments: {
-                    "ui:title": "言語・フレームワークのカテゴリ",
+                    "ui:title": "使用環境",
                     "ui:description":
-                      "各プロジェクトの環境を記述する。使用言語、フレームワーク、ライブラリ、OS、DB、クラウドサービスなどを記述することができます。",
+                      "各プロジェクトの使用環境（言語、フレームワーク、ライブラリ、OS、DB、クラウドサービスなど）を入力してください。",
                     items: {
                       "ui:title": "",
                       category: {
@@ -127,7 +127,7 @@ export const careerHistoryUiSchema = {
                   teams: {
                     "ui:title": "チーム",
                     "ui:description":
-                      "各プロジェクトのチーム人数を記述します。「カテゴリ名」には「開発」／「PM」などを記述、「チーム人数など」には「約8~10人」などを記述",
+                      "各プロジェクトのチーム人数を入力してください。「カテゴリ名」には「開発」「PM」など、「チーム人数など」には「約8〜10人」などを入力します。",
                     "ui:field": DataGridArrayField,
                     items: {
                       category: {

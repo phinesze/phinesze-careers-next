@@ -64,13 +64,13 @@ export const useCareerHistory = () => {
     const ext = file.name.split(".").pop()?.toLowerCase();
 
     if (ext && !["json"].includes(ext)) {
-      alert("読み込み可能なファイルはjson形式のみです");
+      alert("読み込めるのはJSON形式のファイルのみです。");
     }
 
     reader.onload = (e) => {
       const json = e.target?.result;
       if (typeof json !== "string") {
-        alert("error");
+        alert("ファイルを読み込めませんでした。");
         return;
       }
 
@@ -86,11 +86,11 @@ export const useCareerHistory = () => {
       } catch (e: unknown) {
         // JSON構文エラー
         if (e instanceof SyntaxError) {
-          alert(`JSONの形式が正しくありません\n${e.message}`);
+          alert(`JSONの形式が正しくありません。\n${e.message}`);
           return;
         }
         console.error(e);
-        alert("予期しないエラーが発生しました");
+        alert("予期しないエラーが発生しました。");
       }
     };
     reader.readAsText(file);

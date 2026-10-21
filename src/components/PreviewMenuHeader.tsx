@@ -145,7 +145,7 @@ export function PreviewMenuHeader() {
             <ListItemIcon>
               {isSecrets ? <Check fontSize="small" /> : null}
             </ListItemIcon>
-            プレビューを機密要素ありにする
+            機密要素を表示する
           </MenuItem>
         </MenuList>
       </Menu>

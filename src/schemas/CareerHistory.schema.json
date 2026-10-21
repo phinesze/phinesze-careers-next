@@ -39,7 +39,7 @@
       "description": "経歴データのルート",
       "properties": {
         "updatedAt": {
-          "description": "経歴データの更新日を表す。YYYY-MM-DD形式で表す",
+          "description": "経歴データの更新日（YYYY-MM-DD形式）",
           "title": "更新日",
           "type": "string"
         },
@@ -90,7 +90,7 @@
           "type": "string"
         },
         "detail": {
-          "description": "ドキュメントの本文を自由形式で記述する。HTML形式で記述することができる",
+          "description": "ドキュメントの本文を自由形式で記述する。Markdown形式で記述できる",
           "format": "text",
           "title": "ドキュメントの本文",
           "type": "string"
