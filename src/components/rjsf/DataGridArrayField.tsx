@@ -15,16 +15,7 @@ const ACTIONS_WIDTH = 36;
  * 列名は items の uiSchema の "ui:title" → schema の title → プロパティ名 の順で決定する
  */
 export function DataGridArrayField(props: FieldProps<Item[]>) {
-  const {
-    schema,
-    uiSchema,
-    formData,
-    onChange,
-    fieldPathId,
-    registry,
-    disabled,
-    readonly,
-  } = props;
+  const { schema, uiSchema, formData, onChange, fieldPathId, registry } = props;
 
   const itemSchema = registry.schemaUtils.retrieveSchema(
     schema.items as RJSFSchema,
@@ -32,19 +23,15 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
   const itemUiSchema = (uiSchema?.items ?? {}) as UiSchema;
   const keys = Object.keys(itemSchema.properties ?? {});
   const items = formData ?? [];
-  const editable = !disabled && !readonly;
 
   const update = (next: Item[]) => onChange(next, fieldPathId.path);
 
   const columns: GridColDef<Row>[] = [
     ...keys.map<GridColDef<Row>>((key) => ({
       field: key,
-      headerName:
-        (itemUiSchema[key]?.["ui:title"] as string | undefined) ??
-        (itemSchema.properties?.[key] as RJSFSchema | undefined)?.title ??
-        key,
+      headerName: itemUiSchema[key]?.["ui:title"],
       flex: 1,
-      editable,
+      editable: true,
       sortable: false,
       resizable: false,
     })),
@@ -57,7 +44,6 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
       resizable: false,
       renderCell: ({ row }) => (
         <IconButton
-          disabled={!editable || items.length <= (schema.minItems ?? 0)}
           onClick={() => update(items.filter((_, i) => i !== row.id))}
         >
           <DeleteIcon fontSize="small" />
@@ -101,11 +87,9 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
         disableRowSelectionOnClick
         processRowUpdate={handleProcessRowUpdate}
       />
-      {editable && (
-        <Button startIcon={<AddIcon />} onClick={handleAdd} sx={{ mt: 1 }}>
-          追加
-        </Button>
-      )}
+      <Button startIcon={<AddIcon />} onClick={handleAdd} sx={{ mt: 1 }}>
+        追加
+      </Button>
     </Box>
   );
 }
