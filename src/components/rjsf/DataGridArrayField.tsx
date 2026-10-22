@@ -2,13 +2,15 @@ import { FieldProps, RJSFSchema, UiSchema } from "@rjsf/utils";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 type Item = Record<string, string>;
 type Row = Item & { id: number };
 
 const ROW_HEIGHT = 32;
-const ACTIONS_WIDTH = 36;
+const ACTIONS_WIDTH = 34 * 3;
 
 /**
  * 文字列プロパティのみを持つオブジェクトの配列を DataGrid で表形式編集するカスタムフィールド
@@ -43,11 +45,25 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
       sortable: false,
       resizable: false,
       renderCell: ({ row }) => (
-        <IconButton
-          onClick={() => update(items.filter((_, i) => i !== row.id))}
-        >
-          <DeleteIcon fontSize="small" />
-        </IconButton>
+        <>
+          <IconButton
+            onClick={() => handleSwapRow(row.id - 1)}
+            disabled={row.id <= 0}
+          >
+            <ArrowUpwardIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            onClick={() => handleSwapRow(row.id)}
+            disabled={row.id >= items.length - 1}
+          >
+            <ArrowDownwardIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            onClick={() => update(items.filter((_, i) => i !== row.id))}
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+        </>
       ),
     },
   ];
@@ -61,6 +77,17 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
     return newRow;
   };
 
+  // 上下の矢印ボタン押下時に隣の行の入れ替えを行う。
+  const handleSwapRow = (startId: number) => {
+    const newItems = [...items];
+    [newItems[startId + 1], newItems[startId]] = [
+      items[startId],
+      items[startId + 1],
+    ];
+    update(newItems);
+  };
+
+  // 追加ボタン押下時に行の追加を行う
   const handleAdd = () =>
     update([...items, Object.fromEntries(keys.map((k) => [k, ""]))]);
 
