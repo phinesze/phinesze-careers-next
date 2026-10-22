@@ -39,7 +39,6 @@ export function PreviewMenuHeader() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   /**
    * 経歴書を印刷させるため、プレビューのみ表示させた上に印刷を開く。
