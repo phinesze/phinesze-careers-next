@@ -64,9 +64,8 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
   const handleAdd = () =>
     update([...items, Object.fromEntries(keys.map((k) => [k, ""]))]);
 
-  const title = (uiSchema?.["ui:title"] as string | undefined) ?? schema.title;
-  const description =
-    (uiSchema?.["ui:description"] as string | undefined) ?? schema.description;
+  const title = uiSchema?.["ui:title"] ?? schema.title;
+  const description = uiSchema?.["ui:description"] ?? schema.description;
 
   return (
     <Box sx={{ my: 2 }}>
