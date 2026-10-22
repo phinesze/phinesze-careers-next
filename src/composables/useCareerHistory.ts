@@ -76,29 +76,42 @@ export const useCareerHistory = () => {
 
   /**
    * 「ファイル」→「開く」を選択した時の動作
-   * showOpenFilePickerを使用してファイル選択ダイアログを開く。
-   * 非対応の場合はfallbackでinput[type=file]要素のクリック処理を行い同様のダイアログを開く。
+   * showOpenFilePickerを使用してファイル選択ダイアログを開く（showOpenFilePickerに対応の場合）。
+   * 非対応の場合はfallbackでinput[type=file]要素を生成してクリック処理を行い同様のダイアログを開く。
    */
-  const handleOpenFile = async (fallback: () => void) => {
-    // handleOpenFile showOpenFilePicker非対応の時はfallback()でinput要素のclickを行う
-    if (!isEnableFilePicker) {
-      fallback();
-      return;
-    }
-    try {
-      const [fileHandle] = await window.showOpenFilePicker({
-        multiple: false,
-        types: [{ accept: { "application/json": [".json"] } }],
-      });
-      sefFileHandle(fileHandle);
-      readFile(await fileHandle.getFile());
-    } catch (err: unknown) {
-      if (err instanceof DOMException && err.name === "AbortError") {
-        console.log("ユーザーがファイル選択をキャンセルしました。");
-      } else {
-        console.error("エラーが発生しました:", err);
+  const handleOpenFile = async () => {
+    if (isEnableFilePicker) {
+// showOpenFilePickerに対応の場合の処理
+      try {
+        const [fileHandle] = await window.showOpenFilePicker({
+          multiple: false,
+          types: [{ accept: { "application/json": [".json"] } }],
+        });
+        readFile(await fileHandle.getFile());
+
+        // fileHandleを上書き保存時のために保持する。
+        sefFileHandle(fileHandle);
+      } catch (err: unknown) {
+        if (err instanceof DOMException && err.name === "AbortError") {
+          console.log("ユーザーがファイル選択をキャンセルしました。");
+        } else {
+          console.error("エラーが発生しました:", err);
+        }
       }
-    }
+    } else {
+// showOpenFilePickerに対応していない場合の処理
+      const fileInput = Object.assign(document.createElement("input"), {
+        type: "file",
+        accept: "application/json",
+        onchange: () => {
+          const file = fileInput.files?.[0];
+        if (file) {
+          readFile(file);
+        }
+        },
+      });
+      fileInput.click();
+          }
   };
 
   /**

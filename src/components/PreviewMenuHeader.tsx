@@ -77,13 +77,6 @@ export function PreviewMenuHeader() {
 
   return (
     <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="application/json"
-        className="hidden"
-        onChange={(event) => handleSelectFile(event)}
-      />
       <Button
         color="inherit"
         onClick={openFileMenu}
@@ -97,13 +90,7 @@ export function PreviewMenuHeader() {
         onClose={closeFileMenu}
         slotProps={{ list: { onClick: closeFileMenu } }}
       >
-        <MenuItem
-          onClick={() => {
-            handleOpenFile(() => fileInputRef.current?.click());
-          }}
-        >
-          開く
-        </MenuItem>
+        <MenuItem onClick={handleOpenFile}>開く</MenuItem>
         {isEnableFilePicker && (
           <MenuItem onClick={saveFileWithShowSaveFilePicker}>
             名前をつけて保存
