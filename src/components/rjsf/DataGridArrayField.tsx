@@ -8,6 +8,7 @@ type Item = Record<string, string>;
 type Row = Item & { id: number };
 
 const ROW_HEIGHT = 32;
+const ACTIONS_WIDTH = 36;
 
 /**
  * 文字列プロパティのみを持つオブジェクトの配列を DataGrid で表形式編集するカスタムフィールド
@@ -45,11 +46,12 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
       flex: 1,
       editable,
       sortable: false,
+      resizable: false,
     })),
     {
       field: "__actions",
       headerName: "",
-      width: 36,
+      width: ACTIONS_WIDTH,
       editable: false,
       sortable: false,
       resizable: false,
