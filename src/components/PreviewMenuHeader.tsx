@@ -95,35 +95,23 @@ export function PreviewMenuHeader() {
         anchorEl={fileAnchorEl}
         open={!!fileAnchorEl}
         onClose={closeFileMenu}
+        slotProps={{ list: { onClick: closeFileMenu } }}
       >
-        <MenuList>
-          <MenuItem
-            onClick={() => {
-              closeFileMenu();
-              handleOpenFile(() => fileInputRef.current?.click());
-            }}
-          >
-            開く
+        <MenuItem
+          onClick={() => {
+            handleOpenFile(() => fileInputRef.current?.click());
+          }}
+        >
+          開く
+        </MenuItem>
+        {isEnableFilePicker && (
+          <MenuItem onClick={saveFileWithShowSaveFilePicker}>
+            名前をつけて保存
           </MenuItem>
-          {isEnableFilePicker && (
-            <MenuItem
-              onClick={() => {
-                closeFileMenu();
-                saveFileWithShowSaveFilePicker();
-              }}
-            >
-              名前をつけて保存
-            </MenuItem>
-          )}
-          <MenuItem
-            onClick={() => {
-              closeFileMenu();
-              downloadCareerHistoryFile();
-            }}
-          >
-            編集中のデータをダウンロード
-          </MenuItem>
-        </MenuList>
+        )}
+        <MenuItem onClick={downloadCareerHistoryFile}>
+          編集中のデータをダウンロード
+        </MenuItem>
       </Menu>
       <Button
         color="inherit"
