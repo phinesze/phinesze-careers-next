@@ -156,20 +156,18 @@ export const useCareerHistory = () => {
    * ファイル保存を選択した時の動作
    */
   const handleSaveFile = async () => {
-    console.log("handleSaveFile");
-
     // showSaveFilePickerに対応している場合はファイル保存ダイアログを表示する。非対応の場合はaタグを生成してダウンロードさせる。
     if ("showSaveFilePicker" in window) {
       await saveFileWithShowSaveFilePicker();
     } else {
-      return downloadFile();
+      return downloadCareerHistoryFile();
     }
   };
 
   /**
    * showSaveFilePickerに非対応の場合の処理としてaタグを生成してファイルをダウンロードさせる。
    */
-  function downloadFile() {
+  function downloadCareerHistoryFile() {
     const fileNameWithJson = `careerHistory.json`;
     // データを書き込む
     const careerHistoryStr = JSON.stringify(careerHistory);
