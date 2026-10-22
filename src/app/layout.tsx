@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { PreviewMenuHeader } from "@/components/PreviewMenuHeader";
+import { MenuHeader } from "@/components/MenuHeader";
 import { cn } from "@//utils/cn";
 
 const geistSans = Geist({
@@ -30,7 +30,7 @@ export default function RootLayout({
         className={cn(geistSans.variable, geistMono.variable, "antialiased")}
       >
         <section className="flex h-screen w-full flex-col print:h-full">
-          <PreviewMenuHeader />
+          <MenuHeader />
           <main className="h-0 flex-1">{children}</main>
         </section>
       </body>

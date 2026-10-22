@@ -22,7 +22,7 @@ npm run format    # Prettier
 
 ## アーキテクチャ
 
-- **`src/app/layout.tsx`**: 全ページ共通で `PreviewMenuHeader` を表示する（ファイルを開く／保存、印刷、機密モード切替）。印刷時は `print:hidden` で隠れる。
+- **`src/app/layout.tsx`**: 全ページ共通で `MenuHeader` を表示する（ファイルを開く／保存、印刷、機密モード切替）。印刷時は `print:hidden` で隠れる。
 - **`src/app/page.tsx`（`/`）**: RJSF（`@rjsf/mui`）による経歴データの編集フォーム。MUI テーマはスペースを詰めた設定（`spacing: 2`、small サイズ）。submit ボタンは空の fragment を渡して非表示にしている。
 - **`src/app/preview/page.tsx`（`/preview`）**: `organisms/CareerHistoryView` で印刷用の表示をする。
 - **状態**: `composables/useCareerHistoryState.ts` の jotai atom `careerHistoryAtom` に、編集画面とプレビューで同じデータを持つ。機密モードは URL クエリ `?is_secrets=1` から作る（`isSecrets`）。

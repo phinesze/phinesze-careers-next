@@ -15,7 +15,7 @@ import Check from "@mui/icons-material/Check";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
 
-export function PreviewMenuHeader() {
+export function MenuHeader() {
   const [fileAnchorEl, setFileAnchorEl] = useState<null | HTMLElement>(null);
   const [viewAnchorEl, setViewAnchorEl] = useState<null | HTMLElement>(null);
   const {
