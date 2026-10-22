@@ -10,6 +10,9 @@ export const careerHistoryAtom = atom<CareerHistory>({
   sections: [],
 });
 
+/**
+ * 職務経歴データを保持するためのステートやjotai
+ */
 export const useCareerHistoryState = () => {
   const [careerHistory, setCareerHistory] = useAtom(careerHistoryAtom);
   const { sections: careerHistorySections, updatedAt } = careerHistory;
