@@ -116,18 +116,6 @@ export const useCareerHistory = () => {
   };
 
   /**
-   * showOpenFilePicker非対応時に「ファイル」→「開く」を選択してファイルがダイアログで選択された後の動作
-   */
-  const handleSelectFile = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      readFile(file);
-    }
-    // 同じファイルを再度選択してもonChangeが発火するようにリセットする
-    event.target.value = "";
-  };
-
-  /**
    * 選択されたファイルを読み込み、職務経歴データとしてステートに反映する
    */
   const readFile = (file: File) => {
@@ -241,7 +229,6 @@ export const useCareerHistory = () => {
     isEnableFilePicker,
     isSecrets,
     handleOpenFile,
-    handleSelectFile,
     handleSaveFileAs,
     handleSaveFile,
     downloadCareerHistoryFile,

@@ -21,7 +21,6 @@ export function PreviewMenuHeader() {
   const {
     isEnableFilePicker,
     handleOpenFile,
-    handleSelectFile,
     handleSaveFile,
     handleSaveFileAs,
     downloadCareerHistoryFile,
