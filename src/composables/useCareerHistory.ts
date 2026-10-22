@@ -52,7 +52,7 @@ export const useCareerHistory = () => {
     "showOpenFilePicker" in window && "showSaveFilePicker" in window;
 
   // showOpenFilePickerの対応時に上書き保存ようにfileHnadleを記憶する
-  const [fileHandle, sefFileHandle] = useState<
+  const [fileHandle, setFileHandle] = useState<
     FileSystemFileHandle | undefined
   >(undefined);
 
@@ -81,16 +81,17 @@ export const useCareerHistory = () => {
    */
   const handleOpenFile = async () => {
     if (isEnableFilePicker) {
-// showOpenFilePickerに対応の場合の処理
+      // showOpenFilePickerに対応の場合の処理
       try {
-        const [fileHandle] = await window.showOpenFilePicker({
+        // ファイル選択ダイアログを開き、選択後に選択したファイルのハンドルを取得する。
+        const [handle] = await window.showOpenFilePicker({
           multiple: false,
           types: [{ accept: { "application/json": [".json"] } }],
         });
-        readFile(await fileHandle.getFile());
+        readFile(await handle.getFile());
 
-        // fileHandleを上書き保存時のために保持する。
-        sefFileHandle(fileHandle);
+        // showOpenFilePickerfileHandleを上書き保存時のために保持する。
+        setFileHandle(handle);
       } catch (err: unknown) {
         if (err instanceof DOMException && err.name === "AbortError") {
           console.log("ユーザーがファイル選択をキャンセルしました。");
@@ -99,19 +100,19 @@ export const useCareerHistory = () => {
         }
       }
     } else {
-// showOpenFilePickerに対応していない場合の処理
+      // showOpenFilePickerに対応していない場合の処理
       const fileInput = Object.assign(document.createElement("input"), {
         type: "file",
         accept: "application/json",
         onchange: () => {
           const file = fileInput.files?.[0];
-        if (file) {
-          readFile(file);
-        }
+          if (file) {
+            readFile(file);
+          }
         },
       });
       fileInput.click();
-          }
+    }
   };
 
   /**
@@ -170,43 +171,47 @@ export const useCareerHistory = () => {
    * 「ファイル」→「名前をつけて保存」を選択した時の動作
    * ファイル保存ダイアログを開き職務経歴ファイルを保存する（showSaveFilePickerに対応の場合）。
    */
-  const saveFileWithShowSaveFilePicker = async () => {
-    try {
-      const handle = await window.showSaveFilePicker({
-        suggestedName: "careerHistory.json",
-        startIn: "downloads",
-        types: [
-          {
-            accept: {
-              "text/json": [".json"],
-            },
+  const handleSaveFileAs = async () => {
+    const selectedFileHandle = await window.showSaveFilePicker({
+      suggestedName: "careerHistory.json",
+      startIn: "downloads",
+      types: [
+        {
+          accept: {
+            "text/json": [".json"],
           },
-        ],
-      });
+        },
+      ],
+    });
 
-      //　書き込み用のストリームを作成
-      const writable = await handle.createWritable();
+    saveByFileHandle(selectedFileHandle);
+    setFileHandle(selectedFileHandle);
+  };
 
-      // データを書き込む
-      const careerHistoryStr = JSON.stringify(careerHistory);
-      await writable.write(careerHistoryStr);
-
-      // ストリームを閉じる
-      await writable.close();
-
-      alert("ファイルを保存しました。");
-    } catch (err: unknown) {
-      if (
-        typeof err === "object" &&
-        err !== null &&
-        "name" in err &&
-        err?.name === "AbortError"
-      ) {
-        console.log("ユーザーが保存をキャンセルしました。");
-      } else {
-        console.error("エラーが発生しました:", err);
-      }
+  /**
+   * 「ファイル」→「保存」を選択した時の動作
+   * file（showSaveFilePickerに対応の場合）。
+   */
+  const handleSaveFile = async () => {
+    if (fileHandle) {
+      saveByFileHandle(fileHandle);
+    } else {
+      handleSaveFileAs();
     }
+  };
+
+  const saveByFileHandle = async (handle: FileSystemFileHandle) => {
+    //　書き込み用のストリームを作成
+    const writable = await handle.createWritable();
+
+    // データを書き込む
+    const careerHistoryStr = JSON.stringify(careerHistory);
+    await writable.write(careerHistoryStr);
+
+    // ストリームを閉じる
+    await writable.close();
+
+    alert("ファイルを保存しました。");
   };
 
   /**
@@ -237,7 +242,8 @@ export const useCareerHistory = () => {
     isSecrets,
     handleOpenFile,
     handleSelectFile,
-    saveFileWithShowSaveFilePicker,
+    handleSaveFileAs,
+    handleSaveFile,
     downloadCareerHistoryFile,
   };
 };
