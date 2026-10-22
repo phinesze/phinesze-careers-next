@@ -154,41 +154,8 @@ export const useCareerHistory = () => {
   };
 
   /**
-   * ファイル保存を選択した時の動作
-   */
-  const handleSaveFile = async () => {
-    // showSaveFilePickerに対応している場合はファイル保存ダイアログを表示する。非対応の場合はaタグを生成してダウンロードさせる。
-    if (isEnableFilePicker) {
-      await saveFileWithShowSaveFilePicker();
-    } else {
-      return downloadCareerHistoryFile();
-    }
-  };
-
-  /**
-   * showSaveFilePickerに非対応の場合の処理としてaタグを生成してファイルをダウンロードさせる。
-   */
-  function downloadCareerHistoryFile() {
-    const fileNameWithJson = `careerHistory.json`;
-    // データを書き込む
-    const careerHistoryStr = JSON.stringify(careerHistory);
-
-    const blobData = new Blob([careerHistoryStr], {
-      type: "text/json",
-    });
-
-    // aタグを生成してダウンロードさせる
-    const url = URL.createObjectURL(blobData);
-    const anchorElem = document.createElement("a");
-    anchorElem.href = url;
-    anchorElem.download = fileNameWithJson;
-    anchorElem.click();
-    URL.revokeObjectURL(url);
-    return;
-  }
-
-  /**
-   * saveWithShowSaveFilePickerを使用してファイル保存ダイアログを開き職務経歴ファイルを保存する。
+   * 「ファイル」→「名前をつけて保存」を選択した時の動作
+   * ファイル保存ダイアログを開き職務経歴ファイルを保存する（showSaveFilePickerに対応の場合）。
    */
   const saveFileWithShowSaveFilePicker = async () => {
     try {
@@ -228,11 +195,36 @@ export const useCareerHistory = () => {
       }
     }
   };
+
+  /**
+   * 「ファイル」→「編集中のデータをダウンロード」を選択した時の動作
+   * aタグを生成してファイルをダウンロードさせる（showSaveFilePickerに非対応の場合を想定）。
+   */
+  function downloadCareerHistoryFile() {
+    const fileNameWithJson = `careerHistory.json`;
+    // データを書き込む
+    const careerHistoryStr = JSON.stringify(careerHistory);
+
+    const blobData = new Blob([careerHistoryStr], {
+      type: "text/json",
+    });
+
+    // aタグを生成してダウンロードさせる
+    const url = URL.createObjectURL(blobData);
+    const anchorElem = document.createElement("a");
+    anchorElem.href = url;
+    anchorElem.download = fileNameWithJson;
+    anchorElem.click();
+    URL.revokeObjectURL(url);
+    return;
+  }
+
   return {
     isEnableFilePicker,
     isSecrets,
     handleOpenFile,
     handleSelectFile,
-    handleSaveFile,
+    saveFileWithShowSaveFilePicker,
+    downloadCareerHistoryFile,
   };
 };

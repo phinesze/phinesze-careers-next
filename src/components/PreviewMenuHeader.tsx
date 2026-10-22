@@ -18,7 +18,14 @@ import { useDisplayModeState } from "@/composables/useDisplayModeState";
 export function PreviewMenuHeader() {
   const [fileAnchorEl, setFileAnchorEl] = useState<null | HTMLElement>(null);
   const [viewAnchorEl, setViewAnchorEl] = useState<null | HTMLElement>(null);
-  const { handleOpenFile, handleSelectFile, handleSaveFile, isSecrets } = useCareerHistory();
+  const {
+    isEnableFilePicker,
+    handleOpenFile,
+    handleSelectFile,
+    saveFileWithShowSaveFilePicker,
+    downloadCareerHistoryFile,
+    isSecrets,
+  } = useCareerHistory();
 
   const {
     showEdit,
@@ -98,13 +105,23 @@ export function PreviewMenuHeader() {
           >
             開く
           </MenuItem>
+          {isEnableFilePicker && (
+            <MenuItem
+              onClick={() => {
+                closeFileMenu();
+                saveFileWithShowSaveFilePicker();
+              }}
+            >
+              名前をつけて保存
+            </MenuItem>
+          )}
           <MenuItem
             onClick={() => {
               closeFileMenu();
-              handleSaveFile();
+              downloadCareerHistoryFile();
             }}
           >
-            保存
+            編集中のデータをダウンロード
           </MenuItem>
         </MenuList>
       </Menu>
