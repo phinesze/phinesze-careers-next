@@ -18,7 +18,7 @@ import { useDisplayModeState } from "@/composables/useDisplayModeState";
 export function PreviewMenuHeader() {
   const [fileAnchorEl, setFileAnchorEl] = useState<null | HTMLElement>(null);
   const [viewAnchorEl, setViewAnchorEl] = useState<null | HTMLElement>(null);
-  const { handleSelectFile, handleSaveFile, isSecrets } = useCareerHistory();
+  const { handleOpenFile, handleSelectFile, handleSaveFile, isSecrets } = useCareerHistory();
 
   const {
     showEdit,
@@ -93,7 +93,7 @@ export function PreviewMenuHeader() {
           <MenuItem
             onClick={() => {
               closeFileMenu();
-              fileInputRef.current?.click();
+              handleOpenFile(() => fileInputRef.current?.click());
             }}
           >
             開く

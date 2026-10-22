@@ -1,6 +1,6 @@
 "use strict";
 
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import { RJSFSchema } from "@rjsf/utils";
 import { CareerHistory } from "@/types/CareerHistory";
@@ -13,6 +13,19 @@ import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
  */
 declare global {
   interface Window {
+    showOpenFilePicker(options?: {
+      multiple?: boolean;
+      excludeAcceptAllOption?: boolean;
+      startIn?:
+        | FileSystemHandle
+        | "desktop"
+        | "documents"
+        | "downloads"
+        | "music"
+        | "pictures"
+        | "videos";
+      types?: { description?: string; accept: Record<string, string[]> }[];
+    }): Promise<FileSystemFileHandle[]>;
     showSaveFilePicker(options?: {
       suggestedName?: string;
       startIn?:
@@ -34,6 +47,10 @@ export const useCareerHistory = () => {
   const { careerHistory, setCareerHistory, isSecrets } =
     useCareerHistoryState();
 
+  const [fileHandle, sefFileHandle] = useState<
+    FileSystemFileHandle | undefined
+  >(undefined);
+
   /**
    * 職務履歴データに合致するかのバリデーションチェック
    */
@@ -53,13 +70,52 @@ export const useCareerHistory = () => {
   };
 
   /**
-   * ファイル読み込みを選択した時の動作
+   * 「ファイル」→「開く」を選択した時の動作
+   * showOpenFilePickerを使用してファイル選択ダイアログを開く。
+   * 非対応の場合はfallbackでinput[type=file]要素のクリック処理を行い同様のダイアログを開く。
    */
-  const handleSelectFile = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = (event.target as HTMLInputElement)?.files?.[0];
-    if (!file) {
+  const handleOpenFile = async (fallback: () => void) => {
+    // handleOpenFile showOpenFilePicker非対応の時はfallback()でinput要素のclickを行う
+    if (!("showOpenFilePicker" in window)) {
+      console.log(
+        "handleOpenFile showOpenFilePicker非対応の時はfallback()でinput要素のclickを行う",
+      );
+      fallback();
       return;
     }
+    console.log("handleOpenFile showOpenFilePicker対応時");
+    try {
+      const [fileHandle] = await window.showOpenFilePicker({
+        multiple: false,
+        types: [{ accept: { "application/json": [".json"] } }],
+      });
+      sefFileHandle(fileHandle);
+      readFile(await fileHandle.getFile());
+    } catch (err: unknown) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        console.log("ユーザーがファイル選択をキャンセルしました。");
+      } else {
+        console.error("エラーが発生しました:", err);
+      }
+    }
+  };
+
+  /**
+   * showOpenFilePicker非対応時に「ファイル」→「開く」を選択してファイルがダイアログで選択された後の動作
+   */
+  const handleSelectFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      readFile(file);
+    }
+    // 同じファイルを再度選択してもonChangeが発火するようにリセットする
+    event.target.value = "";
+  };
+
+  /**
+   * 選択されたファイルを読み込み、職務経歴データとしてステートに反映する
+   */
+  const readFile = (file: File) => {
     const reader = new FileReader();
     const ext = file.name.split(".").pop()?.toLowerCase();
 
@@ -160,8 +216,13 @@ export const useCareerHistory = () => {
       await writable.close();
 
       alert("ファイルを保存しました。");
-    } catch (err) {
-      if (err.name === "AbortError") {
+    } catch (err: unknown) {
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "name" in err &&
+        err?.name === "AbortError"
+      ) {
         console.log("ユーザーが保存をキャンセルしました。");
       } else {
         console.error("エラーが発生しました:", err);
@@ -170,6 +231,7 @@ export const useCareerHistory = () => {
   };
   return {
     isSecrets,
+    handleOpenFile,
     handleSelectFile,
     handleSaveFile,
   };
