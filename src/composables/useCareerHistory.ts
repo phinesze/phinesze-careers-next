@@ -47,6 +47,11 @@ export const useCareerHistory = () => {
   const { careerHistory, setCareerHistory, isSecrets } =
     useCareerHistoryState();
 
+  // showOpenFilePicker、showSaveFilePickerに対応しているか
+  const isEnableFilePicker =
+    "showOpenFilePicker" in window && "showSaveFilePicker" in window;
+
+  // showOpenFilePickerの対応時に上書き保存ようにfileHnadleを記憶する
   const [fileHandle, sefFileHandle] = useState<
     FileSystemFileHandle | undefined
   >(undefined);
@@ -76,14 +81,10 @@ export const useCareerHistory = () => {
    */
   const handleOpenFile = async (fallback: () => void) => {
     // handleOpenFile showOpenFilePicker非対応の時はfallback()でinput要素のclickを行う
-    if (!("showOpenFilePicker" in window)) {
-      console.log(
-        "handleOpenFile showOpenFilePicker非対応の時はfallback()でinput要素のclickを行う",
-      );
+    if (!isEnableFilePicker) {
       fallback();
       return;
     }
-    console.log("handleOpenFile showOpenFilePicker対応時");
     try {
       const [fileHandle] = await window.showOpenFilePicker({
         multiple: false,
@@ -157,7 +158,7 @@ export const useCareerHistory = () => {
    */
   const handleSaveFile = async () => {
     // showSaveFilePickerに対応している場合はファイル保存ダイアログを表示する。非対応の場合はaタグを生成してダウンロードさせる。
-    if ("showSaveFilePicker" in window) {
+    if (isEnableFilePicker) {
       await saveFileWithShowSaveFilePicker();
     } else {
       return downloadCareerHistoryFile();
@@ -228,6 +229,7 @@ export const useCareerHistory = () => {
     }
   };
   return {
+    isEnableFilePicker,
     isSecrets,
     handleOpenFile,
     handleSelectFile,
