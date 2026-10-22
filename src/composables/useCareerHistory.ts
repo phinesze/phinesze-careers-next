@@ -206,7 +206,7 @@ export const useCareerHistory = () => {
    * 「ファイル」→「編集中のデータをダウンロード」を選択した時の動作
    * aタグを生成してファイルをダウンロードさせる（showSaveFilePickerに非対応の場合を想定）。
    */
-  function downloadCareerHistoryFile() {
+  function handleDownloadFile() {
     const fileNameWithJson = `careerHistory.json`;
     // データを書き込む
     const careerHistoryStr = JSON.stringify(careerHistory);
@@ -231,6 +231,6 @@ export const useCareerHistory = () => {
     handleOpenFile,
     handleSaveFileAs,
     handleSaveFile,
-    downloadCareerHistoryFile,
+    handleDownloadFile,
   };
 };

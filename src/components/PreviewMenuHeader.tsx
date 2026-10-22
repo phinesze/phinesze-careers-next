@@ -23,7 +23,7 @@ export function PreviewMenuHeader() {
     handleOpenFile,
     handleSaveFile,
     handleSaveFileAs,
-    downloadCareerHistoryFile,
+    handleDownloadFile,
     isSecrets,
   } = useCareerHistory();
 
@@ -96,7 +96,7 @@ export function PreviewMenuHeader() {
             <MenuItem onClick={handleSaveFileAs}>名前をつけて保存</MenuItem>
           </>
         )}
-        <MenuItem onClick={downloadCareerHistoryFile}>
+        <MenuItem onClick={handleDownloadFile}>
           編集中のデータをダウンロード
         </MenuItem>
       </Menu>
