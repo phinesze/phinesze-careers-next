@@ -16,7 +16,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ReactElement, useContext } from "react";
 
 import { ArrayFieldTemplateContext } from "./ArrayFieldTemplate";
-import { start } from "repl";
 
 export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
   const { children, buttonsProps, hasToolbar, uiSchema, registry } = props;

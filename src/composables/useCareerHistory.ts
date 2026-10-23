@@ -1,6 +1,6 @@
 "use strict";
 
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import { RJSFSchema } from "@rjsf/utils";
 import { CareerHistory } from "@/types/CareerHistory";
