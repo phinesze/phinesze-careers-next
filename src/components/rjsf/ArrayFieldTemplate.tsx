@@ -6,9 +6,6 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button } from "@mui/material";
 import { createContext } from "react";
-import { cn } from "@/utils/cn";
-
-export const FLEX_FIELDS = ["environments", "teams"];
 
 export const ArrayFieldTemplateContext = createContext<{
   title: string;
@@ -67,7 +64,7 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
         registry={registry}
       />
       {!showOptionalDataControlInTitle ? optionalDataControl : undefined}
-      <Box className={cn(FLEX_FIELDS.includes(title) && "flex flex-wrap ")}>
+      <Box>
         <ArrayFieldTemplateContext.Provider
           value={{
             title,
