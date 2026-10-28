@@ -61,7 +61,7 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
           <IconButton
             onClick={() => update(items.filter((_, i) => i !== row.id))}
           >
-            <DeleteIcon fontSize="small" />
+            <DeleteIcon fontSize="small" color="error" />
           </IconButton>
         </>
       ),
