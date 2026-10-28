@@ -18,7 +18,7 @@ import { ReactElement, useContext } from "react";
 import { ArrayFieldTemplateContext } from "./ArrayFieldTemplate";
 
 export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
-  const { children, buttonsProps, hasToolbar, uiSchema, registry } = props;
+  const { children, buttonsProps, uiSchema, registry } = props;
   const uiOptions = getUiOptions(uiSchema);
   const ArrayFieldItemButtonsTemplate = getTemplate(
     "ArrayFieldItemButtonsTemplate",
@@ -80,36 +80,34 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
 
   return (
     <Box className="mt-2 flex items-start">
-      {hasToolbar && (
-        <Accordion className="w-full border border-gray-300">
-          {/* buttonの入れ子によるhydration errorを防ぐため内部のcomponentをデフォルトのbuttonからdivに変更する */}
-          <AccordionSummary
-            component="div"
-            className="my-0"
-            expandIcon={<ExpandMoreIcon />}
-            sx={{
-              "& .MuiAccordionSummary-content, & .MuiAccordionSummary-content.Mui-expanded":
-                { margin: 0 },
-            }}
-          >
-            <div className="flex w-full items-center justify-center">
-              <Typography component="span" className="my-0 flex-1">
-                {getItemAccordionLabel()}
-              </Typography>
-              <ArrayFieldItemButtonsTemplate
-                {...buttonsProps}
-                hasRemove={
-                  buttonsProps.hasRemove && buttonsProps.totalItems > minItems
-                }
-                style={{ paddingLeft: 3, paddingRight: 6, minWidth: 0 }}
-              />
-            </div>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Box className="px-4">{children}</Box>
-          </AccordionDetails>
-        </Accordion>
-      )}
+      <Accordion className="w-full border border-gray-300">
+        {/* buttonの入れ子によるhydration errorを防ぐため内部のcomponentをデフォルトのbuttonからdivに変更する */}
+        <AccordionSummary
+          component="div"
+          className="my-0"
+          expandIcon={<ExpandMoreIcon />}
+          sx={{
+            "& .MuiAccordionSummary-content, & .MuiAccordionSummary-content.Mui-expanded":
+              { margin: 0 },
+          }}
+        >
+          <div className="flex w-full items-center justify-center">
+            <Typography component="span" className="my-0 flex-1">
+              {getItemAccordionLabel()}
+            </Typography>
+            <ArrayFieldItemButtonsTemplate
+              {...buttonsProps}
+              hasRemove={
+                buttonsProps.hasRemove && buttonsProps.totalItems > minItems
+              }
+              style={{ paddingLeft: 3, paddingRight: 6, minWidth: 0 }}
+            />
+          </div>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box className="px-4">{children}</Box>
+        </AccordionDetails>
+      </Accordion>
     </Box>
   );
 }
