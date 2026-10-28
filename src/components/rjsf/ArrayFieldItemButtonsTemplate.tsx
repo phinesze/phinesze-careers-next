@@ -10,7 +10,7 @@ export function ArrayFieldItemButtonsTemplate(
   props: ArrayFieldItemButtonsTemplateProps,
 ) {
   const {
-    disabled,
+    // disabled,
     hasCopy,
     hasMoveDown,
     hasMoveUp,
@@ -20,14 +20,11 @@ export function ArrayFieldItemButtonsTemplate(
     onRemoveItem,
     onMoveDownItem,
     onMoveUpItem,
-    readonly,
+    // readonly,
     registry,
     uiSchema,
   } = props;
-  const { formData } = props as ArrayFieldItemButtonsTemplateProps & {
-    formData?: unknown;
-  };
-  void formData;
+
   const { CopyButton, MoveDownButton, MoveUpButton } =
     registry.templates.ButtonTemplates;
 
@@ -43,7 +40,7 @@ export function ArrayFieldItemButtonsTemplate(
         <MoveUpButton
           id={buttonId(fieldPathId, "moveUp")}
           className="rjsf-array-item-move-up"
-          disabled={disabled || readonly || !hasMoveUp}
+          disabled={!hasMoveUp}
           onClick={onMoveUpItem}
           uiSchema={uiSchema}
           registry={registry}
@@ -53,7 +50,7 @@ export function ArrayFieldItemButtonsTemplate(
         <MoveDownButton
           id={buttonId(fieldPathId, "moveDown")}
           className="rjsf-array-item-move-down"
-          disabled={disabled || readonly || !hasMoveDown}
+          disabled={!hasMoveDown}
           onClick={onMoveDownItem}
           uiSchema={uiSchema}
           registry={registry}
@@ -63,7 +60,6 @@ export function ArrayFieldItemButtonsTemplate(
         <CopyButton
           id={buttonId(fieldPathId, "copy")}
           className="rjsf-array-item-copy"
-          disabled={disabled || readonly}
           onClick={onCopyItem}
           uiSchema={uiSchema}
           registry={registry}
@@ -76,7 +72,6 @@ export function ArrayFieldItemButtonsTemplate(
           size="small"
           color="error"
           title={registry.translateString(TranslatableString.RemoveButton)}
-          disabled={disabled || readonly}
           onClick={() => {
             if (confirm("削除しますか？")) {
               onRemoveItem();
