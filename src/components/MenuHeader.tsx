@@ -20,6 +20,7 @@ export function MenuHeader() {
   const [viewAnchorEl, setViewAnchorEl] = useState<null | HTMLElement>(null);
   const {
     isEnableFilePicker,
+    handleNew,
     handleOpenFile,
     handleSaveFile,
     handleSaveFileAs,
@@ -76,6 +77,7 @@ export function MenuHeader() {
 
   return (
     <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
+      {/* ファイル */}
       <Button
         color="inherit"
         onClick={openFileMenu}
@@ -89,6 +91,7 @@ export function MenuHeader() {
         onClose={closeFileMenu}
         slotProps={{ list: { onClick: closeFileMenu } }}
       >
+        <MenuItem onClick={handleNew}>新規作成</MenuItem>
         <MenuItem onClick={handleOpenFile}>開く</MenuItem>
         {isEnableFilePicker && (
           <>
@@ -100,6 +103,8 @@ export function MenuHeader() {
           編集中のデータをダウンロード
         </MenuItem>
       </Menu>
+
+      {/* 表示 */}
       <Button
         color="inherit"
         onClick={openViewMenu}

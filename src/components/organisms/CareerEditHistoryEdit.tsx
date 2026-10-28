@@ -16,7 +16,8 @@ import { Box, useMediaQuery } from "@mui/material";
 const validator = customizeValidator();
 
 export function CareerEditHistoryEdit() {
-  const { careerHistory, setCareerHistory } = useCareerHistoryState();
+  const { careerHistory, setCareerHistory, setIsChanged } =
+    useCareerHistoryState();
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
@@ -56,9 +57,12 @@ export function CareerEditHistoryEdit() {
               ArrayFieldItemButtonsTemplate,
             }}
             formData={careerHistory}
-            onChange={(event) =>
-              event.formData && setCareerHistory(event.formData)
-            }
+            onChange={(event) => {
+              if (event.formData) {
+                setCareerHistory(event.formData);
+                setIsChanged(true);
+              }
+            }}
           >
             {/* submitボタンを非表示にするため空のfragmentを渡す */}
             <></>

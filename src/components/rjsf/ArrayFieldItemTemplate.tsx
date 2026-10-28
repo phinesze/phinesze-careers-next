@@ -48,9 +48,7 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
             </Typography>
             <ArrayFieldItemButtonsTemplate
               {...buttonsProps}
-              hasRemove={
-                buttonsProps.hasRemove && buttonsProps.totalItems > minItems
-              }
+              hasRemove={buttonsProps.hasRemove}
               style={{ paddingLeft: 3, paddingRight: 6, minWidth: 0 }}
             />
           </div>

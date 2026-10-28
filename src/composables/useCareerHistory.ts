@@ -44,8 +44,14 @@ declare global {
 const validator = customizeValidator<CareerHistory>();
 
 export const useCareerHistory = () => {
-  const { careerHistory, setCareerHistory, isSecrets } =
-    useCareerHistoryState();
+  const {
+    careerHistory,
+    setCareerHistory,
+    resetCareerHistory,
+    isChanged,
+    setIsChanged,
+    isSecrets,
+  } = useCareerHistoryState();
 
   // showOpenFilePicker、showSaveFilePickerに対応しているか
   const isEnableFilePicker =
@@ -72,6 +78,15 @@ export const useCareerHistory = () => {
       return false;
     }
     return true;
+  };
+
+  /**
+   * 「ファイル」→「新規作成」を選択した時の動作
+   */
+  const handleNew = async () => {
+    if (!isChanged || confirm("変更しています")) {
+      resetCareerHistory();
+    }
   };
 
   /**
@@ -142,6 +157,7 @@ export const useCareerHistory = () => {
         }
         // 状態管理用のステートに読み込んだJSONの内容を代入
         setCareerHistory(parsedSectionData);
+        setIsChanged(false);
       } catch (e: unknown) {
         // JSON構文エラー
         if (e instanceof SyntaxError) {
@@ -228,6 +244,7 @@ export const useCareerHistory = () => {
   return {
     isEnableFilePicker,
     isSecrets,
+    handleNew,
     handleOpenFile,
     handleSaveFileAs,
     handleSaveFile,
