@@ -73,6 +73,7 @@ export const careerHistoryUiSchema = {
               },
               projects: {
                 "ui:title": "組織内で携わったプロジェクト",
+                // "ui:options": { copyable: true },
                 items: {
                   "ui:title": "",
                   title: {
