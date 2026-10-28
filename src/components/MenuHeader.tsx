@@ -10,10 +10,17 @@ import {
   MenuItem,
   MenuList,
 } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import Check from "@mui/icons-material/Check";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
+
+// OS のカラースキーム (prefers-color-scheme) に追従してライト/ダークを切り替える
+const menuTheme = createTheme({
+  colorSchemes: { light: true, dark: true },
+  cssVariables: { colorSchemeSelector: "media" },
+});
 
 export function MenuHeader() {
   const [fileAnchorEl, setFileAnchorEl] = useState<null | HTMLElement>(null);
@@ -76,87 +83,89 @@ export function MenuHeader() {
   };
 
   return (
-    <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
-      {/* ファイル */}
-      <Button
-        color="inherit"
-        onClick={openFileMenu}
-        endIcon={<ArrowDropDown />}
-      >
-        ファイル
-      </Button>
-      <Menu
-        anchorEl={fileAnchorEl}
-        open={!!fileAnchorEl}
-        onClose={closeFileMenu}
-        slotProps={{ list: { onClick: closeFileMenu } }}
-      >
-        <MenuItem onClick={handleNew}>新規作成</MenuItem>
-        <MenuItem onClick={handleOpenFile}>開く</MenuItem>
-        {isEnableFilePicker && (
-          <>
-            <MenuItem onClick={handleSaveFile}>保存</MenuItem>
-            <MenuItem onClick={handleSaveFileAs}>名前をつけて保存</MenuItem>
-          </>
-        )}
-        <MenuItem onClick={handleDownloadFile}>
-          編集中のデータをダウンロード
-        </MenuItem>
-      </Menu>
-
-      {/* 表示 */}
-      <Button
-        color="inherit"
-        onClick={openViewMenu}
-        endIcon={<ArrowDropDown />}
-      >
-        表示
-      </Button>
-      <Menu
-        anchorEl={viewAnchorEl}
-        open={!!viewAnchorEl}
-        onClose={() => setViewAnchorEl(null)}
-      >
-        <MenuList>
-          <MenuItem
-            onClick={() => {
-              toggleShowEdit();
-            }}
-          >
-            <ListItemIcon>
-              {showEdit ? <Check fontSize="small" /> : null}
-            </ListItemIcon>
-            編集
+    <ThemeProvider theme={menuTheme}>
+      <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
+        {/* ファイル */}
+        <Button
+          color="inherit"
+          onClick={openFileMenu}
+          endIcon={<ArrowDropDown />}
+        >
+          ファイル
+        </Button>
+        <Menu
+          anchorEl={fileAnchorEl}
+          open={!!fileAnchorEl}
+          onClose={closeFileMenu}
+          slotProps={{ list: { onClick: closeFileMenu } }}
+        >
+          <MenuItem onClick={handleNew}>新規作成</MenuItem>
+          <MenuItem onClick={handleOpenFile}>開く</MenuItem>
+          {isEnableFilePicker && (
+            <>
+              <MenuItem onClick={handleSaveFile}>保存</MenuItem>
+              <MenuItem onClick={handleSaveFileAs}>名前をつけて保存</MenuItem>
+            </>
+          )}
+          <MenuItem onClick={handleDownloadFile}>
+            編集中のデータをダウンロード
           </MenuItem>
+        </Menu>
 
-          <MenuItem
-            onClick={() => {
-              toggleShowPreview();
-            }}
-          >
-            <ListItemIcon>
-              {showPreview ? <Check fontSize="small" /> : null}
-            </ListItemIcon>
-            プレビュー
-          </MenuItem>
+        {/* 表示 */}
+        <Button
+          color="inherit"
+          onClick={openViewMenu}
+          endIcon={<ArrowDropDown />}
+        >
+          表示
+        </Button>
+        <Menu
+          anchorEl={viewAnchorEl}
+          open={!!viewAnchorEl}
+          onClose={() => setViewAnchorEl(null)}
+        >
+          <MenuList>
+            <MenuItem
+              onClick={() => {
+                toggleShowEdit();
+              }}
+            >
+              <ListItemIcon>
+                {showEdit ? <Check fontSize="small" /> : null}
+              </ListItemIcon>
+              編集
+            </MenuItem>
 
-          <Divider />
+            <MenuItem
+              onClick={() => {
+                toggleShowPreview();
+              }}
+            >
+              <ListItemIcon>
+                {showPreview ? <Check fontSize="small" /> : null}
+              </ListItemIcon>
+              プレビュー
+            </MenuItem>
 
-          <MenuItem
-            onClick={() => {
-              toggleIsSecrets();
-            }}
-          >
-            <ListItemIcon>
-              {isSecrets ? <Check fontSize="small" /> : null}
-            </ListItemIcon>
-            機密要素を表示する
-          </MenuItem>
-        </MenuList>
-      </Menu>
-      <Button color="inherit" onClick={handlePrintCareer}>
-        経歴書を印刷
-      </Button>
-    </header>
+            <Divider />
+
+            <MenuItem
+              onClick={() => {
+                toggleIsSecrets();
+              }}
+            >
+              <ListItemIcon>
+                {isSecrets ? <Check fontSize="small" /> : null}
+              </ListItemIcon>
+              機密要素を表示する
+            </MenuItem>
+          </MenuList>
+        </Menu>
+        <Button color="inherit" onClick={handlePrintCareer}>
+          経歴書を印刷
+        </Button>
+      </header>
+    </ThemeProvider>
   );
 }
