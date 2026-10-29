@@ -175,7 +175,7 @@ export function MenuHeader() {
                 <EditNoteIcon fontSize="small" />
               </ListItemIcon>
               <span className="flex-1">編集</span>
-              {showEdit && <CheckIcon fontSize="small" />}
+              {showEdit && <CheckIcon fontSize="small" className="ml-2" />}
             </MenuItem>
 
             <MenuItem
@@ -187,7 +187,7 @@ export function MenuHeader() {
                 <PreviewIcon fontSize="small" />
               </ListItemIcon>
               <span className="flex-1">プレビュー</span>
-              {showPreview && <CheckIcon fontSize="small" />}
+              {showPreview && <CheckIcon fontSize="small" className="ml-2" />}
             </MenuItem>
           </MenuList>
         </Menu>
@@ -229,7 +229,7 @@ export function MenuHeader() {
                 <LockIcon fontSize="small" />
               </ListItemIcon>
               <span className="flex-1">機密要素を表示する</span>
-              {isSecrets && <CheckIcon fontSize="small" />}
+              {isSecrets && <CheckIcon fontSize="small" className="ml-2" />}
             </MenuItem>
           </MenuList>
         </Menu>
