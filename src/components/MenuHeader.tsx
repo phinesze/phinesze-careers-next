@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   Button,
   Divider,
@@ -24,6 +23,7 @@ import PreviewIcon from "@mui/icons-material/Preview";
 import PrintIcon from "@mui/icons-material/Print";
 import LockIcon from "@mui/icons-material/Lock";
 import { useCareerHistory } from "@/composables/useCareerHistory";
+import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
 
 // OS のカラースキーム (prefers-color-scheme) に追従してライト/ダークを切り替える
@@ -43,8 +43,8 @@ export function MenuHeader() {
     handleSaveFile,
     handleSaveFileAs,
     handleDownloadFile,
-    isSecrets,
   } = useCareerHistory();
+  const { isSecrets, toggleIsSecrets } = useCareerHistoryState();
 
   const {
     showEdit,
@@ -55,10 +55,6 @@ export function MenuHeader() {
     toggleShowPreview,
   } = useDisplayModeState();
 
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
   /**
    * 経歴書を印刷させるため、プレビューのみ表示させた上に印刷を開く。
    */
@@ -68,17 +64,6 @@ export function MenuHeader() {
     setTimeout(() => {
       print();
     }, 0);
-  };
-
-  const toggleIsSecrets = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (isSecrets) {
-      params.delete("is_secrets");
-    } else {
-      params.set("is_secrets", "1");
-    }
-    const query = params.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname);
   };
 
   // ショートカットキーを設定

@@ -25,7 +25,7 @@ npm run format    # Prettier
 - **`src/app/layout.tsx`**: 全ページ共通で `MenuHeader` を表示する（ファイルを開く／保存、印刷、機密モード切替）。印刷時は `print:hidden` で隠れる。
 - **`src/app/page.tsx`（`/`）**: RJSF（`@rjsf/mui`）による経歴データの編集フォーム。MUI テーマはスペースを詰めた設定（`spacing: 2`、small サイズ）。submit ボタンは空の fragment を渡して非表示にしている。
 - **`src/app/preview/page.tsx`（`/preview`）**: `organisms/CareerHistoryView` で印刷用の表示をする。
-- **状態**: `composables/useCareerHistoryState.ts` の jotai atom `careerHistoryAtom` に、編集画面とプレビューで同じデータを持つ。機密モードは URL クエリ `?is_secrets=1` から作る（`isSecrets`）。
+- **状態**: `composables/useCareerHistoryState.ts` の jotai atom `careerHistoryAtom` に、編集画面とプレビューで同じデータを持つ。機密モードは同ファイルの atom `isSecretsAtom`（`isSecrets` / `toggleIsSecrets`）で持つ。
 - **ファイル入出力**: `composables/useCareerHistory.ts`。読み込み時に `CareerHistory.schema.json` に対して ajv8 でバリデーションする。保存は `showSaveFilePicker` を使い、非対応ブラウザでは `<a download>` にフォールバックする。
 - **機密モード**: `isSecrets` が true のときは `company` / `secretDetail` を表示し、それ以外では `companyAlias` / `detail` を表示する。
 

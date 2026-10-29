@@ -1,6 +1,4 @@
 import { useAtom } from "jotai/index";
-import { useMemo } from "react";
-import { useSearchParams } from "next/navigation";
 import { CareerHistory } from "@/types/CareerHistory";
 
 import { atom } from "jotai";
@@ -18,6 +16,11 @@ export const careerHistoryAtom = atom<CareerHistory>(defaultCareerHistory);
 export const isChangedAtom = atom<boolean>(false);
 
 /**
+ * 機密要素を表示するか
+ */
+export const isSecretsAtom = atom<boolean>(false);
+
+/**
  * 職務経歴データを保持するためのステートやjotai
  */
 export const useCareerHistoryState = () => {
@@ -25,7 +28,7 @@ export const useCareerHistoryState = () => {
   const [isChanged, setIsChanged] = useAtom(isChangedAtom);
   const { sections: careerHistorySections, updatedAt } = careerHistory;
 
-  const searchParams = useSearchParams();
+  const [isSecrets, setIsSecrets] = useAtom(isSecretsAtom);
 
   const resetCareerHistory = () => {
     setCareerHistory({
@@ -35,9 +38,9 @@ export const useCareerHistoryState = () => {
     setIsChanged(false);
   };
 
-  const isSecrets = useMemo(() => {
-    return Boolean(searchParams.get("is_secrets"));
-  }, [searchParams]);
+  const toggleIsSecrets = () => {
+    setIsSecrets((prev) => !prev);
+  };
 
   return {
     careerHistory,
@@ -48,5 +51,7 @@ export const useCareerHistoryState = () => {
     careerHistorySections,
     updatedAt,
     isSecrets,
+    setIsSecrets,
+    toggleIsSecrets,
   };
 };
