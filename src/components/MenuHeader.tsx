@@ -19,6 +19,8 @@ import FileOpenIcon from "@mui/icons-material/FileOpen";
 import SaveIcon from "@mui/icons-material/Save";
 import SaveAsIcon from "@mui/icons-material/SaveAs";
 import DownloadIcon from "@mui/icons-material/Download";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import PreviewIcon from "@mui/icons-material/Preview";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
 
@@ -178,9 +180,10 @@ export function MenuHeader() {
               }}
             >
               <ListItemIcon>
-                {showEdit ? <CheckIcon fontSize="small" /> : null}
+                <EditNoteIcon fontSize="small" />
               </ListItemIcon>
-              編集
+              <span className="flex-1">編集</span>
+              {showEdit && <CheckIcon fontSize="small" />}
             </MenuItem>
 
             <MenuItem
@@ -189,9 +192,10 @@ export function MenuHeader() {
               }}
             >
               <ListItemIcon>
-                {showPreview ? <CheckIcon fontSize="small" /> : null}
+                <PreviewIcon fontSize="small" />
               </ListItemIcon>
-              プレビュー
+              <span className="flex-1">プレビュー</span>
+              {showPreview && <CheckIcon fontSize="small" />}
             </MenuItem>
 
             <Divider />
