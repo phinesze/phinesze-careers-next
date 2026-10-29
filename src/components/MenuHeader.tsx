@@ -21,6 +21,8 @@ import SaveAsIcon from "@mui/icons-material/SaveAs";
 import DownloadIcon from "@mui/icons-material/Download";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import PreviewIcon from "@mui/icons-material/Preview";
+import PrintIcon from "@mui/icons-material/Print";
+import LockIcon from "@mui/icons-material/Lock";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
 
@@ -33,6 +35,7 @@ const menuTheme = createTheme({
 export function MenuHeader() {
   const [fileAnchorEl, setFileAnchorEl] = useState<null | HTMLElement>(null);
   const [viewAnchorEl, setViewAnchorEl] = useState<null | HTMLElement>(null);
+  const [printAnchorEl, setPrintAnchorEl] = useState<null | HTMLElement>(null);
   const {
     isEnableFilePicker,
     handleNew,
@@ -103,6 +106,10 @@ export function MenuHeader() {
 
   const openViewMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setViewAnchorEl(event.currentTarget);
+  };
+
+  const openPrintMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setPrintAnchorEl(event.currentTarget);
   };
 
   return (
@@ -197,6 +204,34 @@ export function MenuHeader() {
               <span className="flex-1">プレビュー</span>
               {showPreview && <CheckIcon fontSize="small" />}
             </MenuItem>
+          </MenuList>
+        </Menu>
+
+        {/* 印刷 */}
+        <Button
+          color="inherit"
+          onClick={openPrintMenu}
+          endIcon={<ArrowDropDownIcon />}
+        >
+          印刷
+        </Button>
+        <Menu
+          anchorEl={printAnchorEl}
+          open={!!printAnchorEl}
+          onClose={() => setPrintAnchorEl(null)}
+        >
+          <MenuList>
+            <MenuItem
+              onClick={() => {
+                setPrintAnchorEl(null);
+                handlePrintCareer();
+              }}
+            >
+              <ListItemIcon>
+                <PrintIcon fontSize="small" />
+              </ListItemIcon>
+              <span className="flex-1">経歴書を印刷</span>
+            </MenuItem>
 
             <Divider />
 
@@ -206,15 +241,13 @@ export function MenuHeader() {
               }}
             >
               <ListItemIcon>
-                {isSecrets ? <CheckIcon fontSize="small" /> : null}
+                <LockIcon fontSize="small" />
               </ListItemIcon>
-              機密要素を表示する
+              <span className="flex-1">機密要素を表示する</span>
+              {isSecrets && <CheckIcon fontSize="small" />}
             </MenuItem>
           </MenuList>
         </Menu>
-        <Button color="inherit" onClick={handlePrintCareer}>
-          経歴書を印刷
-        </Button>
       </header>
     </ThemeProvider>
   );
