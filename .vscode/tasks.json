@@ -18,7 +18,7 @@
       "type": "npm",
       "script": "lint:fix",
       "problemMatcher": [],
-      "label": "phinesze-careers-next: linterを実行",
+      "label": "phinesze-careers-next: linterを実行してfixする",
       "detail": "next lint --fix"
     },
     {
