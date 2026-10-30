@@ -19,6 +19,12 @@ const muiTheme = createTheme({
     MuiCheckbox: { defaultProps: { size: "small" } },
     MuiButton: { defaultProps: { size: "small" } },
     MuiIconButton: { defaultProps: { size: "small" } },
+    MuiMenu: {
+      styleOverrides: {
+        // メニューの上下の余白 (デフォルトは 8px 0)
+        list: { padding: "4px 0" },
+      },
+    },
   },
   // OS のカラースキーム (prefers-color-scheme) に追従してライト/ダークを切り替える
   colorSchemes: { light: true, dark: true },

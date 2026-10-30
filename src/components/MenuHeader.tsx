@@ -19,7 +19,6 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
-  MenuList,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
@@ -163,31 +162,29 @@ export function MenuHeader() {
         open={!!viewAnchorEl}
         onClose={() => setViewAnchorEl(null)}
       >
-        <MenuList>
-          <MenuItem
-            onClick={() => {
-              toggleShowEdit();
-            }}
-          >
-            <ListItemIcon>
-              <EditNoteIcon fontSize="small" />
-            </ListItemIcon>
-            <span className="flex-1">編集</span>
-            {showEdit && <CheckIcon fontSize="small" className="ml-2" />}
-          </MenuItem>
+        <MenuItem
+          onClick={() => {
+            toggleShowEdit();
+          }}
+        >
+          <ListItemIcon>
+            <EditNoteIcon fontSize="small" />
+          </ListItemIcon>
+          <span className="flex-1">編集</span>
+          {showEdit && <CheckIcon fontSize="small" className="ml-2" />}
+        </MenuItem>
 
-          <MenuItem
-            onClick={() => {
-              toggleShowPreview();
-            }}
-          >
-            <ListItemIcon>
-              <PreviewIcon fontSize="small" />
-            </ListItemIcon>
-            <span className="flex-1">プレビュー</span>
-            {showPreview && <CheckIcon fontSize="small" className="ml-2" />}
-          </MenuItem>
-        </MenuList>
+        <MenuItem
+          onClick={() => {
+            toggleShowPreview();
+          }}
+        >
+          <ListItemIcon>
+            <PreviewIcon fontSize="small" />
+          </ListItemIcon>
+          <span className="flex-1">プレビュー</span>
+          {showPreview && <CheckIcon fontSize="small" className="ml-2" />}
+        </MenuItem>
       </Menu>
 
       {/* 印刷 */}
@@ -205,33 +202,31 @@ export function MenuHeader() {
         open={!!printAnchorEl}
         onClose={() => setPrintAnchorEl(null)}
       >
-        <MenuList>
-          <MenuItem
-            onClick={() => {
-              setPrintAnchorEl(null);
-              handlePrintCareer();
-            }}
-          >
-            <ListItemIcon>
-              <PrintIcon fontSize="small" />
-            </ListItemIcon>
-            <span className="flex-1">経歴書を印刷</span>
-          </MenuItem>
+        <MenuItem
+          onClick={() => {
+            setPrintAnchorEl(null);
+            handlePrintCareer();
+          }}
+        >
+          <ListItemIcon>
+            <PrintIcon fontSize="small" />
+          </ListItemIcon>
+          <span className="flex-1">経歴書を印刷</span>
+        </MenuItem>
 
-          <Divider />
+        <Divider />
 
-          <MenuItem
-            onClick={() => {
-              toggleIsSecrets();
-            }}
-          >
-            <ListItemIcon>
-              <LockIcon fontSize="small" />
-            </ListItemIcon>
-            <span className="flex-1">機密要素を表示する</span>
-            {isSecrets && <CheckIcon fontSize="small" className="ml-2" />}
-          </MenuItem>
-        </MenuList>
+        <MenuItem
+          onClick={() => {
+            toggleIsSecrets();
+          }}
+        >
+          <ListItemIcon>
+            <LockIcon fontSize="small" />
+          </ListItemIcon>
+          <span className="flex-1">機密要素を表示する</span>
+          {isSecrets && <CheckIcon fontSize="small" className="ml-2" />}
+        </MenuItem>
       </Menu>
     </header>
   );
