@@ -21,6 +21,8 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import PreviewIcon from "@mui/icons-material/Preview";
 import PrintIcon from "@mui/icons-material/Print";
 import LockIcon from "@mui/icons-material/Lock";
+import FolderIcon from "@mui/icons-material/Folder";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
@@ -91,12 +93,14 @@ export function MenuHeader() {
   };
 
   return (
-    <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
+    <header className="flex h-8 w-full cursor-pointer bg-gray-400/50 px-2 print:hidden">
       {/* ファイル */}
       <Button
         color="inherit"
         onClick={openFileMenu}
+        startIcon={<FolderIcon />}
         endIcon={<ArrowDropDownIcon />}
+        sx={{ padding: "0 8px" }}
       >
         ファイル
       </Button>
@@ -148,7 +152,9 @@ export function MenuHeader() {
       <Button
         color="inherit"
         onClick={openViewMenu}
+        startIcon={<VisibilityIcon />}
         endIcon={<ArrowDropDownIcon />}
+        sx={{ padding: "0 8px" }}
       >
         表示
       </Button>
@@ -188,7 +194,9 @@ export function MenuHeader() {
       <Button
         color="inherit"
         onClick={openPrintMenu}
+        startIcon={<PrintIcon />}
         endIcon={<ArrowDropDownIcon />}
+        sx={{ padding: "0 8px" }}
       >
         印刷
       </Button>
