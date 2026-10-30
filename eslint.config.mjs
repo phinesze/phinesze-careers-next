@@ -15,10 +15,10 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-unused-vars": [
-        "warn",
+        "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
-      // import プラグインは next/core-web-vitals で登録済みのためルールのみ指定する
+      "import/no-relative-packages": "error",
       "import/order": [
         "warn",
         {
@@ -30,7 +30,6 @@ const eslintConfig = [
             "type",
           ],
           pathGroups: [{ pattern: "@/**", group: "internal" }],
-          pathGroupsExcludedImportTypes: ["builtin"],
           "newlines-between": "never",
           alphabetize: { order: "asc", caseInsensitive: true },
         },
