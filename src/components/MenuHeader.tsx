@@ -29,7 +29,6 @@ import { useDisplayModeState } from "@/composables/useDisplayModeState";
 // OS のカラースキーム (prefers-color-scheme) に追従してライト/ダークを切り替える
 const menuTheme = createTheme({
   colorSchemes: { light: true, dark: true },
-  cssVariables: { colorSchemeSelector: "media" },
 });
 
 export function MenuHeader() {

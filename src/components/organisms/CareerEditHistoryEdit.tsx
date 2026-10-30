@@ -11,15 +11,13 @@ import { KeyTitleWrapIfAdditionalTemplate } from "@/components/rjsf/KeyTitleWrap
 import { ArrayFieldItemTemplate } from "@/components/rjsf/ArrayFieldItemTemplate";
 import { ArrayFieldTemplate } from "@/components/rjsf/ArrayFieldTemplate";
 import { ArrayFieldItemButtonsTemplate } from "@/components/rjsf/ArrayFieldItemButtonsTemplate";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 
 const validator = customizeValidator();
 
 export function CareerEditHistoryEdit() {
   const { careerHistory, setCareerHistory, setIsChanged } =
     useCareerHistoryState();
-
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const formTheme = createTheme({
     typography: { fontSize: 12 },
@@ -39,7 +37,7 @@ export function CareerEditHistoryEdit() {
       MuiButton: { defaultProps: { size: "small" } },
       MuiIconButton: { defaultProps: { size: "small" } },
     },
-    palette: { mode: prefersDarkMode ? "dark" : "light" },
+    colorSchemes: { light: true, dark: true },
   });
 
   return (
