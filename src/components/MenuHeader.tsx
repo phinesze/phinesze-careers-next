@@ -120,7 +120,7 @@ export function MenuHeader() {
             <FileOpenIcon fontSize="small" />
           </ListItemIcon>
           <span className="flex-1">開く</span>
-          <Typography variant="body2">⌘O</Typography>
+          <Typography variant="caption">⌘O</Typography>
         </MenuItem>
         {isEnableFilePicker && (
           <>
@@ -129,7 +129,7 @@ export function MenuHeader() {
                 <SaveIcon fontSize="small" />
               </ListItemIcon>
               <span className="flex-1">保存</span>
-              <Typography variant="body2">⌘S</Typography>
+              <Typography variant="caption">⌘S</Typography>
             </MenuItem>
             <MenuItem onClick={handleSaveFileAs}>
               <ListItemIcon>
