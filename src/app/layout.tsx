@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { MuiThemeProvider } from "@/components/MuiThemeProvider";
 import { MenuHeader } from "@/components/MenuHeader";
 import { cn } from "@//utils/cn";
 
@@ -29,10 +30,12 @@ export default function RootLayout({
       <body
         className={cn(geistSans.variable, geistMono.variable, "antialiased")}
       >
-        <section className="flex h-screen w-full flex-col print:h-full">
-          <MenuHeader />
-          <main className="h-0 flex-1">{children}</main>
-        </section>
+        <MuiThemeProvider>
+          <section className="flex h-screen w-full flex-col print:h-full">
+            <MenuHeader />
+            <main className="h-0 flex-1">{children}</main>
+          </section>
+        </MuiThemeProvider>
       </body>
     </html>
   );

@@ -10,7 +10,6 @@ import {
   MenuList,
   Typography,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import CheckIcon from "@mui/icons-material/Check";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
@@ -25,11 +24,6 @@ import LockIcon from "@mui/icons-material/Lock";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
-
-// OS のカラースキーム (prefers-color-scheme) に追従してライト/ダークを切り替える
-const menuTheme = createTheme({
-  colorSchemes: { light: true, dark: true },
-});
 
 export function MenuHeader() {
   const [fileAnchorEl, setFileAnchorEl] = useState<null | HTMLElement>(null);
@@ -97,142 +91,140 @@ export function MenuHeader() {
   };
 
   return (
-    <ThemeProvider theme={menuTheme}>
-      <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
-        {/* ファイル */}
-        <Button
-          color="inherit"
-          onClick={openFileMenu}
-          endIcon={<ArrowDropDownIcon />}
-        >
-          ファイル
-        </Button>
-        <Menu
-          anchorEl={fileAnchorEl}
-          open={!!fileAnchorEl}
-          onClose={closeFileMenu}
-          slotProps={{ list: { onClick: closeFileMenu } }}
-        >
-          <MenuItem onClick={handleNew}>
+    <header className="flex h-9 w-full cursor-pointer bg-gray-400/50 print:hidden">
+      {/* ファイル */}
+      <Button
+        color="inherit"
+        onClick={openFileMenu}
+        endIcon={<ArrowDropDownIcon />}
+      >
+        ファイル
+      </Button>
+      <Menu
+        anchorEl={fileAnchorEl}
+        open={!!fileAnchorEl}
+        onClose={closeFileMenu}
+        slotProps={{ list: { onClick: closeFileMenu } }}
+      >
+        <MenuItem onClick={handleNew}>
+          <ListItemIcon>
+            <NoteAddIcon fontSize="small" />
+          </ListItemIcon>
+          <span className="flex-1">新規作成</span>
+        </MenuItem>
+        <MenuItem onClick={handleOpenFile}>
+          <ListItemIcon>
+            <FileOpenIcon fontSize="small" />
+          </ListItemIcon>
+          <span className="flex-1">開く</span>
+          <Typography variant="body2">⌘O</Typography>
+        </MenuItem>
+        {isEnableFilePicker && (
+          <>
+            <MenuItem onClick={handleSaveFile}>
+              <ListItemIcon>
+                <SaveIcon fontSize="small" />
+              </ListItemIcon>
+              <span className="flex-1">保存</span>
+              <Typography variant="body2">⌘S</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleSaveFileAs}>
+              <ListItemIcon>
+                <SaveAsIcon fontSize="small" />
+              </ListItemIcon>
+              <span className="flex-1">名前をつけて保存</span>
+            </MenuItem>
+          </>
+        )}
+        <MenuItem onClick={handleDownloadFile}>
+          <ListItemIcon>
+            <DownloadIcon fontSize="small" />
+          </ListItemIcon>{" "}
+          <span className="flex-1"> 編集中のデータをダウンロード</span>
+        </MenuItem>
+      </Menu>
+
+      {/* 表示 */}
+      <Button
+        color="inherit"
+        onClick={openViewMenu}
+        endIcon={<ArrowDropDownIcon />}
+      >
+        表示
+      </Button>
+      <Menu
+        anchorEl={viewAnchorEl}
+        open={!!viewAnchorEl}
+        onClose={() => setViewAnchorEl(null)}
+      >
+        <MenuList>
+          <MenuItem
+            onClick={() => {
+              toggleShowEdit();
+            }}
+          >
             <ListItemIcon>
-              <NoteAddIcon fontSize="small" />
+              <EditNoteIcon fontSize="small" />
             </ListItemIcon>
-            <span className="flex-1">新規作成</span>
+            <span className="flex-1">編集</span>
+            {showEdit && <CheckIcon fontSize="small" className="ml-2" />}
           </MenuItem>
-          <MenuItem onClick={handleOpenFile}>
+
+          <MenuItem
+            onClick={() => {
+              toggleShowPreview();
+            }}
+          >
             <ListItemIcon>
-              <FileOpenIcon fontSize="small" />
+              <PreviewIcon fontSize="small" />
             </ListItemIcon>
-            <span className="flex-1">開く</span>
-            <Typography variant="body2">⌘O</Typography>
+            <span className="flex-1">プレビュー</span>
+            {showPreview && <CheckIcon fontSize="small" className="ml-2" />}
           </MenuItem>
-          {isEnableFilePicker && (
-            <>
-              <MenuItem onClick={handleSaveFile}>
-                <ListItemIcon>
-                  <SaveIcon fontSize="small" />
-                </ListItemIcon>
-                <span className="flex-1">保存</span>
-                <Typography variant="body2">⌘S</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleSaveFileAs}>
-                <ListItemIcon>
-                  <SaveAsIcon fontSize="small" />
-                </ListItemIcon>
-                <span className="flex-1">名前をつけて保存</span>
-              </MenuItem>
-            </>
-          )}
-          <MenuItem onClick={handleDownloadFile}>
+        </MenuList>
+      </Menu>
+
+      {/* 印刷 */}
+      <Button
+        color="inherit"
+        onClick={openPrintMenu}
+        endIcon={<ArrowDropDownIcon />}
+      >
+        印刷
+      </Button>
+      <Menu
+        anchorEl={printAnchorEl}
+        open={!!printAnchorEl}
+        onClose={() => setPrintAnchorEl(null)}
+      >
+        <MenuList>
+          <MenuItem
+            onClick={() => {
+              setPrintAnchorEl(null);
+              handlePrintCareer();
+            }}
+          >
             <ListItemIcon>
-              <DownloadIcon fontSize="small" />
-            </ListItemIcon>{" "}
-            <span className="flex-1"> 編集中のデータをダウンロード</span>
+              <PrintIcon fontSize="small" />
+            </ListItemIcon>
+            <span className="flex-1">経歴書を印刷</span>
           </MenuItem>
-        </Menu>
 
-        {/* 表示 */}
-        <Button
-          color="inherit"
-          onClick={openViewMenu}
-          endIcon={<ArrowDropDownIcon />}
-        >
-          表示
-        </Button>
-        <Menu
-          anchorEl={viewAnchorEl}
-          open={!!viewAnchorEl}
-          onClose={() => setViewAnchorEl(null)}
-        >
-          <MenuList>
-            <MenuItem
-              onClick={() => {
-                toggleShowEdit();
-              }}
-            >
-              <ListItemIcon>
-                <EditNoteIcon fontSize="small" />
-              </ListItemIcon>
-              <span className="flex-1">編集</span>
-              {showEdit && <CheckIcon fontSize="small" className="ml-2" />}
-            </MenuItem>
+          <Divider />
 
-            <MenuItem
-              onClick={() => {
-                toggleShowPreview();
-              }}
-            >
-              <ListItemIcon>
-                <PreviewIcon fontSize="small" />
-              </ListItemIcon>
-              <span className="flex-1">プレビュー</span>
-              {showPreview && <CheckIcon fontSize="small" className="ml-2" />}
-            </MenuItem>
-          </MenuList>
-        </Menu>
-
-        {/* 印刷 */}
-        <Button
-          color="inherit"
-          onClick={openPrintMenu}
-          endIcon={<ArrowDropDownIcon />}
-        >
-          印刷
-        </Button>
-        <Menu
-          anchorEl={printAnchorEl}
-          open={!!printAnchorEl}
-          onClose={() => setPrintAnchorEl(null)}
-        >
-          <MenuList>
-            <MenuItem
-              onClick={() => {
-                setPrintAnchorEl(null);
-                handlePrintCareer();
-              }}
-            >
-              <ListItemIcon>
-                <PrintIcon fontSize="small" />
-              </ListItemIcon>
-              <span className="flex-1">経歴書を印刷</span>
-            </MenuItem>
-
-            <Divider />
-
-            <MenuItem
-              onClick={() => {
-                toggleIsSecrets();
-              }}
-            >
-              <ListItemIcon>
-                <LockIcon fontSize="small" />
-              </ListItemIcon>
-              <span className="flex-1">機密要素を表示する</span>
-              {isSecrets && <CheckIcon fontSize="small" className="ml-2" />}
-            </MenuItem>
-          </MenuList>
-        </Menu>
-      </header>
-    </ThemeProvider>
+          <MenuItem
+            onClick={() => {
+              toggleIsSecrets();
+            }}
+          >
+            <ListItemIcon>
+              <LockIcon fontSize="small" />
+            </ListItemIcon>
+            <span className="flex-1">機密要素を表示する</span>
+            {isSecrets && <CheckIcon fontSize="small" className="ml-2" />}
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </header>
   );
 }
