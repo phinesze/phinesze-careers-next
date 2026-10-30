@@ -1,12 +1,12 @@
 "use client";
 
-import { ProjectGroup } from "@/types/ProjectGroup";
-import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
-import { IntervalDateLabel } from "@/components/molecules/IntervalDateLabel";
 import { MarkdownDocument } from "@/components/atoms/MarkdownDocument";
-import { ProjectTeamNumberList } from "@/components/molecules/ProjectTeamNumberList";
-import { ProjectEnvironmentList } from "@/components/molecules/ProjectEnvironmentList";
 import { SubHeadingLabel } from "@/components/atoms/SubHeadingLabel";
+import { IntervalDateLabel } from "@/components/molecules/IntervalDateLabel";
+import { ProjectEnvironmentList } from "@/components/molecules/ProjectEnvironmentList";
+import { ProjectTeamNumberList } from "@/components/molecules/ProjectTeamNumberList";
+import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
+import { ProjectGroup } from "@/types/ProjectGroup";
 
 type Props = {
   groups: ProjectGroup[];

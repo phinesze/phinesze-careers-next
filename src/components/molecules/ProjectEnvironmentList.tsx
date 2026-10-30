@@ -1,7 +1,7 @@
 "use client";
 
-import { Project } from "@/types/Project";
 import { EnvironmentLabel } from "@/components/atoms/EnvironmentLabel";
+import { Project } from "@/types/Project";
 
 export function ProjectEnvironmentList({
   environments,

@@ -1,6 +1,5 @@
-import { useAtom } from "jotai/index";
-
 import { atom } from "jotai";
+import { useAtom } from "jotai/index";
 
 export const showEditAtom = atom<boolean>(true);
 export const showPreviewAtom = atom<boolean>(true);

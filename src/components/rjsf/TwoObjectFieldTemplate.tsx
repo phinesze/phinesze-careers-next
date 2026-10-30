@@ -1,9 +1,7 @@
-import { ObjectFieldTemplateProps } from "@rjsf/utils";
 import { Box, Grid } from "@mui/material";
+import { ObjectFieldTemplateProps } from "@rjsf/utils";
 
-export function TwoObjectFieldTemplate(
-  props: ObjectFieldTemplateProps,
-) {
+export function TwoObjectFieldTemplate(props: ObjectFieldTemplateProps) {
   return (
     <Box className={"m-0"}>
       {/* 2つのプロパティを1行に表示 */}

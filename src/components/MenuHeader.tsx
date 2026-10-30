@@ -1,6 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import CheckIcon from "@mui/icons-material/Check";
+import DownloadIcon from "@mui/icons-material/Download";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import FileOpenIcon from "@mui/icons-material/FileOpen";
+import FolderIcon from "@mui/icons-material/Folder";
+import LockIcon from "@mui/icons-material/Lock";
+import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import PreviewIcon from "@mui/icons-material/Preview";
+import PrintIcon from "@mui/icons-material/Print";
+import SaveIcon from "@mui/icons-material/Save";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import {
   Button,
   Divider,
@@ -10,19 +22,7 @@ import {
   MenuList,
   Typography,
 } from "@mui/material";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import CheckIcon from "@mui/icons-material/Check";
-import NoteAddIcon from "@mui/icons-material/NoteAdd";
-import FileOpenIcon from "@mui/icons-material/FileOpen";
-import SaveIcon from "@mui/icons-material/Save";
-import SaveAsIcon from "@mui/icons-material/SaveAs";
-import DownloadIcon from "@mui/icons-material/Download";
-import EditNoteIcon from "@mui/icons-material/EditNote";
-import PreviewIcon from "@mui/icons-material/Preview";
-import PrintIcon from "@mui/icons-material/Print";
-import LockIcon from "@mui/icons-material/Lock";
-import FolderIcon from "@mui/icons-material/Folder";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useState } from "react";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";

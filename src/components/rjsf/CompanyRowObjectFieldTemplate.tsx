@@ -1,5 +1,5 @@
-import { ObjectFieldTemplateProps } from "@rjsf/utils";
 import { Box, Grid } from "@mui/material";
+import { ObjectFieldTemplateProps } from "@rjsf/utils";
 
 const ROW_FIELDS = ["company", "companyAlias", "url"];
 
@@ -21,9 +21,9 @@ export function CompanyRowObjectFieldTemplate(props: ObjectFieldTemplateProps) {
         ))}
       </Grid>
       {/* projects などそれ以外の項目は従来どおり縦に並べる */}
-              {restItems.map((p) => (
-          <Box key={p.name}>{p.content}</Box>
-        ))}
+      {restItems.map((p) => (
+        <Box key={p.name}>{p.content}</Box>
+      ))}
     </Box>
   );
 }

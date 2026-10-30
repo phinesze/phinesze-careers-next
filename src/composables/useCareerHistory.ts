@@ -1,11 +1,11 @@
 "use strict";
 
-import { useState } from "react";
-import { customizeValidator } from "@rjsf/validator-ajv8";
 import { RJSFSchema } from "@rjsf/utils";
-import { CareerHistory } from "@/types/CareerHistory";
+import { customizeValidator } from "@rjsf/validator-ajv8";
+import { useState } from "react";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
+import { CareerHistory } from "@/types/CareerHistory";
 
 /**
  * window.showSaveFilePickerの型チェックが通るように実装する

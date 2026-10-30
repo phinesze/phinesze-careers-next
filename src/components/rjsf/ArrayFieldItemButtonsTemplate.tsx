@@ -1,10 +1,10 @@
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Box, IconButton } from "@mui/material";
 import {
   ArrayFieldItemButtonsTemplateProps,
   TranslatableString,
   buttonId,
 } from "@rjsf/utils";
-import { Box, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 export function ArrayFieldItemButtonsTemplate(
   props: ArrayFieldItemButtonsTemplateProps,

@@ -1,9 +1,9 @@
 import { CompanyRowObjectFieldTemplate } from "@/components/rjsf/CompanyRowObjectFieldTemplate";
-import { TwoObjectFieldTemplate } from "@/components/rjsf/TwoObjectFieldTemplate";
 import { DataGridArrayField } from "@/components/rjsf/DataGridArrayField";
-import { SectionTypeWidget } from "@/components/rjsf/SectionTypeWidget";
 import { MonthOrDateWidget } from "@/components/rjsf/MonthOrDateWidget";
+import { SectionTypeWidget } from "@/components/rjsf/SectionTypeWidget";
 import { TextFieldWidget } from "@/components/rjsf/TextFieldWIdget";
+import { TwoObjectFieldTemplate } from "@/components/rjsf/TwoObjectFieldTemplate";
 
 export const careerHistoryUiSchema = {
   updatedAt: {

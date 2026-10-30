@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
-import type { ReactNode } from "react";
-
 import { cn } from "@/utils/cn";
+import type { ReactNode } from "react";
 
 type Props = {
   /** ペイン左上に表示するタイトル */

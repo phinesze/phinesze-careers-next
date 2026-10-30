@@ -1,9 +1,4 @@
-import {
-  ArrayFieldItemTemplateProps,
-  getTemplate,
-  getUiOptions,
-} from "@rjsf/utils";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Accordion,
   AccordionDetails,
@@ -11,10 +6,11 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useContext } from "react";
-
-import { ArrayFieldTemplateContext } from "./ArrayFieldTemplate";
+import {
+  ArrayFieldItemTemplateProps,
+  getTemplate,
+  getUiOptions,
+} from "@rjsf/utils";
 import { useArrayFieldItem } from "@/composables/useArrayFieldItem";
 
 export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
@@ -26,7 +22,6 @@ export function ArrayFieldItemTemplate(props: ArrayFieldItemTemplateProps) {
     uiOptions,
   );
 
-  const { minItems } = useContext(ArrayFieldTemplateContext);
   const { getItemAccordionLabel } = useArrayFieldItem(props);
 
   return (

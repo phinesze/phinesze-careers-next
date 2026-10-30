@@ -1,7 +1,7 @@
 "use client";
 
-import { Project } from "@/types/Project";
 import { ProjectTeamNumberLabel } from "@/components/atoms/TeamNumberLabel";
+import { Project } from "@/types/Project";
 
 export function ProjectTeamNumberList({
   teams,

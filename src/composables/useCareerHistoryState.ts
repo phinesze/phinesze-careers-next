@@ -1,7 +1,6 @@
+import { atom } from "jotai";
 import { useAtom } from "jotai/index";
 import { CareerHistory } from "@/types/CareerHistory";
-
-import { atom } from "jotai";
 
 export const defaultCareerHistory = {
   updatedAt: "",

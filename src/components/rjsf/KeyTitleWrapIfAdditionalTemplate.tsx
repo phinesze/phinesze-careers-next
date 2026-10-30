@@ -1,3 +1,4 @@
+import { Grid, TextField } from "@mui/material";
 import {
   ADDITIONAL_PROPERTY_FLAG,
   buttonId,
@@ -5,7 +6,6 @@ import {
   TranslatableString,
   WrapIfAdditionalTemplateProps,
 } from "@rjsf/utils";
-import { Grid, TextField } from "@mui/material";
 
 /**
  * additionalProperties のキー入力欄のラベルを uiSchema の "ui:keyTitle" で指定できる WrapIfAdditionalTemplate
@@ -75,7 +75,12 @@ export function KeyTitleWrapIfAdditionalTemplate(
           id={buttonId(id, "remove")}
           className="rjsf-object-property-remove"
           iconType="default"
-          style={{ flex: 1, paddingLeft: 6, paddingRight: 6, fontWeight: "bold" }}
+          style={{
+            flex: 1,
+            paddingLeft: 6,
+            paddingRight: 6,
+            fontWeight: "bold",
+          }}
           disabled={disabled || readonly}
           onClick={onRemoveProperty}
           uiSchema={uiSchema}

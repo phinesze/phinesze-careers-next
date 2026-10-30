@@ -1,10 +1,10 @@
+import AddIcon from "@mui/icons-material/Add";
+import { Box, Button } from "@mui/material";
 import {
   ArrayFieldTemplateProps,
   getTemplate,
   getUiOptions,
 } from "@rjsf/utils";
-import AddIcon from "@mui/icons-material/Add";
-import { Box, Button } from "@mui/material";
 import { createContext } from "react";
 
 export const ArrayFieldTemplateContext = createContext<{
