@@ -69,7 +69,7 @@ export function DataGridArrayField(props: FieldProps<Item[]>) {
   ];
 
   // 配列の index を DataGrid の行 id として使う
-  const rows: Row[] = items.map((item, i) => ({ ...item, id: i }));
+  const rows: Row[] = items.map((item, i) => ({ ...item, id: i }) as Row);
 
   const handleProcessRowUpdate = (newRow: Row) => {
     const { id, ...item } = newRow;
