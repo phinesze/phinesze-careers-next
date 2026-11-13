@@ -27,6 +27,21 @@
       "problemMatcher": [],
       "label": "phinesze-careers-next: フォーマッタを実行",
       "detail": "prettier --write **/*.{ts,tsx,json,md}"
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "phinesze-careers-next: ビルド",
+      "detail": "next build"
+    },
+    {
+      "type": "npm",
+      "script": "start",
+      "problemMatcher": [],
+      "label": "phinesze-careers-next: スタート",
+      "detail": "next start"
     }
   ]
 }
