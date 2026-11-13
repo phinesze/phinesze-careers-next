@@ -21,7 +21,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCareerHistory } from "@/composables/useCareerHistory";
 import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
@@ -63,17 +63,25 @@ export function MenuHeader() {
   // ショートカットキーを設定
   const handleKeyDown = (event: KeyboardEvent) => {
     const isMod = event.metaKey || event.ctrlKey;
-    // Ctrl+O / ⌘+Oで新規作成する
+    // Ctrl+O / ⌘+Oでファイルを開く
     if (isMod && event.key.toLowerCase() === "o") {
       event.preventDefault();
       handleOpenFile();
-      // Ctrl+S / ⌘+Sで保存するする
-    } else if (isMod && isMod && event.key.toLowerCase() === "s") {
+      // Ctrl+S / ⌘+Sで保存する
+    } else if (isMod && event.key.toLowerCase() === "s") {
       event.preventDefault();
       handleSaveFile();
     }
   };
-  window.addEventListener("keydown", handleKeyDown);
+  const handleKeyDownRef = useRef(handleKeyDown);
+  useEffect(() => {
+    handleKeyDownRef.current = handleKeyDown;
+  });
+  useEffect(() => {
+    const listener = (event: KeyboardEvent) => handleKeyDownRef.current(event);
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
+  }, []);
 
   const openFileMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setFileAnchorEl(event.currentTarget);
