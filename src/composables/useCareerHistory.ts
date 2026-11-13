@@ -2,8 +2,11 @@
 
 import { RJSFSchema } from "@rjsf/utils";
 import { customizeValidator } from "@rjsf/validator-ajv8";
-import { useState } from "react";
-import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
+import { useAtom } from "jotai";
+import {
+  currentFileHandleAtom,
+  useCareerHistoryState,
+} from "@/composables/useCareerHistoryState";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
 import { CareerHistory } from "@/types/CareerHistory";
 
@@ -57,10 +60,10 @@ export const useCareerHistory = () => {
   const isEnableFilePicker =
     "showOpenFilePicker" in window && "showSaveFilePicker" in window;
 
-  // showOpenFilePickerの対応時に上書き保存ようにfileHnadleを記憶する
-  const [fileHandle, setFileHandle] = useState<
-    FileSystemFileHandle | undefined
-  >(undefined);
+  // showOpenFilePicker/showSaveFilePickerの対応時に上書き保存用にcurrentFileHandleを記憶する
+  const [currentFileHandle, setCurrentFileHandle] = useAtom(
+    currentFileHandleAtom,
+  );
 
   /**
    * 職務履歴データに合致するかのバリデーションチェック
@@ -86,6 +89,8 @@ export const useCareerHistory = () => {
   const handleNew = async () => {
     if (!isChanged || confirm("変更しています")) {
       resetCareerHistory();
+      // 新規作成したデータを既存ファイルに上書きしないよう保存先をクリアする
+      setCurrentFileHandle(undefined);
     }
   };
 
@@ -105,8 +110,8 @@ export const useCareerHistory = () => {
         });
         readFile(await handle.getFile());
 
-        // showOpenFilePickerfileHandleを上書き保存時のために保持する。
-        setFileHandle(handle);
+        // currentFileHandleを上書き保存時のために保持する。
+        setCurrentFileHandle(handle);
       } catch (err: unknown) {
         if (err instanceof DOMException && err.name === "AbortError") {
           console.log("ユーザーがファイル選択をキャンセルしました。");
@@ -176,31 +181,47 @@ export const useCareerHistory = () => {
    * ファイル保存ダイアログを開き職務経歴ファイルを保存する（showSaveFilePickerに対応の場合）。
    */
   const handleSaveFileAs = async () => {
-    const selectedFileHandle = await window.showSaveFilePicker({
-      suggestedName: "careerHistory.json",
-      startIn: "downloads",
-      types: [
-        {
-          accept: {
-            "text/json": [".json"],
+    try {
+      const selectedFileHandle = await window.showSaveFilePicker({
+        suggestedName: currentFileHandle?.name ?? "careerHistory.json",
+        startIn: currentFileHandle ?? "downloads",
+        types: [
+          {
+            accept: {
+              "text/json": [".json"],
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
 
-    saveByFileHandle(selectedFileHandle);
-    setFileHandle(selectedFileHandle);
+      await saveByFileHandle(selectedFileHandle);
+      // 以降の「保存」は、ここで選択したファイルに上書きする
+      setCurrentFileHandle(selectedFileHandle);
+    } catch (err: unknown) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        console.log("ユーザーがファイル保存をキャンセルしました。");
+      } else {
+        console.error("エラーが発生しました:", err);
+        alert("ファイルを保存できませんでした。");
+      }
+    }
   };
 
   /**
    * 「ファイル」→「保存」を選択した時の動作
-   * file（showSaveFilePickerに対応の場合）。
+   * 「開く」または「名前をつけて保存」で選択したファイルに上書き保存する。
+   * 保存先が未選択の場合は「名前をつけて保存」と同じ動作をする。
    */
   const handleSaveFile = async () => {
-    if (fileHandle) {
-      saveByFileHandle(fileHandle);
-    } else {
-      handleSaveFileAs();
+    if (!currentFileHandle) {
+      await handleSaveFileAs();
+      return;
+    }
+    try {
+      await saveByFileHandle(currentFileHandle);
+    } catch (err: unknown) {
+      console.error("エラーが発生しました:", err);
+      alert("ファイルを保存できませんでした。");
     }
   };
 

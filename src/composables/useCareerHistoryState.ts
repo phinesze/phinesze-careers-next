@@ -15,6 +15,13 @@ export const careerHistoryAtom = atom<CareerHistory>(defaultCareerHistory);
 export const isChangedAtom = atom<boolean>(false);
 
 /**
+ * 「保存」時の保存先ファイルのハンドル（「開く」「名前をつけて保存」で選んだファイル）
+ */
+export const currentFileHandleAtom = atom<FileSystemFileHandle | undefined>(
+  undefined,
+);
+
+/**
  * 機密要素を表示するか
  */
 export const isSecretsAtom = atom<boolean>(false);
@@ -25,6 +32,9 @@ export const isSecretsAtom = atom<boolean>(false);
 export const useCareerHistoryState = () => {
   const [careerHistory, setCareerHistory] = useAtom(careerHistoryAtom);
   const [isChanged, setIsChanged] = useAtom(isChangedAtom);
+  const [currentFileHandle, setCurrentFileHandle] = useAtom(
+    currentFileHandleAtom,
+  );
   const { sections: careerHistorySections, updatedAt } = careerHistory;
 
   const [isSecrets, setIsSecrets] = useAtom(isSecretsAtom);
@@ -47,6 +57,8 @@ export const useCareerHistoryState = () => {
     resetCareerHistory,
     isChanged,
     setIsChanged,
+    currentFileHandle,
+    setCurrentFileHandle,
     careerHistorySections,
     updatedAt,
     isSecrets,
