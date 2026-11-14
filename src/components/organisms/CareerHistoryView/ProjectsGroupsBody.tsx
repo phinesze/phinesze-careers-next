@@ -1,12 +1,11 @@
 "use client";
 
-import { useAtomValue } from "jotai";
 import { MarkdownDocument } from "@/components/atoms/MarkdownDocument";
 import { SubHeadingLabel } from "@/components/atoms/SubHeadingLabel";
 import { IntervalDateLabel } from "@/components/molecules/IntervalDateLabel";
 import { ProjectEnvironmentList } from "@/components/molecules/ProjectEnvironmentList";
 import { ProjectTeamNumberList } from "@/components/molecules/ProjectTeamNumberList";
-import { isSecretsAtom } from "@/composables/useCareerHistoryState";
+import { useIsSecretsValue } from "@/composables/useCareerHistoryState";
 import { ProjectGroup } from "@/types/ProjectGroup";
 
 type Props = {
@@ -14,7 +13,7 @@ type Props = {
 };
 
 export function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
-  const isSecrets = useAtomValue(isSecretsAtom);
+  const isSecrets = useIsSecretsValue();
   let projectIndex = 0;
   return (
     <>

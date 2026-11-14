@@ -21,10 +21,9 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { useAtom } from "jotai";
 import { useEffect, useRef, useState } from "react";
 import { useCareerHistory } from "@/composables/useCareerHistory";
-import { isSecretsAtom } from "@/composables/useCareerHistoryState";
+import { useIsSecrets } from "@/composables/useCareerHistoryState";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
 
 export function MenuHeader() {
@@ -39,14 +38,12 @@ export function MenuHeader() {
     handleSaveFileAs,
     handleDownloadFile,
   } = useCareerHistory();
-  const [isSecrets, setIsSecrets] = useAtom(isSecretsAtom);
-  const toggleIsSecrets = () => setIsSecrets((prev) => !prev);
+  const { isSecrets, toggleIsSecrets } = useIsSecrets();
 
   const {
     showEdit,
     showPreview,
-    setShowEdit,
-    setShowPreview,
+    showPreviewOnly,
     toggleShowEdit,
     toggleShowPreview,
   } = useDisplayModeState();
@@ -55,8 +52,7 @@ export function MenuHeader() {
    * 経歴書を印刷させるため、プレビューのみ表示させた上に印刷を開く。
    */
   const handlePrintCareer = () => {
-    setShowEdit(false);
-    setShowPreview(true);
+    showPreviewOnly();
     setTimeout(() => {
       print();
     }, 0);
