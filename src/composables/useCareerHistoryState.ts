@@ -1,16 +1,18 @@
 import { atom } from "jotai";
-import { useAtom } from "jotai/index";
 import { CareerHistory } from "@/types/CareerHistory";
 
-export const defaultCareerHistory = {
+export const defaultCareerHistory: CareerHistory = {
   updatedAt: "",
   sections: [],
 };
 
+/**
+ * 職務経歴データ（編集画面とプレビューで共有する）
+ */
 export const careerHistoryAtom = atom<CareerHistory>(defaultCareerHistory);
 
 /**
- * 読み込み、新規作成後に
+ * 読み込み、新規作成後に職務経歴データを変更したかどうかの値
  */
 export const isChangedAtom = atom<boolean>(false);
 
@@ -25,44 +27,3 @@ export const currentFileHandleAtom = atom<FileSystemFileHandle | undefined>(
  * 機密要素を表示するか
  */
 export const isSecretsAtom = atom<boolean>(false);
-
-/**
- * 職務経歴データを保持するためのステートやjotai
- */
-export const useCareerHistoryState = () => {
-  const [careerHistory, setCareerHistory] = useAtom(careerHistoryAtom);
-  const [isChanged, setIsChanged] = useAtom(isChangedAtom);
-  const [currentFileHandle, setCurrentFileHandle] = useAtom(
-    currentFileHandleAtom,
-  );
-  const { sections: careerHistorySections, updatedAt } = careerHistory;
-
-  const [isSecrets, setIsSecrets] = useAtom(isSecretsAtom);
-
-  const resetCareerHistory = () => {
-    setCareerHistory({
-      updatedAt: "",
-      sections: [],
-    });
-    setIsChanged(false);
-  };
-
-  const toggleIsSecrets = () => {
-    setIsSecrets((prev) => !prev);
-  };
-
-  return {
-    careerHistory,
-    setCareerHistory,
-    resetCareerHistory,
-    isChanged,
-    setIsChanged,
-    currentFileHandle,
-    setCurrentFileHandle,
-    careerHistorySections,
-    updatedAt,
-    isSecrets,
-    setIsSecrets,
-    toggleIsSecrets,
-  };
-};

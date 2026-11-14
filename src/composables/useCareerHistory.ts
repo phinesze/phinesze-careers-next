@@ -4,8 +4,10 @@ import { RJSFSchema } from "@rjsf/utils";
 import { customizeValidator } from "@rjsf/validator-ajv8";
 import { useAtom } from "jotai";
 import {
+  careerHistoryAtom,
   currentFileHandleAtom,
-  useCareerHistoryState,
+  defaultCareerHistory,
+  isChangedAtom,
 } from "@/composables/useCareerHistoryState";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
 import { CareerHistory } from "@/types/CareerHistory";
@@ -47,14 +49,8 @@ declare global {
 const validator = customizeValidator<CareerHistory>();
 
 export const useCareerHistory = () => {
-  const {
-    careerHistory,
-    setCareerHistory,
-    resetCareerHistory,
-    isChanged,
-    setIsChanged,
-    isSecrets,
-  } = useCareerHistoryState();
+  const [careerHistory, setCareerHistory] = useAtom(careerHistoryAtom);
+  const [isChanged, setIsChanged] = useAtom(isChangedAtom);
 
   // showOpenFilePicker、showSaveFilePickerに対応しているか
   const isEnableFilePicker =
@@ -88,7 +84,8 @@ export const useCareerHistory = () => {
    */
   const handleNew = async () => {
     if (!isChanged || confirm("変更しています")) {
-      resetCareerHistory();
+      setCareerHistory(defaultCareerHistory);
+      setIsChanged(false);
       // 新規作成したデータを既存ファイルに上書きしないよう保存先をクリアする
       setCurrentFileHandle(undefined);
     }
@@ -264,7 +261,6 @@ export const useCareerHistory = () => {
 
   return {
     isEnableFilePicker,
-    isSecrets,
     handleNew,
     handleOpenFile,
     handleSaveFileAs,

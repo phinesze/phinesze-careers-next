@@ -21,9 +21,10 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
+import { useAtom } from "jotai";
 import { useEffect, useRef, useState } from "react";
 import { useCareerHistory } from "@/composables/useCareerHistory";
-import { useCareerHistoryState } from "@/composables/useCareerHistoryState";
+import { isSecretsAtom } from "@/composables/useCareerHistoryState";
 import { useDisplayModeState } from "@/composables/useDisplayModeState";
 
 export function MenuHeader() {
@@ -38,7 +39,8 @@ export function MenuHeader() {
     handleSaveFileAs,
     handleDownloadFile,
   } = useCareerHistory();
-  const { isSecrets, toggleIsSecrets } = useCareerHistoryState();
+  const [isSecrets, setIsSecrets] = useAtom(isSecretsAtom);
+  const toggleIsSecrets = () => setIsSecrets((prev) => !prev);
 
   const {
     showEdit,
