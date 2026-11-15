@@ -8,15 +8,21 @@ import {
   useCareerHistoryValue,
   useIsSecretsValue,
 } from "@/composables/useCareerHistoryState";
+import { useCareerHistoryFileState } from "@/composables/useCareerHistoryState";
 import { cn } from "@/utils/cn";
 
 export function CareerHistoryView() {
   const { sections: careerHistorySections, updatedAt } =
     useCareerHistoryValue();
   const isSecrets = useIsSecretsValue();
+  const { currentFileHandle } = useCareerHistoryFileState();
 
   return (
     <main className="min-h-[297mm] w-[210mm] bg-white p-[5mm] text-[2mm] text-black">
+      <title>
+        {`${currentFileHandle?.name || "新規ファイル"} - 職務経歴書作成編集ツール`}
+      </title>
+
       <section className="relative mb-[2.5mm]">
         <div className="text-center text-[6mm]/none">職務経歴書</div>
         {isSecrets && (
