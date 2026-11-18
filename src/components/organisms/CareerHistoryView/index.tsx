@@ -1,21 +1,22 @@
 "use client";
 
+import { useAtomValue } from "jotai";
 import { Fragment } from "react";
 import { DateLabel } from "@/components/atoms/DateLabel";
 import { CareerHistoryViewDocumentBody } from "@/components/organisms/CareerHistoryView/DocumentBody";
 import { CareerHistoryViewProjectsGroupsBody } from "@/components/organisms/CareerHistoryView/ProjectsGroupsBody";
 import {
-  useCareerHistoryValue,
-  useIsSecretsValue,
-} from "@/composables/useCareerHistoryState";
-import { useCareerHistoryFileState } from "@/composables/useCareerHistoryState";
+  careerHistoryAtom,
+  currentFileHandleAtom,
+  isSecretsAtom,
+} from "@/store/useCareerHistoryState";
 import { cn } from "@/utils/cn";
 
 export function CareerHistoryView() {
   const { sections: careerHistorySections, updatedAt } =
-    useCareerHistoryValue();
-  const isSecrets = useIsSecretsValue();
-  const { currentFileHandle } = useCareerHistoryFileState();
+    useAtomValue(careerHistoryAtom);
+  const isSecrets = useAtomValue(isSecretsAtom);
+  const currentFileHandle = useAtomValue(currentFileHandleAtom);
 
   return (
     <main className="min-h-[297mm] w-[210mm] bg-white p-[5mm] text-[2mm] text-black">

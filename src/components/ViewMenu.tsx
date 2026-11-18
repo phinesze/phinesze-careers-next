@@ -6,16 +6,17 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import PreviewIcon from "@mui/icons-material/Preview";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Button, ListItemIcon, Menu, MenuItem } from "@mui/material";
+import { useAtom } from "jotai";
 import { useState } from "react";
-import { useDisplayModeState } from "@/composables/useDisplayModeState";
+import { showEditAtom, showPreviewAtom } from "@/store/useCareerHistoryState";
 
 /**
  * 「表示」メニュー。
  */
 export function ViewMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { showEdit, showPreview, toggleShowEdit, toggleShowPreview } =
-    useDisplayModeState();
+  const [showEdit, setShowEdit] = useAtom(showEditAtom);
+  const [showPreview, setShowPreview] = useAtom(showPreviewAtom);
 
   const openMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -39,7 +40,7 @@ export function ViewMenu() {
       >
         <MenuItem
           onClick={() => {
-            toggleShowEdit();
+            setShowEdit((current) => !current);
           }}
         >
           <ListItemIcon>
@@ -51,7 +52,7 @@ export function ViewMenu() {
 
         <MenuItem
           onClick={() => {
-            toggleShowPreview();
+            setShowPreview((current) => !current);
           }}
         >
           <ListItemIcon>

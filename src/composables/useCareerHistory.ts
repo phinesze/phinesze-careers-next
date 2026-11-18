@@ -2,8 +2,14 @@
 
 import { RJSFSchema } from "@rjsf/utils";
 import { customizeValidator } from "@rjsf/validator-ajv8";
-import { useCareerHistoryFileState } from "@/composables/useCareerHistoryState";
+import { useAtom } from "jotai";
 import careerHistorySchema from "@/schemas/CareerHistory.schema.json";
+import {
+  careerHistoryAtom,
+  currentFileHandleAtom,
+  defaultCareerHistory,
+  isChangedAtom,
+} from "@/store/useCareerHistoryState";
 import { CareerHistory } from "@/types/CareerHistory";
 
 /**
@@ -43,15 +49,12 @@ declare global {
 const validator = customizeValidator<CareerHistory>();
 
 export const useCareerHistory = () => {
-  const {
-    careerHistory,
-    isChanged,
-    // showOpenFilePicker/showSaveFilePickerの対応時に上書き保存用に記憶しているファイル
-    currentFileHandle,
-    resetCareerHistory,
-    loadCareerHistory,
-    setSavedFileHandle,
-  } = useCareerHistoryFileState();
+  const [careerHistory, setCareerHistory] = useAtom(careerHistoryAtom);
+  const [isChanged, setIsChanged] = useAtom(isChangedAtom);
+  // showOpenFilePicker/showSaveFilePickerの対応時に上書き保存用に記憶しているファイル
+  const [currentFileHandle, setCurrentFileHandle] = useAtom(
+    currentFileHandleAtom,
+  );
 
   // showOpenFilePicker、showSaveFilePickerに対応しているか
   const isEnableFilePicker =
@@ -80,7 +83,10 @@ export const useCareerHistory = () => {
    */
   const handleNew = async () => {
     if (!isChanged || confirm("変更しています")) {
-      resetCareerHistory();
+      // データを空にし、既存ファイルに上書きしないよう保存先もクリアする
+      setCareerHistory(defaultCareerHistory);
+      setIsChanged(false);
+      setCurrentFileHandle(undefined);
     }
   };
 
@@ -149,8 +155,10 @@ export const useCareerHistory = () => {
         if (!validateCareerHistory(parsedSectionData)) {
           return;
         }
-        // 状態管理用のステートに読み込んだJSONの内容を代入
-        loadCareerHistory(parsedSectionData, fileHandle);
+        // 状態管理用のステートに読み込んだJSONの内容を代入し、読み込み元のファイルを保存先にする
+        setCareerHistory(parsedSectionData);
+        setIsChanged(false);
+        setCurrentFileHandle(fileHandle);
       } catch (e: unknown) {
         // JSON構文エラー
         if (e instanceof SyntaxError) {
@@ -183,7 +191,8 @@ export const useCareerHistory = () => {
       });
 
       await saveByFileHandle(selectedFileHandle);
-      setSavedFileHandle(selectedFileHandle);
+      // 以降の「保存」は、ここで選択したファイルに上書きする
+      setCurrentFileHandle(selectedFileHandle);
     } catch (err: unknown) {
       if (err instanceof DOMException && err.name === "AbortError") {
         console.log("ユーザーがファイル保存をキャンセルしました。");

@@ -1,13 +1,15 @@
 "use client";
 
+import { useAtomValue } from "jotai";
 import { TitledPane } from "@/components/molecules/TitledPane";
 import { CareerEditHistoryEdit } from "@/components/organisms/CareerEditHistoryEdit";
 import { CareerHistoryView } from "@/components/organisms/CareerHistoryView";
-import { useDisplayModeState } from "@/composables/useDisplayModeState";
+import { showEditAtom, showPreviewAtom } from "@/store/useCareerHistoryState";
 import { cn } from "@/utils/cn";
 
 export default function IndexPage() {
-  const { showEdit, showPreview } = useDisplayModeState();
+  const showEdit = useAtomValue(showEditAtom);
+  const showPreview = useAtomValue(showPreviewAtom);
   return (
     <div
       className={cn("grid h-full ", { "grid-cols-2": showEdit && showPreview })}

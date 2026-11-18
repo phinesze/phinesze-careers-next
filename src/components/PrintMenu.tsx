@@ -5,23 +5,29 @@ import CheckIcon from "@mui/icons-material/Check";
 import LockIcon from "@mui/icons-material/Lock";
 import PrintIcon from "@mui/icons-material/Print";
 import { Button, Divider, ListItemIcon, Menu, MenuItem } from "@mui/material";
+import { useAtom, useSetAtom } from "jotai";
 import { useState } from "react";
-import { useIsSecrets } from "@/composables/useCareerHistoryState";
-import { useDisplayModeState } from "@/composables/useDisplayModeState";
+import {
+  isSecretsAtom,
+  showEditAtom,
+  showPreviewAtom,
+} from "@/store/useCareerHistoryState";
 
 /**
  * 「印刷」メニュー。
  */
 export function PrintMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { isSecrets, toggleIsSecrets } = useIsSecrets();
-  const { showPreviewOnly } = useDisplayModeState();
+  const [isSecrets, setIsSecrets] = useAtom(isSecretsAtom);
+  const setShowEdit = useSetAtom(showEditAtom);
+  const setShowPreview = useSetAtom(showPreviewAtom);
 
   /**
    * 経歴書を印刷させるため、プレビューのみ表示させた上に印刷を開く。
    */
   const handlePrintCareer = () => {
-    showPreviewOnly();
+    setShowEdit(false);
+    setShowPreview(true);
     setTimeout(() => {
       print();
     }, 0);
@@ -63,7 +69,7 @@ export function PrintMenu() {
 
         <MenuItem
           onClick={() => {
-            toggleIsSecrets();
+            setIsSecrets((current) => !current);
           }}
         >
           <ListItemIcon>
