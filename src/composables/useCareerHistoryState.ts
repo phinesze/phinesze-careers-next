@@ -12,17 +12,17 @@ const defaultCareerHistory: CareerHistory = {
 const careerHistoryAtom = atom<CareerHistory>(defaultCareerHistory);
 
 /**
- * 読み込み、新規作成後に職務経歴データを変更したかどうかの値のatom
+ * 職務経歴データを（読み込みや新規作成の後に）変更したかどうかの値のatom
  */
 const isChangedAtom = atom<boolean>(false);
 
 /**
- * 「保存」時の保存先ファイルのハンドル（「開く」「名前をつけて保存」で選んだファイル）
+ * 「保存」を選択した時の保存先ファイルハンドルのatom（「開く」や「名前をつけて保存」で選んだファイル）
  */
 const currentFileHandleAtom = atom<FileSystemFileHandle | undefined>(undefined);
 
 /**
- * 機密要素を表示するか
+ * 機密要素を表示するかどうかの値のatom（プレビュー画面で反映される）
  */
 const isSecretsAtom = atom<boolean>(false);
 
