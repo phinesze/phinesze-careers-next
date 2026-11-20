@@ -7,10 +7,7 @@ type Props = {
   markdownText?: string;
 };
 
-export function CareerHistoryViewDocumentBody({
-  label,
-  markdownText,
-}: Props) {
+export function ViewPaneContentDocumentBody({ label, markdownText }: Props) {
   return (
     <section
       className={"[&:not(:first-child)]:border-t [&:not(:last-child)]:border-b"}

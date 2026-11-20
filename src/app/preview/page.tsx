@@ -1,10 +1,10 @@
-import { CareerHistoryView } from "@/components/organisms/CareerHistoryView";
+import { ViewPaneContent } from "@/components/organisms/ViewPaneContent";
 
 // プレビュー用ページ
 export default function PreviewPage() {
   return (
     <div className="bg-white">
-      <CareerHistoryView />
+      <ViewPaneContent />
     </div>
   );
 }

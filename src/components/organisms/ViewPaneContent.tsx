@@ -3,8 +3,8 @@
 import { useAtomValue } from "jotai";
 import { Fragment } from "react";
 import { DateLabel } from "@/components/atoms/DateLabel";
-import { CareerHistoryViewDocumentBody } from "@/components/organisms/CareerHistoryView/DocumentBody";
-import { CareerHistoryViewProjectsGroupsBody } from "@/components/organisms/CareerHistoryView/ProjectsGroupsBody";
+import { ViewPaneContentDocumentBody } from "@/components/organisms/ViewPaneContent/DocumentBody";
+import { ViewPaneContentProjectsGroupsBody } from "@/components/organisms/ViewPaneContent/ProjectsGroupsBody";
 import {
   careerHistoryAtom,
   currentFileHandleAtom,
@@ -12,7 +12,10 @@ import {
 } from "@/store/useCareerHistoryState";
 import { cn } from "@/utils/cn";
 
-export function CareerHistoryView() {
+/**
+ * 「プレビュー」ペインのコンテンツ部分
+ */
+export function ViewPaneContent() {
   const { sections: careerHistorySections, updatedAt } =
     useAtomValue(careerHistoryAtom);
   const isSecrets = useAtomValue(isSecretsAtom);
@@ -43,13 +46,13 @@ export function CareerHistoryView() {
           {careerHistorySections.map((section, index) => (
             <Fragment key={index}>
               {section.type === "document" && (
-                <CareerHistoryViewDocumentBody
+                <ViewPaneContentDocumentBody
                   label={section.label}
                   markdownText={section.detail}
                 />
               )}
               {section.type === "project-groups" && (
-                <CareerHistoryViewProjectsGroupsBody groups={section.groups} />
+                <ViewPaneContentProjectsGroupsBody groups={section.groups} />
               )}
             </Fragment>
           ))}

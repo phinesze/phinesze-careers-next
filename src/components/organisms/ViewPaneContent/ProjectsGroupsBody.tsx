@@ -13,7 +13,10 @@ type Props = {
   groups: ProjectGroup[];
 };
 
-export function CareerHistoryViewProjectsGroupsBody({ groups }: Props) {
+/**
+ * 「プレビュー」ペインのプロジェクトグループの部分
+ */
+export function ViewPaneContentProjectsGroupsBody({ groups }: Props) {
   const isSecrets = useAtomValue(isSecretsAtom);
   let projectIndex = 0;
   return (

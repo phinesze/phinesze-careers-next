@@ -2,8 +2,8 @@
 
 import { useAtomValue } from "jotai";
 import { TitledPane } from "@/components/molecules/TitledPane";
-import { CareerEditHistoryEdit } from "@/components/organisms/CareerEditHistoryEdit";
-import { CareerHistoryView } from "@/components/organisms/CareerHistoryView";
+import { EditPaneContent } from "@/components/organisms/EditPaneContent";
+import { ViewPaneContent } from "@/components/organisms/ViewPaneContent";
 import { showEditAtom, showPreviewAtom } from "@/store/useCareerHistoryState";
 import { cn } from "@/utils/cn";
 
@@ -16,12 +16,12 @@ export default function IndexPage() {
     >
       {
         <TitledPane title="編集" className={cn({ hidden: !showEdit })}>
-          <CareerEditHistoryEdit />
+          <EditPaneContent />
         </TitledPane>
       }
       {
         <TitledPane title="プレビュー" className={cn({ hidden: !showPreview })}>
-          <CareerHistoryView />
+          <ViewPaneContent />
         </TitledPane>
       }
     </div>

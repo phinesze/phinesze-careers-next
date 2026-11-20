@@ -18,7 +18,10 @@ import {
 
 const validator = customizeValidator();
 
-export function CareerEditHistoryEdit() {
+/**
+ * 「編集」ペインのコンテンツ部分
+ */
+export function EditPaneContent() {
   const [careerHistory, setCareerHistory] = useAtom(careerHistoryAtom);
   const setIsChanged = useSetAtom(isChangedAtom);
 
